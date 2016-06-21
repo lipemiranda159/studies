@@ -11,6 +11,8 @@ namespace BookStore.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Models;
+    using System.Web.Http;
+    using WebApiContrib.IoC.Ninject;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -45,6 +47,8 @@ namespace BookStore.App_Start
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
+
                 RegisterServices(kernel);
                 return kernel;
             }
@@ -61,8 +65,8 @@ namespace BookStore.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IRepository>().To<Repository>();
-            kernel.Bind<BookStoreContext>().To<BookStoreContext>();
+            kernel.Bind<IRepository>().To<Repository>().InRequestScope();
+            kernel.Bind<BookStoreContext>().To<BookStoreContext>().InRequestScope();
         }        
     }
 }

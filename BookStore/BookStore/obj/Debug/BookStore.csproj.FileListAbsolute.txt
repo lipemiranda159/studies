@@ -48,3 +48,11 @@ D:\Estudos\studies\BookStore\BookStore\bin\EntityFramework.dll
 D:\Estudos\studies\BookStore\BookStore\bin\EntityFramework.SqlServer.dll
 D:\Estudos\studies\BookStore\BookStore\bin\EntityFramework.xml
 D:\Estudos\studies\BookStore\BookStore\bin\EntityFramework.SqlServer.xml
+D:\Estudos\studies\BookStore\BookStore\bin\Ninject.dll
+D:\Estudos\studies\BookStore\BookStore\bin\Ninject.Web.Common.dll
+D:\Estudos\studies\BookStore\BookStore\bin\Ninject.Web.Mvc.dll
+D:\Estudos\studies\BookStore\BookStore\bin\WebActivatorEx.dll
+D:\Estudos\studies\BookStore\BookStore\bin\WebApiContrib.IoC.Ninject.dll
+D:\Estudos\studies\BookStore\BookStore\bin\Ninject.xml
+D:\Estudos\studies\BookStore\BookStore\bin\Ninject.Web.Common.xml
+D:\Estudos\studies\BookStore\BookStore\bin\Ninject.Web.Mvc.xml
