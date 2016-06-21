@@ -28,6 +28,8 @@ namespace BookStore.Models
             context.Orders.Add(order);
             details.ForEach(o => context.OrderDetails.Add(o));
 
+            context.SaveChanges();
+
             base.Seed(context);
         }
     }
