@@ -7,11 +7,15 @@ namespace BookStore.Models
 {
     public class Order
     {
+        public Order()
+        {
+            OrderDetails = new List<OrderDetail>();
+        }
         public int Id { get; set; }
         public string Customer { get; set; }
         public DateTime OrderDate { get; set; }
 
 
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
