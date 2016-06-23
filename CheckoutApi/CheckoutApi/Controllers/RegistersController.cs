@@ -70,25 +70,19 @@ namespace CheckoutApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        //// POST: api/Registers
-        //[ResponseType(typeof(Register))]
-        //public IHttpActionResult PostRegister(Register register)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Registers.Add(register);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = register.Id }, register);
-        //}
-
         [HttpPost]
         public IHttpActionResult PostRegister()
         {
-            var register = new Register() { Time = DateTime.Now };
+            var register = new Register()
+            {
+                Day = DateTime.Now.Day,
+                Month = DateTime.Now.Month,
+                Year = DateTime.Now.Year,
+                Hour = DateTime.Now.Hour,
+                Minutes = DateTime.Now.Minute,
+                Time = DateTime.Now
+            };
+
             db.Registers.Add(register);
             db.SaveChanges();
             return StatusCode(HttpStatusCode.OK);
