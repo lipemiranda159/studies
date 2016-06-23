@@ -44,12 +44,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Breeze.ContextProvider, Version=1.5.0.0, Culture=neutral, PublicKeyToken=f6085f1a45e2ac59, processorArchitecture=MSIL">
-      <HintPath>..\packages\Breeze.Server.ContextProvider.1.5.0\lib\Breeze.ContextProvider.dll</HintPath>
+    <Reference Include="Breeze.ContextProvider, Version=1.5.5.0, Culture=neutral, PublicKeyToken=f6085f1a45e2ac59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Breeze.Server.ContextProvider.1.5.5\lib\Breeze.ContextProvider.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Breeze.WebApi2, Version=1.5.0.0, Culture=neutral, PublicKeyToken=f6085f1a45e2ac59, processorArchitecture=MSIL">
-      <HintPath>..\packages\Breeze.Server.WebApi2.1.5.0\lib\Breeze.WebApi2.dll</HintPath>
+    <Reference Include="Breeze.ContextProvider.EF6, Version=1.5.5.0, Culture=neutral, PublicKeyToken=f6085f1a45e2ac59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Breeze.Server.ContextProvider.EF6.1.5.5\lib\Breeze.ContextProvider.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Breeze.WebApi2, Version=1.5.5.0, Culture=neutral, PublicKeyToken=f6085f1a45e2ac59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Breeze.Server.WebApi2.1.5.5\lib\Breeze.WebApi2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -215,10 +219,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\BreezeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -239,6 +241,7 @@
     <Content Include="app\common\common.js" />
     <Content Include="app\common\logger.js" />
     <Content Include="app\common\spinner.js" />
+    <Content Include="app\config.breeze.js" />
     <Content Include="app\config.exceptionHandler.js" />
     <Content Include="app\config.js" />
     <Content Include="app\config.route.js" />
@@ -266,6 +269,8 @@
     <Content Include="Content\images\AngularJS-small.png" />
     <Content Include="Content\images\breezelogo.png" />
     <Content Include="Content\images\icon.png" />
+    <Content Include="Content\jasmine\jasmine.css" />
+    <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="Content\styles.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -328,6 +333,10 @@
     <Content Include="Scripts\breeze.min.js" />
     <Content Include="Scripts\breeze.saveErrorExtensions.js" />
     <Content Include="Scripts\breeze.to%24q.shim.js" />
+    <Content Include="Scripts\jasmine\boot.js" />
+    <Content Include="Scripts\jasmine\console.js" />
+    <Content Include="Scripts\jasmine\jasmine-html.js" />
+    <Content Include="Scripts\jasmine\jasmine.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -335,6 +344,7 @@
     <Content Include="Scripts\moment-with-langs.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\ngMidwayTester.js" />
     <Content Include="Scripts\q.js" />
     <Content Include="Scripts\q.min.js" />
     <Content Include="Scripts\respond.js" />
@@ -345,6 +355,16 @@
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.min.js" />
+    <Content Include="Tests\lib\boot.js" />
+    <Content Include="Tests\lib\console.js" />
+    <Content Include="Tests\lib\jasmine-html.js" />
+    <Content Include="Tests\lib\jasmine.css" />
+    <Content Include="Tests\lib\jasmine.js" />
+    <Content Include="Tests\lib\jasmine_favicon.png" />
+    <Content Include="Tests\lib\ngMidwayTester.js" />
+    <Content Include="Tests\SpecRunner.html" />
+    <Content Include="Tests\support\jasmine.custom.css" />
+    <Content Include="Tests\support\testFns.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -364,6 +384,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\toastr.min.js.map" />
+    <Content Include="Tests\specs\querySpec.async.js" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

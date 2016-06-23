@@ -1,6 +1,6 @@
 using System.Web.Http;
 
-[assembly: WebActivator.PreApplicationStartMethod(
+[assembly: WebActivatorEx.PreApplicationStartMethod(
     typeof(BookStore.App_Start.BreezeWebApiConfig), "RegisterBreezePreStart")]
 namespace BookStore.App_Start {
   ///<summary>

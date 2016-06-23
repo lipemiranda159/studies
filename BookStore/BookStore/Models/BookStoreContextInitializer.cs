@@ -28,6 +28,16 @@ namespace BookStore.Models
             context.Orders.Add(order);
             details.ForEach(o => context.OrderDetails.Add(o));
 
+
+            order = new Order() { Customer = "teste2", OrderDate = DateTime.Now };
+
+            details = new List<OrderDetail>()
+            {
+                    new OrderDetail() { book = books[0], Quantity = 2, Order = order}
+            };
+
+            context.Orders.Add(order);
+            details.ForEach(o => context.OrderDetails.Add(o));
             context.SaveChanges();
 
             base.Seed(context);

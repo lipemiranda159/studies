@@ -95,3 +95,7 @@ D:\Estudos\studies\BookStore\BookStore\bin\ko\System.Spatial.resources.dll
 D:\Estudos\studies\BookStore\BookStore\bin\ru\System.Spatial.resources.dll
 D:\Estudos\studies\BookStore\BookStore\bin\zh-Hans\System.Spatial.resources.dll
 D:\Estudos\studies\BookStore\BookStore\bin\zh-Hant\System.Spatial.resources.dll
+D:\Estudos\studies\BookStore\BookStore\bin\Breeze.ContextProvider.EF6.dll
+D:\Estudos\studies\BookStore\BookStore\bin\Breeze.ContextProvider.xml
+D:\Estudos\studies\BookStore\BookStore\bin\Breeze.ContextProvider.EF6.xml
+D:\Estudos\studies\BookStore\BookStore\bin\Breeze.WebApi2.xml

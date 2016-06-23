@@ -1,11 +1,16 @@
-﻿using System.Linq;
+﻿using Breeze.ContextProvider;
+using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace BookStore.Models
 {
     public interface IRepository
     {
-        IQueryable<Order> GetAllOrders();
-        IQueryable<Order> GetAllOrdersWithDetails();
-        Order GetOrder(int id);
+        string Metadata { get; }
+
+        SaveResult SaveChanges(JObject saveBundle);
+
+        IQueryable<Book> Books();
+        IQueryable<Order> Orders();
     }
 }
