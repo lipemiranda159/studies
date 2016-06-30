@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutApi", "CheckoutApi\CheckoutApi.csproj", "{9BBBE101-FD54-48E5-A949-ABEEDDEBEC94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.ui", "Checkout.ui\Checkout.ui.csproj", "{4F0B79BE-59D9-4034-BADC-394429E5B67D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.EF", "Checkout.EF\Checkout.EF.csproj", "{4D6EC955-C4AE-40BB-90A6-B67072E1D637}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{9BBBE101-FD54-48E5-A949-ABEEDDEBEC94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BBBE101-FD54-48E5-A949-ABEEDDEBEC94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BBBE101-FD54-48E5-A949-ABEEDDEBEC94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F0B79BE-59D9-4034-BADC-394429E5B67D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F0B79BE-59D9-4034-BADC-394429E5B67D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F0B79BE-59D9-4034-BADC-394429E5B67D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F0B79BE-59D9-4034-BADC-394429E5B67D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D6EC955-C4AE-40BB-90A6-B67072E1D637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D6EC955-C4AE-40BB-90A6-B67072E1D637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D6EC955-C4AE-40BB-90A6-B67072E1D637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D6EC955-C4AE-40BB-90A6-B67072E1D637}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

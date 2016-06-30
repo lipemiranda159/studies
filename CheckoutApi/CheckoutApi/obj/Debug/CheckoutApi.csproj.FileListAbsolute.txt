@@ -38,6 +38,7 @@ D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\CheckoutApi.dll.config
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\CheckoutApi.dll
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\CheckoutApi.pdb
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\Antlr3.Runtime.dll
+D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\Checkout.EF.dll
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\EntityFramework.dll
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\EntityFramework.SqlServer.dll
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\Microsoft.Web.Infrastructure.dll
@@ -53,6 +54,7 @@ D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\System.Web.WebPages.Deployment.dl
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\System.Web.WebPages.dll
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\System.Web.WebPages.Razor.dll
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\WebGrease.dll
+D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\Checkout.EF.pdb
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\EntityFramework.xml
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\EntityFramework.SqlServer.xml
 D:\Estudos\studies\CheckoutApi\CheckoutApi\bin\Newtonsoft.Json.xml
