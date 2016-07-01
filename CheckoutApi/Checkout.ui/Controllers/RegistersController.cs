@@ -17,7 +17,7 @@ namespace Checkout.ui.Controllers
         // GET: Registers
         public ActionResult Index()
         {
-            return View(db.Registers.ToList());
+            return View(db.Registers.ToList().OrderByDescending(d => d.Time));
         }
 
         // GET: Registers/Details/5
