@@ -12,13 +12,15 @@ namespace Transparencia.Brasil.SDK.InfraStructure
         private string _host;
         private string _enviroment;
         private string _version;
+        
 
         public string AppToken { private set; get; }
         public string APIBaseAdress { private set; get; }
 
-        public SDKConfiguration()
+        public SDKConfiguration(string host, string appToken)
         {
-            Configure();
+            _host = host;
+            AppToken = appToken; 
 
             BuildAPIBaseAdress();
         }
@@ -65,7 +67,7 @@ namespace Transparencia.Brasil.SDK.InfraStructure
 
         private void BuildAPIBaseAdress()
         {
-            APIBaseAdress = string.Concat(_host, _enviroment, _version);
+            APIBaseAdress = string.Concat(_host, "api/", "v1");
         }
     }
 }

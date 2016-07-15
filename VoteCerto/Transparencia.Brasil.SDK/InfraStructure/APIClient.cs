@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace Transparencia.Brasil.SDK.InfraStructure
 {
-    public class APIClient<T>
+    public class APIClient<T> : InfoAPI
     {
         private HttpClient _client;
         private SDKConfiguration _config;
 
-        public APIClient()
+        public APIClient(string host, string appToken)
+            : base(host, appToken)
         {
-            _config = new SDKConfiguration();
+            _config = new SDKConfiguration(host, appToken);
 
             BuildApiHttpClient();
 

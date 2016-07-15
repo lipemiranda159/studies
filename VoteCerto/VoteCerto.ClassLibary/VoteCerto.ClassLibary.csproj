@@ -89,13 +89,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Transparencia.Brasil.SDK\Transparencia.Brasil.SDK.csproj">
       <Project>{B0EBEAE1-7B8C-4383-92B7-DE0A0F36C9F0}</Project>
       <Name>Transparencia.Brasil.SDK</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

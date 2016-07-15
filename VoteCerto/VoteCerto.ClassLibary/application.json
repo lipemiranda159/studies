@@ -4,7 +4,11 @@
   "messageReceivers": [
     {
       "type": "PlainTextMessageReceiver",
-      "mediaType": "text/plain"
+      "mediaType": "text/plain",
+      "settings": {
+        "host": "http://api.transparencia.org.br/",
+        "appToken": "gyMdMNFsBdBQ"
+      }
     }
   ],
   "settings": {

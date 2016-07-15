@@ -8,11 +8,15 @@ using Transparencia.Brasil.SDK.InfraStructure;
 
 namespace Transparencia.Brasil.SDK.Resources
 {
-    public class Partidos
+    public class Partidos : InfoAPI
     {
+        public Partidos(string host, string appToken) : base(host, appToken)
+        {
+        }
+
         public IList<Partido> Todos()
         {
-            return APIClientFactory<IList<Partido>>.Get("/partidos");
+            return APIClientFactory<IList<Partido>>.Get("/partidos", Host, AppToken);
         }
     }
 }

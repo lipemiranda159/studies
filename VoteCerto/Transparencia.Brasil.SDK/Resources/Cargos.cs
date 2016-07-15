@@ -8,11 +8,15 @@ using Transparencia.Brasil.SDK.InfraStructure;
 
 namespace Transparencia.Brasil.SDK.Resources
 {
-    public class Cargos
+    public class Cargos : InfoAPI
     {
+        public Cargos(string host, string appToken) : base(host, appToken)
+        {
+        }
+
         public IList<Cargo> Todos()
         {
-            return APIClientFactory<IList<Cargo>>.Get("/cargos");
+            return APIClientFactory<IList<Cargo>>.Get("/cargos", Host, AppToken);
         }
     }
 }

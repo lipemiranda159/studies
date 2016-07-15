@@ -8,9 +8,9 @@ namespace Transparencia.Brasil.SDK.InfraStructure
 {
     public class APIClientFactory<T>
     {
-        public static T Get(string templateUri)
+        public static T Get(string templateUri,string host, string appToken)
         {
-            return new APIClient<T>().Get(templateUri);
+            return new APIClient<T>(host, appToken).Get(templateUri);
         }
     }
 }
