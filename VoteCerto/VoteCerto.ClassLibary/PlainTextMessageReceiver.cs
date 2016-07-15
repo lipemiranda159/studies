@@ -6,6 +6,7 @@ using Takenet.MessagingHub.Client;
 using Takenet.MessagingHub.Client.Listener;
 using Takenet.MessagingHub.Client.Sender;
 using Transparencia.Brasil.SDK.Resources;
+using Lime.Messaging.Contents;
 
 namespace VoteCerto.ClassLibary
 {
@@ -29,19 +30,33 @@ namespace VoteCerto.ClassLibary
             }
             else if (command.Contains("candidato"))
             {
-                await _sender.SendMessageAsync("Envie sg: sigla, cargo: valor para pesquisar os valores", message.From, cancellationToken);
-            }
-            else if (command.Contains("sg"))
-            {
-                var candidato = new Candidatos();
-                var list = candidato.Todos("mg", "1");
-
-                foreach (var item in list)
+                var document = new Select
                 {
-                    await _sender.SendMessageAsync($"Nome:{item.nome} - MiniBio: {item.miniBio}", message.From, cancellationToken);
-                }
+                    Text = "Escolha uma opção:",
+                    Options = new[]
+                    {
+                        new SelectOption
+                        {
+                            Order = 1,
+                            Text = "Pegar todos",
+                            Value = new PlainText { Text = "1" }
+                        },
+                        new SelectOption
+                        {
+                            Order = 2,
+                            Text = "Uma imagem motivacional!",
+                            Value = new PlainText { Text = "2" }
+                        },
+                        new SelectOption
+                        {
+                            Order = 3,
+                            Text = "Um link para algo interessante!",
+                            Value = new PlainText { Text = "3" }
+                        }
+                    }
+                };
+                await _sender.SendMessageAsync(document, message.From, cancellationToken);
             }
-
         }
     }
 }
