@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Express 14 for Windows Desktop
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteCerto", "VoteCerto\VoteCerto.csproj", "{1F77C32F-A3F5-4E0C-834F-790DECB53BE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transparencia.Brasil.SDK", "C:\Users\FelipeM\Downloads\Transparencia-Brasil-.Net-SDK-master\Transparencia-Brasil-.Net-SDK-master\Transparencia.Brasil.SDK\Transparencia.Brasil.SDK.csproj", "{B0EBEAE1-7B8C-4383-92B7-DE0A0F36C9F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transparencia.Brasil.SDK", "Transparencia.Brasil.SDK\Transparencia.Brasil.SDK.csproj", "{B0EBEAE1-7B8C-4383-92B7-DE0A0F36C9F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteCerto.ClassLibary", "VoteCerto.ClassLibary\VoteCerto.ClassLibary.csproj", "{2A499E9A-77FF-4F49-A9E1-E950512BB7CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B0EBEAE1-7B8C-4383-92B7-DE0A0F36C9F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0EBEAE1-7B8C-4383-92B7-DE0A0F36C9F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0EBEAE1-7B8C-4383-92B7-DE0A0F36C9F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A499E9A-77FF-4F49-A9E1-E950512BB7CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A499E9A-77FF-4F49-A9E1-E950512BB7CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A499E9A-77FF-4F49-A9E1-E950512BB7CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A499E9A-77FF-4F49-A9E1-E950512BB7CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
