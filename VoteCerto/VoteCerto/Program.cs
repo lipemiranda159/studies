@@ -18,7 +18,7 @@ namespace VoteCerto
             {
                 var candidatos = new Candidatos();
 
-                var listCandidatos = candidatos.Count(10);
+                var listCandidatos = candidatos.Todos("mg","1");
 
                 foreach (var item in listCandidatos)
                 {
