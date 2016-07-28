@@ -25,8 +25,7 @@ namespace VoteCerto.ClassLibary
 
         public async Task ReceiveAsync(Message message, CancellationToken cancellationToken)
         {
-            //Console.WriteLine($"From: {message.From} \tContent: {message.Content}");
-            //await _sender.SendMessageAsync("Pong!", message.From, cancellationToken);
+
             var command = message.Content.ToString().ToLower();
             if (command.Contains("start"))
             {
