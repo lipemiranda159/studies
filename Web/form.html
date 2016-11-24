@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	</head>
+	<body>
+		<form method="POST" action="">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" name="name" id="name" class="form-control" placeholder="Digite seu nome" required>
+			</div>
+			<div class="form-group">
+				<label for="email">E-mail</label>
+				<input type="email" name="email" id="email" class="form-control" placeholder="seu@domain.com.br" required>
+			</div>
+			<div class="form-group">
+				<label for="nascimento">Date birth</label>
+				<input type="Date" name="nascimento" id="nascimento" class="form-control" required min="2016-01-01">
+			</div>
+			<div class="form-group">
+				<label>Sexo</label>
+				<input type="radio" name="sexo" id="masculino">
+				<label for="masculino">Masculino</label>
+				<input type="radio" name="sexo" id="feminino">
+				<label for="feminino">Feminino</label>
+			</div>
+			<div class="form-group">
+				<label for="contrato">Li o contrato</label>
+				<input type="checkbox" name="contrato" id="contrato" checked="true" required>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary">Send</button>
+			</div>
+		</form>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	</body>
+</html>
