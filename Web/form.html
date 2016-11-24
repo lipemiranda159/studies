@@ -9,26 +9,26 @@
 		<form method="POST" action="">
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" name="name" id="name" class="form-control" placeholder="Digite seu nome" required>
+				<input type="text" name="name" id="name" class="form-control" placeholder="Digite seu nome" required autofocus tabindex="1">
 			</div>
 			<div class="form-group">
 				<label for="email">E-mail</label>
-				<input type="email" name="email" id="email" class="form-control" placeholder="seu@domain.com.br" required>
+				<input type="email" name="email" id="email" class="form-control" placeholder="seu@domain.com.br" required tabindex="2">
 			</div>
 			<div class="form-group">
 				<label for="nascimento">Date birth</label>
-				<input type="Date" name="nascimento" id="nascimento" class="form-control" required min="2016-01-01">
+				<input type="Date" name="nascimento" id="nascimento" class="form-control" required min="2016-01-01" tabindex="3">
 			</div>
 			<div class="form-group">
 				<label>Sexo</label>
-				<input type="radio" name="sexo" id="masculino">
+				<input type="radio" name="sexo" id="masculino" tabindex="4">
 				<label for="masculino">Masculino</label>
-				<input type="radio" name="sexo" id="feminino">
+				<input type="radio" name="sexo" id="feminino" tabindex="5">
 				<label for="feminino">Feminino</label>
 			</div>
 			<div class="form-group">
 				<label for="contrato">Li o contrato</label>
-				<input type="checkbox" name="contrato" id="contrato" checked="true" required>
+				<input type="checkbox" name="contrato" id="contrato" checked="true" required tabindex="6">
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary">Send</button>
