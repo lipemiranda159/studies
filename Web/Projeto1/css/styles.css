@@ -3,10 +3,17 @@
 	src: url("../fonts/Open_Sans/OpenSans-Regular.ttf");
 	font-size: 1em; /* medida relativa*/
 }
+@font-face {
+	font-family: 'OpenSans-Light';
+	src: url("../fonts/Open_Sans/OpenSans-Light.ttf");
+	font-size: 1em; /* medida relativa*/
+}
 header {
 	width: 100%;
 	height: 150px;
-	background-color: #5E299A;
+	background-color: rgba(94,41,154,.9);
+	z-index: 2;
+	position: relative;
 
 }
 /* Qualquer tag com a classe container 
@@ -110,7 +117,7 @@ header #logotipo {
 	top: 20px;
 }
 #menu {
-	margin: 26px 0px;
+	margin: 12px 0px;
 }
 #menu li {
 	display: inline-block;	
@@ -130,8 +137,77 @@ header #logotipo {
 #menu li.search ::-webkit-input-placeholder {
 	color: #FFF;
 }
+
+#menu li.search button {
+	background: none;
+	border: none;
+	position: absolute;
+	right: 3px;
+	top: 7px;
+}
+
+#menu li.search button i {
+	font-size: 14px;
+	color: rgba(255,255,255,.5);
+}
 #menu li a {
 	color: #FFF;
 	font-size: 16px;
 	padding: 10px 25px;
+}
+#menu li.search .input-group {
+	top: 8px;
+}
+
+#banner {
+	width: 100%;
+	height: 728px;
+	position: relative;
+	background-position: 0px -100px;
+	background: url("../img/banner.jpg") no-repeat;
+	top: -128px;
+}
+
+#banner h1 {
+	color: #FFF;
+	top: 300px;
+	position: relative;
+	font-size: 92px;
+	text-shadow: 2px 2px rgba(0,0,0,.45); 
+	font-family: 'OpenSans-Light';
+	margin-left: 50px;
+}
+
+#banner h1 small {
+	font-size: 32px;
+	display: block;
+	color: #FFF;
+	font-family: "Open-Sans";
+	font-weight: bold;
+}
+#news {
+	position: relative;
+	top: -110px;
+}
+#news h2 {
+	color: #5E2799;
+	font-family: 'OpenSans-Light';
+	font-size: 48px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#news hr {
+	border: #FDE192 solid 2px;
+	width: 200px;
+	margin: 0 auto;
+}
+#news .thumbnails {
+	margin-top: 20px;
+}
+#news .thumbnails h3 {
+	font-family: 'Open-Sans';
+	font-size: 18px;
+	color: #5E2799;
+	font-weight: bold;
 }
