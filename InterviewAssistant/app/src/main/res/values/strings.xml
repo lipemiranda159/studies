@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">InterviewAssitant</string>
+    <string name="string_yes">Sim</string>
+    <string name="string_no">Não</string>
+    <string name="string_SendResponse">Enviar Resposta</string>
+    <string name="string_back">Voltar</string>
+    <string name="string_send">Enviar</string>
+</resources>

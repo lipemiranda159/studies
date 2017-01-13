@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.rafael.interviewassitant">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ConfirmInformation" />
+        <activity android:name=".VerifyAge" />
+        <activity android:name=".Apresentaion" />
+        <activity android:name=".FinishInterview" />
+        <activity android:name=".UseSUS" />
+        <activity android:name=".DescribeUseSUS" />
+        <activity android:name=".Bhhospital" />
+        <activity android:name=".ListHospital" />
+        <activity android:name=".UsePlan" />
+        <activity android:name=".Hasproblemswithplan" />
+        <activity android:name=".Sickness" />
+        <activity android:name=".ClassifySUS" />
+        <activity android:name=".howgetbetter" />
+        <activity android:name=".ListOcupation" />
+        <activity android:name=".degreeschool" />
+        <activity android:name=".livewith" />
+        <activity android:name=".haschildren" />
+        <activity android:name=".religion" />
+        <activity android:name=".aboutelection" />
+        <activity android:name=".willvote" />
+        <activity android:name=".howselectcandidate" />
+        <activity android:name=".deputadofedaral" />
+        <activity android:name=".whattheydo" />
+        <activity android:name=".conhecesupersimples" />
+        <activity android:name=".aposentado" />
+        <activity android:name=".housewife" />
+        <activity android:name=".motivodesemprego" />
+        <activity android:name=".ClassifyFootball" />
+        <activity android:name=".RespDesen"></activity>
+    </application>
+
+</manifest>
