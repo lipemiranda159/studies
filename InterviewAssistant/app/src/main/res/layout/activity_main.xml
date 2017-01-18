@@ -27,14 +27,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
         android:id="@+id/button"
-        android:onClick="getLocation (MainActivity)"
+        android:onClick="getNumber"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName|number"
+        android:inputType="number"
         android:text="Digite o número"
         android:ems="10"
         android:id="@+id/edtNumber"
@@ -53,6 +53,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
         android:id="@+id/btnStartInterview"
-        android:enabled="false" />
+        android:enabled="true"
+        android:onClick="startInterview" />
 
 </RelativeLayout>

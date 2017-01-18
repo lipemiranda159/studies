@@ -2,7 +2,6 @@ package com.example.rafael.interviewassistant;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,6 +14,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends Activity
+public class MainActivity extends AppCompatActivity
         implements LocationListener{
 
     private TextView addressField;
@@ -35,6 +35,39 @@ public class MainActivity extends Activity
     private LocationManager locationManager;
     private String provider;
 
+    public void getNumber(View view)
+    {
+        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+        boolean enabled = service
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        if (!enabled) {
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(intent);
+        }
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+
+        if (checkPermission()) {
+            Location location = service.getLastKnownLocation(provider);
+            addressField.setText(String.valueOf(location.getLatitude()));
+            List<Address> list = new ArrayList<Address>();
+
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            try {
+                list = (ArrayList<Address>) geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (!list.isEmpty()) {
+
+                Address a = list.get(0);
+                edtNumber.setText(a.getFeatureName());
+            }
+
+        }
+    }
 
     @TargetApi(Build.VERSION_CODES.M)
     private boolean checkPermission()
@@ -97,40 +130,6 @@ public class MainActivity extends Activity
         addressField.setText(String.valueOf(lat)+ " "+String.valueOf(lng));
     }
 
-    public void getLocation(View view)
-    {
-        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-        boolean enabled = service
-                .isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-        if (!enabled) {
-            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            startActivity(intent);
-        }
-        Criteria criteria = new Criteria();
-        provider = locationManager.getBestProvider(criteria, false);
-
-        if (checkPermission()) {
-            Location location = service.getLastKnownLocation(provider);
-            addressField.setText(String.valueOf(location.getLatitude()));
-            List<Address> list = new ArrayList<Address>();
-
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            try {
-                list = (ArrayList<Address>) geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            if (!list.isEmpty()) {
-
-                Address a = list.get(0);
-                edtNumber.setText(a.getFeatureName());
-            }
-
-        }
-    }
-
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         // TODO Auto-generated method stub
@@ -149,4 +148,12 @@ public class MainActivity extends Activity
         Toast.makeText(this, "Disabled provider " + provider,
                 Toast.LENGTH_SHORT).show();
     }
+
+    public void startInterview(View view){
+
+        Intent activity = new Intent(this, ConfirmInformationActivity.class);
+        startActivity(activity);
+
+    }
+
 }
