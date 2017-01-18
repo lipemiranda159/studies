@@ -16,6 +16,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +30,11 @@ public class MainActivity extends Activity
         implements LocationListener{
 
     private TextView addressField;
+    private Button btnStartInterview;
+    private EditText edtNumber;
     private LocationManager locationManager;
     private String provider;
+
 
     @TargetApi(Build.VERSION_CODES.M)
     private boolean checkPermission()
@@ -47,6 +52,9 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
 
         addressField = (TextView) findViewById(R.id.addresField);
+        btnStartInterview = (Button) findViewById(R.id.btnStartInterview);
+        edtNumber = (EditText) findViewById(R.id.edtNumber);
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         Criteria criteria = new Criteria();
@@ -113,15 +121,13 @@ public class MainActivity extends Activity
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Address a = list.get(0);
 
-            String resultAddress = "";
-            for(int i = 0, tam = a.getMaxAddressLineIndex(); i < tam; i++){
-                resultAddress += a.getAddressLine(i);
-                resultAddress += i < tam - 1 ? ", " : "";
+            if (!list.isEmpty()) {
+
+                Address a = list.get(0);
+                
             }
 
-            addressField.setText(resultAddress);
         }
     }
 
