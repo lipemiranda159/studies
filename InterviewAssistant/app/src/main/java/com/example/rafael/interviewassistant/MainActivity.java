@@ -92,7 +92,13 @@ public class MainActivity extends Activity
             Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             startActivity(intent);
         }
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
 
+        if (checkPermission()) {
+            Location location = service.getLastKnownLocation(provider);
+            addressField.setText(String.valueOf(location.getLatitude()));
+        }
     }
 
     @Override
