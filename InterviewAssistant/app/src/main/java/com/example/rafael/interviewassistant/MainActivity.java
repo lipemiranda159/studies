@@ -125,7 +125,7 @@ public class MainActivity extends Activity
             if (!list.isEmpty()) {
 
                 Address a = list.get(0);
-                
+                edtNumber.setText(a.getFeatureName());
             }
 
         }
