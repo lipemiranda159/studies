@@ -6,7 +6,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -16,6 +18,11 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends Activity
         implements LocationListener{
@@ -98,6 +105,23 @@ public class MainActivity extends Activity
         if (checkPermission()) {
             Location location = service.getLastKnownLocation(provider);
             addressField.setText(String.valueOf(location.getLatitude()));
+            List<Address> list = new ArrayList<Address>();
+
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            try {
+                list = (ArrayList<Address>) geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Address a = list.get(0);
+
+            String resultAddress = "";
+            for(int i = 0, tam = a.getMaxAddressLineIndex(); i < tam; i++){
+                resultAddress += a.getAddressLine(i);
+                resultAddress += i < tam - 1 ? ", " : "";
+            }
+
+            addressField.setText(resultAddress);
         }
     }
 
