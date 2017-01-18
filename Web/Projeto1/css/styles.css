@@ -189,6 +189,11 @@ header #logotipo {
 	position: relative;
 	top: -110px;
 }
+
+#news .row {
+	margin-bottom: 20px;
+}
+
 #news h2 {
 	color: #5E2799;
 	font-family: 'OpenSans-Light';
@@ -210,4 +215,10 @@ header #logotipo {
 	font-size: 18px;
 	color: #5E2799;
 	font-weight: bold;
+	margin-bottom: 0;
+}
+#news .thumbnails time {
+	color:#FFF;
+	font-size: 18px;
+	font-family: 'Open-Sans';
 }
