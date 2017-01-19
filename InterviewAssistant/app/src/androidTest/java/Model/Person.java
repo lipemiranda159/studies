@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Rafael on 19/01/2017.
  */
 
-public class Person implements Serializable {
+public class Person implements Serializable, IPersistentEntity {
     private static final long serialVersionUID = 1633833011084400384L;
     int id;
     String postCode;
@@ -24,8 +24,17 @@ public class Person implements Serializable {
 
     }
 
+    public Person() {
+
+    }
+
     public int getId() {
         return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPostCode() {
@@ -42,5 +51,21 @@ public class Person implements Serializable {
 
     public String getCellPhone() {
         return cellphone;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public void setNumber(short number) {
+        this.number = number;
+    }
+
+    public void setName(String name) {
+        this.Name = name;
+    }
+
+    public void setCellPhone(String cellPhone) {
+        this.cellphone = cellPhone;
     }
 }

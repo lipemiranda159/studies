@@ -7,9 +7,10 @@ import java.io.StringReader;
  * Created by Rafael on 19/01/2017.
  */
 
-public class Interview implements Serializable {
+public class Interview implements Serializable, IPersistentEntity {
     private static final long serialVersionUID = 1633833011084400384L;
     int id;
+    int idPerson;
     public boolean viewerFound;
     public boolean viewerAccept;
     public boolean useSus;
@@ -204,4 +205,14 @@ public class Interview implements Serializable {
     public short respDesempenho;
 
     public String otherResp;
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
 }

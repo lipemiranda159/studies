@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Rafael on 19/01/2017.
  */
 
-public class PersonEntity {
+public class PersonEntity extends GenericEntity<Person> {
     public static final String NOME_TABELA = "TbPerson";
     public static final String COLUNA_ID = "id";
     public static final String COLUNA_POSTCODE = "postcode";
@@ -39,12 +39,44 @@ public class PersonEntity {
     }
 
     private PersonEntity(Context context) {
+        super(context);
         PersistenceHelper persistenceHelper = PersistenceHelper.getInstance(context);
         dataBase = persistenceHelper.getWritableDatabase();
     }
 
+    @Override
+    public String getNomeColunaPrimaryKey() {
+        return COLUNA_ID;
+    }
+
+    @Override
+    public String getNomeTabela() {
+        return NOME_TABELA;
+    }
+
+    @Override
+    public ContentValues entidadeParacontentValues(Person entidade) {
+
+        ContentValues values = new ContentValues();
+        values.put(COLUNA_POSTCODE, entidade.getPostCode());
+        values.put(COLUNA_NUMBER, entidade.getNumber());
+        values.put(COLUNA_NAME, entidade.getName());
+        values.put(COLUNA_CELLFPHONE, entidade.getCellPhone());
+        return values;    }
+
+    @Override
+    public Person contentValuesParaEntidade(ContentValues contentValues) {
+        Person pessoa = new Person();
+        pessoa.setId(contentValues.getAsInteger(COLUNA_ID));
+        pessoa.setPostCode(contentValues.getAsString(COLUNA_POSTCODE));
+        pessoa.setNumber(contentValues.getAsShort(COLUNA_NUMBER));
+        pessoa.setName(contentValues.getAsString(COLUNA_NAME));
+        pessoa.setCellPhone(contentValues.getAsString(COLUNA_CELLFPHONE));
+        return pessoa;
+    }
+
     public void Save(Person person) {
-        ContentValues values = gerarContentValeuesperson(person);
+        ContentValues values = entidadeParacontentValues(person);
         dataBase.insert(NOME_TABELA, null, values);
     }
 
@@ -66,7 +98,7 @@ public class PersonEntity {
     }
 
     public void update(Person person) {
-        ContentValues valores = gerarContentValeuesperson(person);
+        ContentValues valores = entidadeParacontentValues(person);
 
         String[] valoresParaSubstituir = {
                 String.valueOf(person.getId())
@@ -114,15 +146,6 @@ public class PersonEntity {
             cursor.close();
         }
         return persons;
-    }
-
-    private ContentValues gerarContentValeuesperson(Person person) {
-        ContentValues values = new ContentValues();
-        values.put(COLUNA_POSTCODE, person.getPostCode());
-        values.put(COLUNA_NUMBER, person.getNumber());
-        values.put(COLUNA_NAME, person.getName());
-        values.put(COLUNA_CELLFPHONE, person.getCellPhone());
-        return values;
     }
 
 }
