@@ -4,4 +4,5 @@
     <string name="string_back">Voltar</string>
     <string name="string_yes">Sim</string>
     <string name="string_SendResponse">strng_SendResponse</string>
+    <string name="string_send">Enviar</string>
 </resources>

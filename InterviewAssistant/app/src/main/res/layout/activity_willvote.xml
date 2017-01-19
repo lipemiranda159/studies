@@ -11,7 +11,7 @@
     tools:context="com.example.rafael.interviewassitant.ConfirmInformation">
 
     <TextView
-        android:text="Bom dia, gostaria de falar com Fulano. Ele se encontra?"
+        android:text="Você pretende votar nestas eleições?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
@@ -26,12 +26,12 @@
         android:layout_marginTop="13dp"
         android:layout_below="@+id/textView5"
         android:layout_alignParentStart="true">
-        <RadioButton android:id="@+id/radio_cin_pirates"
+        <RadioButton android:id="@+id/radio_wvt_pirates"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/string_yes"
             android:onClick="onRadioYesClicked"/>
-        <RadioButton android:id="@+id/radio_cin_ninjas"
+        <RadioButton android:id="@+id/radio_wvt_ninjas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/string_no"
@@ -42,7 +42,7 @@
         android:text="@string/string_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_cin_back"
+        android:id="@+id/btn_wvt_back"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
