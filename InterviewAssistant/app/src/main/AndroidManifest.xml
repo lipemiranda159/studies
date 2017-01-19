@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".ConfirmInformationActivity" />
         <activity android:name=".ApresentationActivity" />
-        <activity android:name=".VerifyAgeActivity"></activity>
+        <activity android:name=".VerifyAgeActivity" />
+        <activity android:name=".FinishInterviewActivity"></activity>
     </application>
 
 </manifest>
