@@ -12,5 +12,9 @@ public class Person implements Serializable {
     String postCode;
     short number;
     String Name;
-    String celphone;
+    String cellphone;
+
+    public int getId() {
+        return id;
+    }
 }
