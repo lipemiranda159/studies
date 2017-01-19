@@ -15,8 +15,10 @@ public class FinishInterviewActivity extends AppCompatActivity {
 
     public void onBtnFinishClick(View view)
     {
-        Intent activity = new Intent(this, MainActivity.class);
-        startActivity(activity);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
     }
 
 }
