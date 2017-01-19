@@ -1,0 +1,41 @@
+package com.example.rafael.interviewassistant.Views;
+
+import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.View;
+
+import com.example.rafael.interviewassistant.R;
+
+public class aboutelection extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_aboutelection);
+    }
+
+    public void CreateActivity()
+    {
+        Intent activity = new Intent(this, willvote.class);
+        startActivity(activity);
+    }
+
+    public void onRadioChangCountrClicked(View view)
+    {
+        CreateActivity();
+    }
+    public void onRadioDestroyCountrClicked(View view)
+    {
+        CreateActivity();
+    }
+    public void onRadioNotChangClicked(View view)
+    {
+        CreateActivity();
+    }
+    public void onRadioDependsElectionClicked(View view)
+    {
+        CreateActivity();
+    }
+
+}
