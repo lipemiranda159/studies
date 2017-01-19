@@ -20,7 +20,7 @@ public class PersonEntity {
     public static final String COLUNA_NAME = "name";
     public static final String COLUNA_CELLFPHONE = "cellphone";
 
-    public static final String SCRIPT_CRIACAO_TABELA_personS = "CREATE TABLE " + NOME_TABELA + "("
+    public static final String SCRIPT_CREATE_PERSON = "CREATE TABLE " + NOME_TABELA + "("
             + COLUNA_ID + " INTEGER PRIMARY KEY," + COLUNA_POSTCODE + " TEXT," + COLUNA_NUMBER + " INTEGER,"
             + COLUNA_NAME + " TEXT," + COLUNA_CELLFPHONE + " TEXT"  + ")";
 
@@ -44,7 +44,7 @@ public class PersonEntity {
     }
 
     public void Save(Person person) {
-        ContentValues values = gerarContentValeuesPerson(person);
+        ContentValues values = gerarContentValeuesperson(person);
         dataBase.insert(NOME_TABELA, null, values);
     }
 
@@ -66,16 +66,13 @@ public class PersonEntity {
     }
 
     public void update(Person person) {
-        ContentValues valores = gerarContentValeuesPerson(person);
+        ContentValues valores = gerarContentValeuesperson(person);
 
         String[] valoresParaSubstituir = {
                 String.valueOf(person.getId())
         };
 
         dataBase.update(NOME_TABELA, valores, COLUNA_ID + " = ?", valoresParaSubstituir);
-    }
-
-    private ContentValues gerarContentValeuesPerson(Person person) {
     }
 
     public void closeConnection() {
@@ -95,16 +92,18 @@ public class PersonEntity {
                 do {
 
                     int indexID = cursor.getColumnIndex(COLUNA_ID);
-                    int indexMarca = cursor.getColumnIndex(COLUNA_MARCA);
-                    int indexModelo = cursor.getColumnIndex(COLUNA_MODELO);
-                    int indexPlaca = cursor.getColumnIndex(COLUNA_PLACA);
+                    int indexPostCode = cursor.getColumnIndex(COLUNA_POSTCODE);
+                    int indexNumber = cursor.getColumnIndex(COLUNA_NUMBER);
+                    int indexName = cursor.getColumnIndex(COLUNA_NAME);
+                    int indexCellphone = cursor.getColumnIndex(COLUNA_CELLFPHONE);
 
                     int id = cursor.getInt(indexID);
-                    String marca = cursor.getString(indexMarca);
-                    String modelo = cursor.getString(indexModelo);
-                    String placa = cursor.getString(indexPlaca);
+                    String postCode = cursor.getString(indexPostCode);
+                    String number = cursor.getString(indexNumber);
+                    String name = cursor.getString(indexName);
+                    String cellPhone = cursor.getString(indexCellphone);
 
-                    person person = new person(id, marca, modelo, placa);
+                    Person person = new Person(id, postCode, number, name, cellPhone);
 
                     persons.add(person);
 
@@ -117,12 +116,12 @@ public class PersonEntity {
         return persons;
     }
 
-    private ContentValues gerarContentValeuesperson(person person) {
+    private ContentValues gerarContentValeuesperson(Person person) {
         ContentValues values = new ContentValues();
-        values.put(COLUNA_MARCA, person.getMarca());
-        values.put(COLUNA_MODELO, person.getModelo());
-        values.put(COLUNA_PLACA, person.getPlaca());
-
+        values.put(COLUNA_POSTCODE, person.getPostCode());
+        values.put(COLUNA_NUMBER, person.getNumber());
+        values.put(COLUNA_NAME, person.getName());
+        values.put(COLUNA_CELLFPHONE, person.getCellPhone());
         return values;
     }
 
