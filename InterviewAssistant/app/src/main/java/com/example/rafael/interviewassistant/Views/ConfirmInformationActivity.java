@@ -64,6 +64,7 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
 
         data.interview.salvar(interview);
         Intent activity = new Intent(this, ApresentationActivity.class);
+        activity.putExtra("Id",IdPerson);
         startActivity(activity);
     }
 
@@ -76,6 +77,7 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
 
         data.interview.salvar(interview);
         Intent activity = new Intent(this, VerifyAgeActivity.class);
+        activity.putExtra("Id",IdPerson);
         startActivity(activity);
     }
 

@@ -75,6 +75,18 @@ public abstract class GenericEntity <T extends IPersistentEntity> {
         }
     }
 
+    public T recuperaPorIdPerson(int id)
+    {
+        String queryOne = "SELECT * FROM " + getNomeTabela() + " where  idPerson = " + id;
+        List<T> result = recuperarPorQuery(queryOne);
+        if(result.isEmpty()) {
+            return null;
+        } else {
+            return result.get(0);
+        }
+
+    }
+
     public List<T> recuperarPorQuery(String query) {
 
         Cursor cursor = dataBase.rawQuery(query, null);
