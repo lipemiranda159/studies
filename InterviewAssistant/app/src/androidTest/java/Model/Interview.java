@@ -176,6 +176,138 @@ public class Interview implements Serializable, IPersistentEntity {
 
     public boolean funcAposentado;
 
+    public void setIdPerson(int idPerson) {
+        this.idPerson = idPerson;
+    }
+
+    public void setViewerFound(boolean viewerFound) {
+        this.viewerFound = viewerFound;
+    }
+
+    public void setViewerAccept(boolean viewerAccept) {
+        this.viewerAccept = viewerAccept;
+    }
+
+    public void setUseSus(boolean useSus) {
+        this.useSus = useSus;
+    }
+
+    public void setIdProcedure(short idProcedure) {
+        this.idProcedure = idProcedure;
+    }
+
+    public void setProcedureHospital(boolean procedureHospital) {
+        this.procedureHospital = procedureHospital;
+    }
+
+    public void setIDHospital(short IDHospital) {
+        this.IDHospital = IDHospital;
+    }
+
+    public void setOtherHospital(String otherHospital) {
+        this.otherHospital = otherHospital;
+    }
+
+    public void setUseMedicalPlan(boolean useMedicalPlan) {
+        this.useMedicalPlan = useMedicalPlan;
+    }
+
+    public void setIDProblemWithPlan(short IDProblemWithPlan) {
+        this.IDProblemWithPlan = IDProblemWithPlan;
+    }
+
+    public void setIDSickness(short IDSickness) {
+        this.IDSickness = IDSickness;
+    }
+
+    public void setNeedGetBetter(short needGetBetter) {
+        this.needGetBetter = needGetBetter;
+    }
+
+    public void setQualityOfSus(short qualityOfSus) {
+        this.qualityOfSus = qualityOfSus;
+    }
+
+    public void setOtherImprovement(String otherImprovement) {
+        this.otherImprovement = otherImprovement;
+    }
+
+    public void setIDOcupation(short IDOcupation) {
+        this.IDOcupation = IDOcupation;
+    }
+
+    public void setOtherOcupation(String otherOcupation) {
+        this.otherOcupation = otherOcupation;
+    }
+
+    public void setDegreeSchool(short degreeSchool) {
+        this.degreeSchool = degreeSchool;
+    }
+
+    public void setLiveWith(short liveWith) {
+        this.liveWith = liveWith;
+    }
+
+    public void setOtherDweller(String otherDweller) {
+        this.otherDweller = otherDweller;
+    }
+
+    public void setHasChildren(boolean hasChildren) {
+        this.hasChildren = hasChildren;
+    }
+
+    public void setReligion(short religion) {
+        this.religion = religion;
+    }
+
+    public void setAboutElection(short aboutElection) {
+        this.aboutElection = aboutElection;
+    }
+
+    public void setWillVote(boolean willVote) {
+        this.willVote = willVote;
+    }
+
+    public void setHowSelectCandidate(short howSelectCandidate) {
+        this.howSelectCandidate = howSelectCandidate;
+    }
+
+    public void setWhatTheyDo(boolean whatTheyDo) {
+        this.whatTheyDo = whatTheyDo;
+    }
+
+    public void setDescribePoliticJob(short describePoliticJob) {
+        this.describePoliticJob = describePoliticJob;
+    }
+
+    public void setKnowSuperSimples(boolean knowSuperSimples) {
+        this.knowSuperSimples = knowSuperSimples;
+    }
+
+    public void setFuncAposentado(boolean funcAposentado) {
+        this.funcAposentado = funcAposentado;
+    }
+
+    public void setAposentada(boolean aposentada) {
+        this.aposentada = aposentada;
+    }
+
+    public void setMotivoDesemprego(short motivoDesemprego) {
+        this.motivoDesemprego = motivoDesemprego;
+    }
+
+    public void setDesemSelec(short desemSelec) {
+        this.desemSelec = desemSelec;
+    }
+
+    public void setRespDesempenho(short respDesempenho) {
+        this.respDesempenho = respDesempenho;
+    }
+
+    public void setOtherResp(String otherResp) {
+        this.otherResp = otherResp;
+    }
+
     public boolean aposentada;
 
     /*
@@ -204,6 +336,134 @@ public class Interview implements Serializable, IPersistentEntity {
      */
     public short respDesempenho;
 
+    public String isOtherResp() {
+        return otherResp;
+    }
+
+    public short isRespDesempenho() {
+        return respDesempenho;
+    }
+
+    public short isDesemSelec() {
+        return desemSelec;
+    }
+
+    public short isMotivoDesemprego() {
+        return motivoDesemprego;
+    }
+
+    public boolean isAposentada() {
+        return aposentada;
+    }
+
+    public boolean isFuncAposentado() {
+        return funcAposentado;
+    }
+
+    public boolean isKnowSuperSimples() {
+        return knowSuperSimples;
+    }
+
+    public short isDescribePoliticJob() {
+        return describePoliticJob;
+    }
+
+    public boolean isWhatTheyDo() {
+        return whatTheyDo;
+    }
+
+    public short isHowSelectCandidate() {
+        return howSelectCandidate;
+    }
+
+    public boolean isWillVote() {
+        return willVote;
+    }
+
+    public short isAboutElection() {
+        return aboutElection;
+    }
+
+    public short isReligion() {
+        return religion;
+    }
+
+    public boolean isHasChildren() {
+        return hasChildren;
+    }
+
+    public String isOtherDweller() {
+        return otherDweller;
+    }
+
+    public short isLiveWith() {
+        return liveWith;
+    }
+
+    public short isDegreeSchool() {
+        return degreeSchool;
+    }
+
+    public String isOtherOcupation() {
+        return otherOcupation;
+    }
+
+    public short isIDOcupation() {
+        return IDOcupation;
+    }
+
+    public String isOtherImprovement() {
+        return otherImprovement;
+    }
+
+    public short isQualityOfSus() {
+        return qualityOfSus;
+    }
+
+    public short getNeedGetBetter() {
+        return needGetBetter;
+    }
+
+    public short isIDSickness() {
+        return IDSickness;
+    }
+
+    public short isIDProblemWithPlan() {
+        return IDProblemWithPlan;
+    }
+
+    public boolean isUseMedicalPlan() {
+        return useMedicalPlan;
+    }
+
+    public String isOtherHospital() {
+        return otherHospital;
+    }
+
+    public short isIDHospital() {
+        return IDHospital;
+    }
+
+    public boolean isProcedureHospital() {
+        return procedureHospital;
+    }
+
+    public short isIdProcedure() {
+        return idProcedure;
+    }
+
+    public boolean isUseSus() {
+        return useSus;
+    }
+
+    public boolean isViewerAccept() {
+        return viewerAccept;
+    }
+
+    public boolean isViewerFound() {
+        return viewerFound;
+    }
+
     public String otherResp;
 
     @Override
@@ -214,5 +474,9 @@ public class Interview implements Serializable, IPersistentEntity {
     @Override
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int isIdPerson() {
+        return idPerson;
     }
 }

@@ -1,13 +1,14 @@
 package Model;
 
 import android.content.ContentValues;
+import android.content.Context;
 
 /**
  * Created by Rafael on 19/01/2017.
  */
 
-public class InterviewEntity extends GenericEntity {
-    public static final String NOME_TABELA = "TbInterview";
+public class InterviewEntity extends GenericEntity<Interview> {
+    public static final String NOME_TABELA              = "TbInterview";
     public static final String COLUNA_ID				= "id";
     public static final String COLUNA_IDPERSON			= "idPerson";
     public static final String COLUNA_VIEWERFOUND		= "viewerFound";
@@ -66,6 +67,10 @@ public class InterviewEntity extends GenericEntity {
 
     public static final String SCRIPT_DELECAO_TABELA =  "DROP TABLE IF EXISTS " + NOME_TABELA;
 
+    public InterviewEntity(Context context) {
+        super(context);
+    }
+
     @Override
     public String getNomeColunaPrimaryKey() {
         return COLUNA_ID;
@@ -73,16 +78,87 @@ public class InterviewEntity extends GenericEntity {
 
     @Override
     public String getNomeTabela() {
-        return null;
+        return NOME_TABELA;
     }
 
     @Override
-    public ContentValues entidadeParacontentValues(IPersistentEntity entidade) {
-        return null;
+    public ContentValues entidadeParacontentValues(Interview entidade) {
+        ContentValues values = new ContentValues();
+        values.put(COLUNA_ID				    , entidade.getId());
+        values.put(COLUNA_IDPERSON			    , entidade.isIdPerson());
+        values.put(COLUNA_VIEWERFOUND		    , entidade.isViewerAccept());
+        values.put(COLUNA_VIEWERACCEPT		    , entidade.isViewerAccept());
+        values.put(COLUNA_USESUS			    , entidade.isUseSus());
+        values.put(COLUNA_IDPROCEDURE		    , entidade.isIdProcedure());
+        values.put(COLUNA_PROCEDUREHOSPITAL     , entidade.isProcedureHospital());
+        values.put(COLUNA_IDHOSPITAL		    , entidade.isIDHospital());
+        values.put(COLUNA_OTHERHOSPITAL		    , entidade.isOtherHospital());
+        values.put(COLUNA_USEMEDICALPLAN	    , entidade.isUseMedicalPlan());
+        values.put(COLUNA_IDPROBLEMWITHPLAN     , entidade.isIDProblemWithPlan());
+        values.put(COLUNA_IDSICKNESS		    , entidade.isIDSickness());
+        values.put(COLUNA_NEEDGETBETTER 	    , entidade.getNeedGetBetter());
+        values.put(COLUNA_QUALITYOFSUS		    , entidade.isQualityOfSus());
+        values.put(COLUNA_OTHERIMPROVEMENT	    , entidade.isOtherImprovement());
+        values.put(COLUNA_IDOCUPATION		    , entidade.isIDOcupation());
+        values.put(COLUNA_OTHEROCUPATION	    , entidade.isOtherOcupation());
+        values.put(COLUNA_DEGREESCHOOL		    , entidade.isDegreeSchool());
+        values.put(COLUNA_LIVEWITH			    , entidade.isLiveWith());
+        values.put(COLUNA_OTHERDWELLER		    , entidade.isOtherDweller());
+        values.put(COLUNA_HASCHILDREN		    , entidade.isHasChildren());
+        values.put(COLUNA_RELIGION			    , entidade.isReligion());
+        values.put(COLUNA_ABOUTELECTION		    , entidade.isAboutElection());
+        values.put(COLUNA_WILLVOTE			    , entidade.isWillVote());
+        values.put(COLUNA_HOWSELECTCANDIDATE    , entidade.isHowSelectCandidate());
+        values.put(COLUNA_WHATTHEYDO		    , entidade.isWhatTheyDo());
+        values.put(COLUNA_DESCRIBEPOLITICJOB    , entidade.isDescribePoliticJob());
+        values.put(COLUNA_KNOWSUPERSIMPLES	    , entidade.isKnowSuperSimples());
+        values.put(COLUNA_FUNCAPOSENTADO	    , entidade.isFuncAposentado());
+        values.put(COLUNA_APOSENTADA		    , entidade.isAposentada());
+        values.put(COLUNA_MOTIVODESEMPREGO	    , entidade.isMotivoDesemprego());
+        values.put(COLUNA_DESEMSELEC		    , entidade.isDesemSelec());
+        values.put(COLUNA_RESPDESEMPENHO	    , entidade.isRespDesempenho());
+        values.put(COLUNA_OTHERRESP			    , entidade.isOtherResp());
+        return values;
     }
 
     @Override
-    public IPersistentEntity contentValuesParaEntidade(ContentValues contentValues) {
-        return null;
+    public Interview contentValuesParaEntidade(ContentValues contentValues) {
+        Interview interview = new Interview();
+        interview.setId(contentValues.getAsInteger(COLUNA_ID));
+        interview.setIdPerson(contentValues.getAsInteger(COLUNA_IDPERSON));
+        interview.setViewerFound(contentValues.getAsBoolean(COLUNA_VIEWERFOUND));
+        interview.setViewerAccept(contentValues.getAsBoolean(COLUNA_VIEWERACCEPT));
+        interview.setUseSus(contentValues.getAsBoolean(COLUNA_USESUS));
+        interview.setIdProcedure(contentValues.getAsShort(COLUNA_IDPROCEDURE));
+        interview.setProcedureHospital(contentValues.getAsBoolean(COLUNA_PROCEDUREHOSPITAL));
+        interview.setIDHospital(contentValues.getAsShort(COLUNA_IDHOSPITAL));
+        interview.setOtherHospital(contentValues.getAsString(COLUNA_OTHERHOSPITAL));
+        interview.setUseMedicalPlan(contentValues.getAsBoolean(COLUNA_USEMEDICALPLAN));
+        interview.setIDProblemWithPlan(contentValues.getAsShort(COLUNA_IDPROBLEMWITHPLAN));
+        interview.setIDSickness(contentValues.getAsShort(COLUNA_IDSICKNESS));
+        interview.setNeedGetBetter(contentValues.getAsShort(COLUNA_NEEDGETBETTER));
+        interview.setQualityOfSus(contentValues.getAsShort(COLUNA_QUALITYOFSUS));
+        interview.setOtherImprovement(contentValues.getAsString(COLUNA_OTHERIMPROVEMENT));
+        interview.setIDOcupation(contentValues.getAsShort(COLUNA_IDOCUPATION));
+        interview.setOtherOcupation(contentValues.getAsString(COLUNA_OTHEROCUPATION));
+        interview.setDegreeSchool(contentValues.getAsShort(COLUNA_DEGREESCHOOL));
+        interview.setLiveWith(contentValues.getAsShort(COLUNA_LIVEWITH));
+        interview.setOtherDweller(contentValues.getAsString(COLUNA_OTHERDWELLER));
+        interview.setHasChildren(contentValues.getAsBoolean(COLUNA_HASCHILDREN));
+        interview.setReligion(contentValues.getAsShort(COLUNA_RELIGION));
+        interview.setAboutElection(contentValues.getAsShort(COLUNA_ABOUTELECTION));
+        interview.setWillVote(contentValues.getAsBoolean(COLUNA_WILLVOTE));
+        interview.setHowSelectCandidate(contentValues.getAsShort(COLUNA_HOWSELECTCANDIDATE));
+        interview.setWhatTheyDo(contentValues.getAsBoolean(COLUNA_WHATTHEYDO));
+        interview.setDescribePoliticJob(contentValues.getAsShort(COLUNA_DESCRIBEPOLITICJOB));
+        interview.setKnowSuperSimples(contentValues.getAsBoolean(COLUNA_KNOWSUPERSIMPLES));
+        interview.setFuncAposentado(contentValues.getAsBoolean(COLUNA_FUNCAPOSENTADO));
+        interview.setAposentada(contentValues.getAsBoolean(COLUNA_APOSENTADA));
+        interview.setMotivoDesemprego(contentValues.getAsShort(COLUNA_MOTIVODESEMPREGO));
+        interview.setDesemSelec(contentValues.getAsShort(COLUNA_DESEMSELEC));
+        interview.setRespDesempenho(contentValues.getAsShort(COLUNA_RESPDESEMPENHO));
+        interview.setOtherResp(contentValues.getAsString(COLUNA_OTHERRESP));
+        return interview;
+
     }
 }
