@@ -1,4 +1,4 @@
-package Model;
+package com.exemple.rafael.interviewassistant.model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,12 +20,12 @@ public class PersistenceHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(PersonEntity.SCRIPT_CREATE_PERSON);
+        db.execSQL(InterviewedPersonEntity.SCRIPT_CREATE_PERSON);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(PersonEntity.SCRIPT_DELECAO_TABELA);
+        db.execSQL(InterviewedPersonEntity.SCRIPT_DELECAO_TABELA);
         onCreate(db);
     }
 

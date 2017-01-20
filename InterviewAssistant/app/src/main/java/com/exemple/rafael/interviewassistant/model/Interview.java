@@ -1,7 +1,6 @@
-package Model;
+package com.exemple.rafael.interviewassistant.model;
 
 import java.io.Serializable;
-import java.io.StringReader;
 
 /**
  * Created by Rafael on 19/01/2017.

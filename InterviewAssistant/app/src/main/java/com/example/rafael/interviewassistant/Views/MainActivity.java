@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.InterviewedPerson;
+import com.exemple.rafael.interviewassistant.model.InterviewedPersonEntity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -106,7 +108,13 @@ public class MainActivity extends AppCompatActivity
                 addressField.setText("Location not available");
             }
         }
-
+        InterviewedPersonEntity interviewedPersonEntity = new InterviewedPersonEntity(this);
+        InterviewedPerson interviewedPerson = new InterviewedPerson();
+        interviewedPerson.setName("Felipe");
+        interviewedPerson.setNumber(Short.valueOf("312"));
+        interviewedPerson.setPostCode("30620-490");
+        interviewedPerson.setId(1);
+        interviewedPersonEntity.salvar(interviewedPerson);
     }
 
     @Override

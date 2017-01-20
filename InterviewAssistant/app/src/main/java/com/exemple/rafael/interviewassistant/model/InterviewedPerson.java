@@ -1,4 +1,4 @@
-package Model;
+package com.exemple.rafael.interviewassistant.model;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Rafael on 19/01/2017.
  */
 
-public class Person implements Serializable, IPersistentEntity {
+public class InterviewedPerson implements Serializable, IPersistentEntity {
     private static final long serialVersionUID = 1633833011084400384L;
     int id;
     String postCode;
@@ -14,7 +14,7 @@ public class Person implements Serializable, IPersistentEntity {
     String Name;
     String cellphone;
 
-    public Person(int id, String postCode, String number, String name, String cellphone) {
+    public InterviewedPerson(int id, String postCode, String number, String name, String cellphone) {
 
         this.id = id;
         this.postCode = postCode;
@@ -24,7 +24,7 @@ public class Person implements Serializable, IPersistentEntity {
 
     }
 
-    public Person() {
+    public InterviewedPerson() {
 
     }
 

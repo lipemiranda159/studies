@@ -1,4 +1,4 @@
-package Model;
+package com.exemple.rafael.interviewassistant.model;
 
 /**
  * Created by Rafael on 19/01/2017.

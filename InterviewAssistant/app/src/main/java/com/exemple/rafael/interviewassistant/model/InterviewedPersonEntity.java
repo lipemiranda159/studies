@@ -1,4 +1,4 @@
-package Model;
+package com.exemple.rafael.interviewassistant.model;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Rafael on 19/01/2017.
  */
 
-public class PersonEntity extends GenericEntity<Person> {
+public class InterviewedPersonEntity extends GenericEntity<InterviewedPerson> {
     public static final String NOME_TABELA = "TbPerson";
     public static final String COLUNA_ID = "id";
     public static final String COLUNA_POSTCODE = "postcode";
@@ -30,15 +30,15 @@ public class PersonEntity extends GenericEntity<Person> {
     private SQLiteDatabase dataBase = null;
 
 
-    private static PersonEntity instance;
+    private static InterviewedPersonEntity instance;
 
-    public static PersonEntity getInstance(Context context) {
+    public static InterviewedPersonEntity getInstance(Context context) {
         if(instance == null)
-            instance = new PersonEntity(context);
+            instance = new InterviewedPersonEntity(context);
         return instance;
     }
 
-    private PersonEntity(Context context) {
+    public InterviewedPersonEntity(Context context) {
         super(context);
         PersistenceHelper persistenceHelper = PersistenceHelper.getInstance(context);
         dataBase = persistenceHelper.getWritableDatabase();
@@ -55,7 +55,7 @@ public class PersonEntity extends GenericEntity<Person> {
     }
 
     @Override
-    public ContentValues entidadeParacontentValues(Person entidade) {
+    public ContentValues entidadeParacontentValues(InterviewedPerson entidade) {
 
         ContentValues values = new ContentValues();
         values.put(COLUNA_POSTCODE, entidade.getPostCode());
@@ -65,8 +65,8 @@ public class PersonEntity extends GenericEntity<Person> {
         return values;    }
 
     @Override
-    public Person contentValuesParaEntidade(ContentValues contentValues) {
-        Person pessoa = new Person();
+    public InterviewedPerson contentValuesParaEntidade(ContentValues contentValues) {
+        InterviewedPerson pessoa = new InterviewedPerson();
         pessoa.setId(contentValues.getAsInteger(COLUNA_ID));
         pessoa.setPostCode(contentValues.getAsString(COLUNA_POSTCODE));
         pessoa.setNumber(contentValues.getAsShort(COLUNA_NUMBER));
@@ -75,33 +75,33 @@ public class PersonEntity extends GenericEntity<Person> {
         return pessoa;
     }
 
-    public void Save(Person person) {
-        ContentValues values = entidadeParacontentValues(person);
+    public void Save(InterviewedPerson interviewedPerson) {
+        ContentValues values = entidadeParacontentValues(interviewedPerson);
         dataBase.insert(NOME_TABELA, null, values);
     }
 
-    public List<Person> GetAll() {
+    public List<InterviewedPerson> GetAll() {
         String queryReturnAll = "SELECT * FROM " + NOME_TABELA;
         Cursor cursor = dataBase.rawQuery(queryReturnAll, null);
-        List<Person> personEntitys = construirpersonPorCursor(cursor);
+        List<InterviewedPerson> interviewedPersonEntities = construirpersonPorCursor(cursor);
 
-        return personEntitys;
+        return interviewedPersonEntities;
     }
 
-    public void delete(Person person) {
+    public void delete(InterviewedPerson interviewedPerson) {
 
         String[] valoresParaSubstituir = {
-                String.valueOf(person.getId())
+                String.valueOf(interviewedPerson.getId())
         };
 
         dataBase.delete(NOME_TABELA, COLUNA_ID + " =  ?", valoresParaSubstituir);
     }
 
-    public void update(Person person) {
-        ContentValues valores = entidadeParacontentValues(person);
+    public void update(InterviewedPerson interviewedPerson) {
+        ContentValues valores = entidadeParacontentValues(interviewedPerson);
 
         String[] valoresParaSubstituir = {
-                String.valueOf(person.getId())
+                String.valueOf(interviewedPerson.getId())
         };
 
         dataBase.update(NOME_TABELA, valores, COLUNA_ID + " = ?", valoresParaSubstituir);
@@ -113,10 +113,10 @@ public class PersonEntity extends GenericEntity<Person> {
     }
 
 
-    private List<Person> construirpersonPorCursor(Cursor cursor) {
-        List<Person> persons = new ArrayList<Person>();
+    private List<InterviewedPerson> construirpersonPorCursor(Cursor cursor) {
+        List<InterviewedPerson> interviewedPersons = new ArrayList<InterviewedPerson>();
         if(cursor == null)
-            return persons;
+            return interviewedPersons;
 
         try {
 
@@ -135,9 +135,9 @@ public class PersonEntity extends GenericEntity<Person> {
                     String name = cursor.getString(indexName);
                     String cellPhone = cursor.getString(indexCellphone);
 
-                    Person person = new Person(id, postCode, number, name, cellPhone);
+                    InterviewedPerson interviewedPerson = new InterviewedPerson(id, postCode, number, name, cellPhone);
 
-                    persons.add(person);
+                    interviewedPersons.add(interviewedPerson);
 
                 } while (cursor.moveToNext());
             }
@@ -145,7 +145,7 @@ public class PersonEntity extends GenericEntity<Person> {
         } finally {
             cursor.close();
         }
-        return persons;
+        return interviewedPersons;
     }
 
 }
