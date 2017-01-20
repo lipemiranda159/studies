@@ -4,15 +4,20 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.rafael.interviewassistant.R;
 
 public class howgetbetter extends ActionBarActivity {
 
+    private EditText edtOhostpital;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_howgetbetter);
+
+        edtOhostpital = (EditText) findViewById(R.id.edtOhostpital);
     }
 
     public void CreateActivity()

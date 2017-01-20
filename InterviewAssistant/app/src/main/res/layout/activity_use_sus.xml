@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.rafael.interviewassitant.UseSUS">
+    tools:context="com.example.rafael.interviewassistant.Views.UseSUS">
 
     <TextView
         android:text="Você ou alguém da sua família utiliza ou utilizou o atendimento médico através do SUS nos últimos 12 meses?"
