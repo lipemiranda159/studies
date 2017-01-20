@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,16 +32,15 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements LocationListener{
+        implements LocationListener {
 
     private TextView addressField;
     private Button btnStartInterview;
     private EditText edtNumber;
     private LocationManager locationManager;
     private String provider;
-
-    public void getNumber(View view)
-    {
+    private String postCode;
+    public void getNumber(View view) {
         LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
         boolean enabled = service
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -68,14 +68,16 @@ public class MainActivity extends AppCompatActivity
 
                 Address a = list.get(0);
                 edtNumber.setText(a.getFeatureName());
+                edtNumber.setEnabled(true);
+                btnStartInterview.setEnabled(true);
+                postCode = a.getPostalCode();
             }
 
         }
     }
 
     @TargetApi(Build.VERSION_CODES.M)
-    private boolean checkPermission()
-    {
+    private boolean checkPermission() {
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return false;
         }
@@ -108,14 +110,9 @@ public class MainActivity extends AppCompatActivity
                 addressField.setText("Location not available");
             }
         }
-        InterviewedPersonEntity interviewedPersonEntity = new InterviewedPersonEntity(this);
-        InterviewedPerson interviewedPerson = new InterviewedPerson();
-        interviewedPerson.setName("Felipe");
-        interviewedPerson.setNumber(Short.valueOf("312"));
-        interviewedPerson.setPostCode("30620-490");
-        interviewedPerson.setId(1);
-        interviewedPersonEntity.salvar(interviewedPerson);
+
     }
+
 
     @Override
     protected void onResume() {
@@ -161,9 +158,25 @@ public class MainActivity extends AppCompatActivity
 
     public void startInterview(View view){
 
-        Intent activity = new Intent(this, ConfirmInformationActivity.class);
-        startActivity(activity);
+        if (!edtNumber.getText().equals("")) {
 
+            InterviewedPersonEntity interviewedPersonEntity = InterviewedPersonEntity.getInstance(this);
+
+            String sql = "SELECT * FROM TbPerson WHERE postCode ='" + postCode + "' and number =" + edtNumber.getText();
+            try {
+                List<InterviewedPerson> list = interviewedPersonEntity.recuperarPorQuery(sql);
+                if (!list.isEmpty()) {
+                    Intent activity = new Intent(this, ConfirmInformationActivity.class);
+                    activity.putExtra("Name",list.get(0).getName());
+                    activity.putExtra("Id",list.get(0).getId());
+                    startActivity(activity);
+                }
+
+            }  catch (Exception ex)
+            {
+                Log.i("Log",ex.getMessage());
+            }
+        }
     }
 
 }

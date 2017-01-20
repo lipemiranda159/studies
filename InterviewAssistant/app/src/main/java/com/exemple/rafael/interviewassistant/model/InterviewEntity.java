@@ -161,4 +161,12 @@ public class InterviewEntity extends GenericEntity<Interview> {
         return interview;
 
     }
+    private static InterviewEntity instance;
+
+    public static InterviewEntity getInstance(Context context) {
+        if(instance == null)
+            instance = new InterviewEntity(context);
+        return instance;
+    }
+
 }
