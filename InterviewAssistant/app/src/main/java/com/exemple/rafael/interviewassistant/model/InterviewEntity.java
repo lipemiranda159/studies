@@ -69,6 +69,9 @@ public class InterviewEntity extends GenericEntity<Interview> {
 
     public InterviewEntity(Context context) {
         super(context);
+        PersistenceHelper persistenceHelper = PersistenceHelper.getInstance(context);
+        dataBase = persistenceHelper.getWritableDatabase();
+
     }
 
     @Override
