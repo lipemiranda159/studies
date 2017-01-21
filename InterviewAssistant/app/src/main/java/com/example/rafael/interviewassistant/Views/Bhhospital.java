@@ -23,13 +23,14 @@ public class Bhhospital extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bhhospital);
 
+        /*
         data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
-
+*/
     }
 
-    public void updateDb(boolean value, Intent intent)
+  /*  public void updateDb(boolean value, Intent intent)
     {
         interview = data.interview.recuperaPorIdPerson(IdPerson);
         interview.setProcedureHospital(value);
@@ -38,19 +39,19 @@ public class Bhhospital extends AppCompatActivity {
 
 
     }
-
+*/
 
     public void onRadioYesClicked(View view){
 
         Intent activity = new Intent(this, ListHospital.class);
-        updateDb(true,activity);
+//        updateDb(true,activity);
         startActivity(activity);
     }
 
     public void onRadioNoClicked(View view)
     {
         Intent activity = new Intent(this, Sickness.class);
-        updateDb(false,activity);
+//        updateDb(false,activity);
         startActivity(activity);
     }
 }

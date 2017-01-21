@@ -23,13 +23,14 @@ public class DescribeUseSUS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_describe_use_sus);
-
+/*
         data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
-
+*/
     }
 
+    /*
     public void updateDb(short value, Intent intent)
     {
         interview = data.interview.recuperaPorIdPerson(IdPerson);
@@ -39,11 +40,11 @@ public class DescribeUseSUS extends AppCompatActivity {
 
 
     }
-
+*/
     public void CreateActivity(short opt)
     {
         Intent activity = new Intent(this, Bhhospital.class);
-        updateDb(opt,activity);
+//        updateDb(opt,activity);
         startActivity(activity);
 
     }

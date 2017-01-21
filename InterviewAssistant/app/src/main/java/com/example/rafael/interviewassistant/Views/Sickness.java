@@ -22,13 +22,13 @@ public class Sickness extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sickness);
-
+/*
         data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
-
+*/
     }
-
+/*
     public void updateDb(int value, Intent intent)
     {
         interview = data.interview.recuperaPorIdPerson(IdPerson);
@@ -38,12 +38,12 @@ public class Sickness extends AppCompatActivity {
 
 
     }
-
+*/
 
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, ClassifySUS.class);
-        updateDb(opt,activity);
+//        updateDb(opt,activity);
         startActivity(activity);
 
     }

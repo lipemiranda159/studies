@@ -22,12 +22,13 @@ public class UseSUS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_sus);
+/*
         data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
-
+*/
     }
-
+/*
     public void updateDb(boolean value)
     {
         interview = data.interview.recuperaPorIdPerson(IdPerson);
@@ -38,20 +39,20 @@ public class UseSUS extends AppCompatActivity {
 
     }
 
-
+*/
     public void onRadioYesClicked(View view){
 
-        updateDb(true);
+  //      updateDb(true);
         Intent activity = new Intent(this, DescribeUseSUS.class);
-        activity.putExtra("IdPerson",IdPerson);
+//        activity.putExtra("IdPerson",IdPerson);
         startActivity(activity);
     }
 
     public void onRadioNoClicked(View view)
     {
-        updateDb(true);
+//        updateDb(true);
         Intent activity = new Intent(this, UsePlan.class);
-        activity.putExtra("IdPerson",IdPerson);
+//        activity.putExtra("IdPerson",IdPerson);
         startActivity(activity);
     }
 

@@ -22,12 +22,12 @@ public class ClassifySUS extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classify_sus);
 
-        data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
-        Intent intent = getIntent();
-        IdPerson = intent.getIntExtra("Id",0);
+        //data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
+        //Intent intent = getIntent();
+        //IdPerson = intent.getIntExtra("Id",0);
 
     }
-
+/*
     public void updateDb(int value, Intent intent)
     {
         interview = data.interview.recuperaPorIdPerson(IdPerson);
@@ -37,12 +37,12 @@ public class ClassifySUS extends ActionBarActivity {
 
 
     }
-
+*/
 
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, howgetbetter.class);
-        updateDb(opt,activity);
+//        updateDb(opt,activity);
         startActivity(activity);
 
     }

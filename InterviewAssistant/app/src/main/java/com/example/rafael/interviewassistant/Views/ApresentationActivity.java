@@ -21,34 +21,31 @@ public class ApresentationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apresentation);
-        data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
+        data = new DataBaseInterview(this);
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
 
     }
-    public void updateDb(boolean value)
+    public Interview CreateInterview(boolean value)
     {
-        interview = data.interview.recuperaPorIdPerson(IdPerson);
-
+        Interview interview = new Interview();
         interview.setViewerAccept(value);
-
-        data.interview.editar(interview);
+        return interview;
 
     }
 
     public void onRadioYesClicked(View view){
 
-        updateDb(true);
+
         Intent activity = new Intent(this, UseSUS.class);
-        activity.putExtra("IdPerson",IdPerson);
+        data.updateDb(IdPerson,CreateInterview(true),activity);
         startActivity(activity);
     }
 
     public void onRadioNoClicked(View view)
     {
-        updateDb(false);
         Intent activity = new Intent(this, FinishInterviewActivity.class);
-        activity.putExtra("IdPerson",IdPerson);
+        data.updateDb(IdPerson,CreateInterview(false),activity);
         startActivity(activity);
     }
 

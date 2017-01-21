@@ -10,19 +10,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
 import com.exemple.rafael.interviewassistant.model.InterviewEntity;
-import com.exemple.rafael.interviewassistant.model.InterviewedPerson;
 import com.exemple.rafael.interviewassistant.model.InterviewedPersonEntity;
-
-import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 
 public class ConfirmInformationActivity extends AppCompatActivity  {
 
     private TextView txtConfirm;
     private int IdPerson;
     private DataBaseInterview data;
-    private Interview interview;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -35,10 +32,10 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
         //Bom dia, gostaria de falar com Fulano. Ele se encontra?
         Intent intent = getIntent();
         String nome = intent.getStringExtra("Name");
-        IdPerson = intent.getIntExtra("Id",0);
-        txtConfirm.setText(getSaudation()+" Gostaria de falar com "+nome+". Ele se encontra?");
+        IdPerson = intent.getIntExtra("Id", 0);
+        txtConfirm.setText(getSaudation() + " Gostaria de falar com " + nome + ". Ele se encontra?");
 
-        data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
+        data = new DataBaseInterview(this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -47,37 +44,38 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         String saudacao = "Bom dia!";
-        if (hour >= 12){
+        if (hour >= 12 && hour < 19){
             saudacao = "Boa tarde!";
-        } else if (hour >= 19){
+        } else if (hour >= 19 && hour < 24){
             saudacao = "Boa noite!";
         } else if (hour >= 24 || hour <= 6){
             saudacao = "Boa madrugada!";
         }
         return saudacao;
     }
+
+    public Interview CreateInterview(boolean value)
+    {
+        Interview interview = new Interview();
+        interview.setIdPerson(IdPerson);
+        interview.setViewerFound(value);
+        return interview;
+
+    }
+
     public void onRadioYesClicked(View view){
 
-        interview = new Interview();
-        interview.setIdPerson(IdPerson);
-        interview.setViewerFound(true);
 
-        data.interview.salvar(interview);
         Intent activity = new Intent(this, ApresentationActivity.class);
-        activity.putExtra("Id",IdPerson);
+        data.updateDb(IdPerson,CreateInterview(true),activity);
         startActivity(activity);
     }
 
     public void onRadioNoClicked(View view)
     {
-        interview = new Interview();
-        interview.setIdPerson(IdPerson);
-        interview.setViewerFound(false);
 
-
-        data.interview.salvar(interview);
         Intent activity = new Intent(this, VerifyAgeActivity.class);
-        activity.putExtra("Id",IdPerson);
+        data.updateDb(IdPerson,CreateInterview(false),activity);
         startActivity(activity);
     }
 

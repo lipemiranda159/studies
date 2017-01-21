@@ -111,6 +111,14 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
+        InterviewedPersonEntity interviewedPersonEntity = InterviewedPersonEntity.getInstance(this);
+        InterviewedPerson interviewedPerson = new InterviewedPerson();
+        interviewedPerson.setId(1);
+        interviewedPerson.setName("Felipe");
+        interviewedPerson.setPostCode("30620-490");
+        interviewedPerson.setNumber((short) 312);
+        interviewedPersonEntity.salvar(interviewedPerson);
+
     }
 
 

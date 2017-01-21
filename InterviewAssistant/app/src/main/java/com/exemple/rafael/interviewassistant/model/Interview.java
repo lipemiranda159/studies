@@ -1,6 +1,7 @@
 package com.exemple.rafael.interviewassistant.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Rafael on 19/01/2017.
@@ -10,6 +11,26 @@ public class Interview implements Serializable, IPersistentEntity {
     private static final long serialVersionUID = 1633833011084400384L;
     int id;
     int idPerson;
+
+    public String getDateStart() {
+        return dateStart;
+    }
+
+    public void setDateStart(String dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public String getDateFinish() {
+        return dateFinish;
+    }
+
+    public void setDateFinish(String dateFinish) {
+        this.dateFinish = dateFinish;
+    }
+
+    public String dateStart;
+    public String dateFinish;
+
     public boolean viewerFound;
     public boolean viewerAccept;
     public boolean useSus;

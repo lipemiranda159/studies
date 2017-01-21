@@ -26,13 +26,13 @@ public class ListHospital extends AppCompatActivity {
         setContentView(R.layout.activity_list_hospital);
 
         edtOther = (EditText) findViewById(R.id.edtOtherHospital);
-
+/*
         data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
-
+*/
     }
-
+/*
     public void updateDb(int value, Intent intent)
     {
         interview = data.interview.recuperaPorIdPerson(IdPerson);
@@ -53,11 +53,11 @@ public class ListHospital extends AppCompatActivity {
 
     }
 
-
+*/
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, Sickness.class);
-        updateDb(opt,activity);
+//        updateDb(opt,activity);
         startActivity(activity);
 
     }
@@ -65,7 +65,7 @@ public class ListHospital extends AppCompatActivity {
     public void CreateActivity(String value)
     {
         Intent activity = new Intent(this, Sickness.class);
-        updateDb(value,activity);
+//        updateDb(value,activity);
         startActivity(activity);
 
     }

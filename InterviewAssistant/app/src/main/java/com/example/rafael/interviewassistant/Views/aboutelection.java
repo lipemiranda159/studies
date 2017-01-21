@@ -6,36 +6,54 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
+import com.exemple.rafael.interviewassistant.model.Interview;
 
 public class aboutelection extends ActionBarActivity {
+
+    private int IdPerson;
+    private DataBaseInterview data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutelection);
+        Intent intent = getIntent();
+        IdPerson = intent.getIntExtra("Id", 0);
+        data = new DataBaseInterview(this);
     }
 
-    public void CreateActivity()
+    public Interview CreateInterview(short value)
+    {
+        Interview interview = new Interview();
+        interview.setIdPerson(IdPerson);
+        interview.aboutElection = value;
+        return interview;
+
+    }
+
+    public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, willvote.class);
+        data.updateDb(IdPerson,CreateInterview((short) opt),activity);
         startActivity(activity);
     }
 
     public void onRadioChangCountrClicked(View view)
     {
-        CreateActivity();
+        CreateActivity(1);
     }
     public void onRadioDestroyCountrClicked(View view)
     {
-        CreateActivity();
+        CreateActivity(2);
     }
     public void onRadioNotChangClicked(View view)
     {
-        CreateActivity();
+        CreateActivity(3);
     }
     public void onRadioDependsElectionClicked(View view)
     {
-        CreateActivity();
+        CreateActivity(4);
     }
 
 }
