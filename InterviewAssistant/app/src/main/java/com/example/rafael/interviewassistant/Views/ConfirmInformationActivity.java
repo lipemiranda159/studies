@@ -20,6 +20,7 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
     private TextView txtConfirm;
     private int IdPerson;
     private DataBaseInterview data;
+    private String nome;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -31,7 +32,7 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
 
         //Bom dia, gostaria de falar com Fulano. Ele se encontra?
         Intent intent = getIntent();
-        String nome = intent.getStringExtra("Name");
+        nome = intent.getStringExtra("Name");
         IdPerson = intent.getIntExtra("Id", 0);
         txtConfirm.setText(getSaudation() + " Gostaria de falar com " + nome + ". Ele se encontra?");
 
@@ -67,7 +68,7 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
 
 
         Intent activity = new Intent(this, ApresentationActivity.class);
-        data.updateDb(IdPerson,CreateInterview(true),activity);
+        data.updateDb(IdPerson,nome,CreateInterview(true),activity);
         startActivity(activity);
     }
 
@@ -75,7 +76,7 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
     {
 
         Intent activity = new Intent(this, VerifyAgeActivity.class);
-        data.updateDb(IdPerson,CreateInterview(false),activity);
+        data.updateDb(IdPerson,nome,CreateInterview(false),activity);
         startActivity(activity);
     }
 

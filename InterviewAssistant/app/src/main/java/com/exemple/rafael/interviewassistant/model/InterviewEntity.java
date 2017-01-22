@@ -2,14 +2,16 @@ package com.exemple.rafael.interviewassistant.model;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
-/**
- * Created by Rafael on 19/01/2017.
- */
+import java.util.ArrayList;
+import java.util.List;
 
 public class InterviewEntity extends GenericEntity<Interview> {
     public static final String NOME_TABELA              = "TbInterview";
     public static final String COLUNA_ID				= "id";
+    public static final String COLUNA_DATESTART         = "dateStart";
+    public static final String COLUNA_DATEFINISH        = "dateFinish";
     public static final String COLUNA_IDPERSON			= "idPerson";
     public static final String COLUNA_VIEWERFOUND		= "viewerFound";
     public static final String COLUNA_VIEWERACCEPT		= "viewerAccept";
@@ -44,28 +46,30 @@ public class InterviewEntity extends GenericEntity<Interview> {
     public static final String COLUNA_RESPDESEMPENHO	= "respDesempenho";
     public static final String COLUNA_OTHERRESP			= "otherResp";
 
-    public static final String SCRIPT_CREATE_PERSON = "CREATE TABLE " + NOME_TABELA + "("
-            + COLUNA_ID + " INTEGER PRIMARY KEY," + COLUNA_IDPERSON + " INTEGER," + COLUNA_VIEWERFOUND + " INTEGER,"
-            + COLUNA_VIEWERACCEPT + " INTEGER," + COLUNA_USESUS + " INTEGER"
-            + COLUNA_IDPROCEDURE + " INTEGER," + COLUNA_PROCEDUREHOSPITAL + " INTEGER"
-            + COLUNA_IDHOSPITAL + " INTEGER," + COLUNA_OTHERHOSPITAL + " TEXT"
-            + COLUNA_USEMEDICALPLAN + " INTEGER," + COLUNA_IDPROBLEMWITHPLAN + " INTEGER"
-            + COLUNA_IDSICKNESS + " INTEGER," + COLUNA_NEEDGETBETTER + " INTEGER"
-            + COLUNA_QUALITYOFSUS + " INTEGER," + COLUNA_OTHERIMPROVEMENT + " TEXT"
-            + COLUNA_IDOCUPATION + " INTEGER," + COLUNA_OTHEROCUPATION + " TEXT"
-            + COLUNA_DEGREESCHOOL + " INTEGER," + COLUNA_LIVEWITH + " INTEGER"
-            + COLUNA_OTHERDWELLER + " TEXT," + COLUNA_HASCHILDREN + " INTEGER"
-            + COLUNA_RELIGION + " INTEGER," + COLUNA_ABOUTELECTION + " INTEGER"
-            + COLUNA_WILLVOTE + " INTEGER," + COLUNA_HOWSELECTCANDIDATE + " INTEGER"
-            + COLUNA_WHATTHEYDO + " INTEGER," + COLUNA_DESCRIBEPOLITICJOB + " INTEGER"
-            + COLUNA_KNOWSUPERSIMPLES + " INTEGER," + COLUNA_FUNCAPOSENTADO + " INTEGER"
-            + COLUNA_APOSENTADA + " INTEGER," + COLUNA_MOTIVODESEMPREGO + " INTEGER"
-            + COLUNA_DESEMSELEC + " INTEGER," + COLUNA_RESPDESEMPENHO + " INTEGER"
-            + COLUNA_OTHERRESP + " TEXT"+
-            "FOREIGN KEY("+COLUNA_IDPERSON+") REFERENCES TbPerson(id)"+
+    public static final String SCRIPT_CREATE_INTERVIEW = "CREATE TABLE " + NOME_TABELA + "("
+            + COLUNA_ID + " INTEGER PRIMARY KEY," +COLUNA_DATESTART+ " TEXT,"
+            + COLUNA_DATEFINISH + " TEXT,"
+            + COLUNA_IDPERSON + " INTEGER," + COLUNA_VIEWERFOUND + " INTEGER,"
+            + COLUNA_VIEWERACCEPT + " INTEGER," + COLUNA_USESUS + " INTEGER,"
+            + COLUNA_IDPROCEDURE + " INTEGER," + COLUNA_PROCEDUREHOSPITAL + " INTEGER,"
+            + COLUNA_IDHOSPITAL + " INTEGER," + COLUNA_OTHERHOSPITAL + " TEXT,"
+            + COLUNA_USEMEDICALPLAN + " INTEGER," + COLUNA_IDPROBLEMWITHPLAN + " INTEGER,"
+            + COLUNA_IDSICKNESS + " INTEGER," + COLUNA_NEEDGETBETTER + " INTEGER,"
+            + COLUNA_QUALITYOFSUS + " INTEGER," + COLUNA_OTHERIMPROVEMENT + " TEXT,"
+            + COLUNA_IDOCUPATION + " INTEGER," + COLUNA_OTHEROCUPATION + " TEXT,"
+            + COLUNA_DEGREESCHOOL + " INTEGER," + COLUNA_LIVEWITH + " INTEGER,"
+            + COLUNA_OTHERDWELLER + " TEXT," + COLUNA_HASCHILDREN + " INTEGER,"
+            + COLUNA_RELIGION + " INTEGER," + COLUNA_ABOUTELECTION + " INTEGER,"
+            + COLUNA_WILLVOTE + " INTEGER," + COLUNA_HOWSELECTCANDIDATE + " INTEGER,"
+            + COLUNA_WHATTHEYDO + " INTEGER," + COLUNA_DESCRIBEPOLITICJOB + " INTEGER,"
+            + COLUNA_KNOWSUPERSIMPLES + " INTEGER," + COLUNA_FUNCAPOSENTADO + " INTEGER,"
+            + COLUNA_APOSENTADA + " INTEGER," + COLUNA_MOTIVODESEMPREGO + " INTEGER,"
+            + COLUNA_DESEMSELEC + " INTEGER," + COLUNA_RESPDESEMPENHO + " INTEGER,"
+            + COLUNA_OTHERRESP + " TEXT,"+
+            " FOREIGN KEY("+COLUNA_IDPERSON+") REFERENCES TbPerson(id)"+
             ")";
 
-    public static final String SCRIPT_DELECAO_TABELA =  "DROP TABLE IF EXISTS " + NOME_TABELA;
+    public static final String SCRIPT_DELECAO_INTERVIEW =  "DROP TABLE IF EXISTS " + NOME_TABELA;
 
     public InterviewEntity(Context context) {
         super(context);
@@ -172,4 +176,150 @@ public class InterviewEntity extends GenericEntity<Interview> {
         return instance;
     }
 
+    public void Save(Interview interview) {
+        ContentValues values = entidadeParacontentValues(interview);
+        dataBase.insert(NOME_TABELA, null, values);
+    }
+
+    public List<Interview> GetAll() {
+        String queryReturnAll = "SELECT * FROM " + NOME_TABELA;
+        Cursor cursor = dataBase.rawQuery(queryReturnAll, null);
+        List<Interview> interviewEntities = construirpersonPorCursor(cursor);
+
+        return interviewEntities;
+    }
+
+    public void delete(InterviewedPerson interviewedPerson) {
+
+        String[] valoresParaSubstituir = {
+                String.valueOf(interviewedPerson.getId())
+        };
+
+        dataBase.delete(NOME_TABELA, COLUNA_ID + " =  ?", valoresParaSubstituir);
+    }
+
+    public void update(Interview interview) {
+        ContentValues valores = entidadeParacontentValues(interview);
+
+        String[] valoresParaSubstituir = {
+                String.valueOf(interview.getId())
+        };
+
+        dataBase.update(NOME_TABELA, valores, COLUNA_ID + " = ?", valoresParaSubstituir);
+    }
+
+    public void closeConnection() {
+        if(dataBase != null && dataBase.isOpen())
+            dataBase.close();
+    }
+
+
+    private List<Interview> construirpersonPorCursor(Cursor cursor) {
+        List<Interview> interviewList = new ArrayList<Interview>();
+        if(cursor == null)
+            return interviewList;
+
+        try {
+
+            if (cursor.moveToFirst()) {
+                do {
+
+                    int indexID = cursor.getColumnIndex(COLUNA_ID);
+                    int indexIdPerson = cursor.getColumnIndex(COLUNA_IDPERSON);
+                    int indexDateStart = cursor.getColumnIndex(COLUNA_DATESTART);
+                    int indexDateFinish = cursor.getColumnIndex(COLUNA_DATEFINISH);
+                    int indexViewerFound = cursor.getColumnIndex(COLUNA_VIEWERFOUND);
+                    int indexViewerAccept = cursor.getColumnIndex(COLUNA_VIEWERACCEPT);
+                    int indexUseSus = cursor.getColumnIndex(COLUNA_USESUS);
+                    int indexIdProcedure = cursor.getColumnIndex(COLUNA_IDPROCEDURE);
+                    int indexProcedureHospital = cursor.getColumnIndex(COLUNA_PROCEDUREHOSPITAL);
+                    int indexIdHospital = cursor.getColumnIndex(COLUNA_IDHOSPITAL);
+                    int indexOtherHospital = cursor.getColumnIndex(COLUNA_OTHERHOSPITAL);
+                    int indexUseMedicalPlan = cursor.getColumnIndex(COLUNA_USEMEDICALPLAN);
+                    int indexIdProblemWithPlan = cursor.getColumnIndex(COLUNA_IDPROBLEMWITHPLAN);
+                    int indexIdSickness = cursor.getColumnIndex(COLUNA_IDSICKNESS);
+                    int indexNeedGetBetter = cursor.getColumnIndex(COLUNA_NEEDGETBETTER);
+                    int indexQualityOfSus = cursor.getColumnIndex(COLUNA_QUALITYOFSUS);
+                    int indexOtherImprovement = cursor.getColumnIndex(COLUNA_OTHERIMPROVEMENT);
+                    int indexIdOcupation = cursor.getColumnIndex(COLUNA_IDOCUPATION);
+                    int indexOtherOcupation = cursor.getColumnIndex(COLUNA_OTHEROCUPATION);
+                    int indexDegreeSchool = cursor.getColumnIndex(COLUNA_DEGREESCHOOL);
+                    int indexLiveWith = cursor.getColumnIndex(COLUNA_LIVEWITH);
+                    int indexOtherDweller = cursor.getColumnIndex(COLUNA_OTHERDWELLER);
+                    int indexHasChildren = cursor.getColumnIndex(COLUNA_HASCHILDREN);
+                    int indexReligion = cursor.getColumnIndex(COLUNA_RELIGION);
+                    int indexAboutElection = cursor.getColumnIndex(COLUNA_ABOUTELECTION);
+                    int indexWillVote = cursor.getColumnIndex(COLUNA_WILLVOTE);
+                    int indexHowSelectCandidate = cursor.getColumnIndex(COLUNA_HOWSELECTCANDIDATE);
+                    int indexWhatTheyDo = cursor.getColumnIndex(COLUNA_WHATTHEYDO);
+                    int indexDescribePoliticJob = cursor.getColumnIndex(COLUNA_DESCRIBEPOLITICJOB);
+                    int indexKnowSuperSimples = cursor.getColumnIndex(COLUNA_KNOWSUPERSIMPLES);
+                    int indexFuncAposentado = cursor.getColumnIndex(COLUNA_FUNCAPOSENTADO);
+                    int indexAposentada = cursor.getColumnIndex(COLUNA_APOSENTADA);
+                    int indexMotivoDesemprego = cursor.getColumnIndex(COLUNA_MOTIVODESEMPREGO);
+                    int indexDesemSelec = cursor.getColumnIndex(COLUNA_DESEMSELEC);
+                    int indexRespDesemPenho = cursor.getColumnIndex(COLUNA_RESPDESEMPENHO);
+                    int indexOtherResp = cursor.getColumnIndex(COLUNA_OTHERRESP);
+                    int id = cursor.getInt(indexID);
+                    String IdPerson           =	cursor.getString( indexIdPerson              );
+                    String DateStart          = cursor.getString(    indexDateStart             );
+                    String DateFinish         = cursor.getString(    indexDateFinish            );
+                    String ViewerFound        = cursor.getString(    indexViewerFound           );
+                    String ViewerAccept       = cursor.getString(    indexViewerAccept          );
+                    String UseSus         	  = cursor.getString(     indexUseSus         	     );
+                    String IdProcedure        = cursor.getString(    indexIdProcedure           );
+                    String ProcedureHospital  = cursor.getString(    indexProcedureHospital     );
+                    String IdHospital         = cursor.getString(    indexIdHospital            );
+                    String OtherHospital      = cursor.getString(    indexOtherHospital         );
+                    String UseMedicalPlan     = cursor.getString(    indexUseMedicalPlan        );
+                    String IdProblemWithPlan  = cursor.getString(    indexIdProblemWithPlan     );
+                    String IdSickness         = cursor.getString(    indexIdSickness            );
+                    String NeedGetBetter      = cursor.getString(    indexNeedGetBetter         );
+                    String QualityOfSus       = cursor.getString(    indexQualityOfSus          );
+                    String OtherImprovement   = cursor.getString(    indexOtherImprovement      );
+                    String IdOcupation        = cursor.getString(    indexIdOcupation           );
+                    String OtherOcupation     = cursor.getString(    indexOtherOcupation        );
+                    String DegreeSchool       = cursor.getString(    indexDegreeSchool          );
+                    String LiveWith           = cursor.getString(    indexLiveWith              );
+                    String OtherDweller       = cursor.getString(    indexOtherDweller          );
+                    String HasChildren        = cursor.getString(    indexHasChildren           );
+                    String Religion           = cursor.getString(    indexReligion              );
+                    String AboutElection      = cursor.getString(    indexAboutElection         );
+                    String WillVote           = cursor.getString(    indexWillVote              );
+                    String HowSelectCandidate = cursor.getString(    indexHowSelectCandidate    );
+                    String WhatTheyDo         = cursor.getString(    indexWhatTheyDo            );
+                    String DescribePoliticJob = cursor.getString(    indexDescribePoliticJob    );
+                    String KnowSuperSimples   = cursor.getString(    indexKnowSuperSimples      );
+                    String FuncAposentado     = cursor.getString(    indexFuncAposentado        );
+                    String Aposentada         = cursor.getString(    indexAposentada            );
+                    String MotivoDesemprego   = cursor.getString(    indexMotivoDesemprego      );
+                    String DesemSelec         = cursor.getString(    indexDesemSelec            );
+                    String RespDesemPenho     = cursor.getString(    indexRespDesemPenho        );
+                    String OtherResp          = cursor.getString(    indexOtherResp             );
+
+                    Interview interview = new Interview(id,IdPerson,DateStart,DateFinish,
+                            ViewerFound,ViewerAccept,UseSus,
+                            IdProcedure,ProcedureHospital,IdHospital,
+                            OtherHospital,UseMedicalPlan,IdProblemWithPlan,
+                            IdSickness,NeedGetBetter,QualityOfSus,
+                            OtherImprovement,IdOcupation,OtherOcupation,
+                            DegreeSchool,LiveWith,OtherDweller,
+                            HasChildren,Religion,AboutElection,
+                            WillVote,HowSelectCandidate,WhatTheyDo,
+                            DescribePoliticJob,KnowSuperSimples,FuncAposentado,
+                            Aposentada,MotivoDesemprego,DesemSelec,
+                            RespDesemPenho,OtherResp);
+
+                    interviewList.add(interview);
+
+                } while (cursor.moveToNext());
+            }
+
+        } finally {
+            cursor.close();
+        }
+        return interviewList;
+    }
+
 }
+

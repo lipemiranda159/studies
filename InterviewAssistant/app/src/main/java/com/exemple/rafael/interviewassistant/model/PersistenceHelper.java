@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class PersistenceHelper extends SQLiteOpenHelper {
 
     public static final String NOME_BANCO =  "InterviewAssistant";
-    public static final int VERSAO =  4;
+    public static final int VERSAO =  6;
 
     private static PersistenceHelper instance;
 
@@ -21,11 +21,13 @@ public class PersistenceHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(InterviewedPersonEntity.SCRIPT_CREATE_PERSON);
+        db.execSQL(InterviewEntity.SCRIPT_CREATE_INTERVIEW);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(InterviewedPersonEntity.SCRIPT_DELECAO_TABELA);
+        db.execSQL(InterviewEntity.SCRIPT_DELECAO_INTERVIEW);
         onCreate(db);
     }
 

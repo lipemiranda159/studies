@@ -167,13 +167,17 @@ public final class DataBaseInterview {
         return interviewDestination;
     }
 
-    public void updateDb(int IdPerson, Interview interview, Intent intent)
+    public void updateDb(int IdPerson,String name, Interview interview, Intent intent)
     {
         Interview interviewDB = entity.recuperaPorIdPerson(IdPerson);
-        interviewDB = CopyData(interview,interviewDB);
-        intent.putExtra("IdPerson",IdPerson);
-        entity.editar(interviewDB);
-
+        if (interviewDB != null) {
+            interviewDB = CopyData(interview, interviewDB);
+            entity.editar(interviewDB);
+        } else {
+            entity.salvar(interview);
+        }
+        intent.putExtra("IdPerson", IdPerson);
+        intent.putExtra("Name", name);
     }
 
 

@@ -12,8 +12,100 @@ public class Interview implements Serializable, IPersistentEntity {
     int id;
     int idPerson;
 
+    public Interview(){
+        this.id = 0;
+        this.idPerson = 0;
+        this.dateStart = "";
+        this.dateFinish = "";
+        this.viewerFound = false;
+        this.viewerAccept = false;
+        this.useSus = false;
+        this.idProcedure = 0;
+        this.procedureHospital = false;
+        this.IDHospital = 0;
+        this.otherHospital = "";
+        this.useMedicalPlan = false;
+        this.IDProblemWithPlan = 0;
+        this.IDSickness = 0;
+        this.needGetBetter = 0;
+        this.qualityOfSus = 0;
+        this.otherImprovement = "";
+        this.IDOcupation = 0;
+        this.otherOcupation = "";
+        this.degreeSchool = 0;
+        this.liveWith = 0;
+        this.otherDweller = "";
+        this.hasChildren = false;
+        this.religion = 0;
+        this.aboutElection = 0;
+        this.willVote = false;
+        this.howSelectCandidate = 0;
+        this.whatTheyDo = false;
+        this.describePoliticJob = 0;
+        this.knowSuperSimples = false;
+        this.funcAposentado = false;
+        this.aposentada = false;
+        this.motivoDesemprego = 0;
+        this.desemSelec = 0;
+        this.respDesempenho = 0;
+        this.otherResp = "";
+
+    }
+
+    public Interview(int id, String idPerson, String dateStart, String dateFinish,
+                     String viewerFound, String viewerAccept, String useSus,
+                     String idProcedure, String procedureHospital, String IDHospital,
+                     String otherHospital, String useMedicalPlan, String IDProblemWithPlan,
+                     String IDSickness, String needGetBetter, String qualityOfSus, String otherImprovement,
+                     String IDOcupation, String otherOcupation, String degreeSchool,
+                     String liveWith, String otherDweller, String hasChildren,
+                     String religion, String aboutElection, String willVote,
+                     String howSelectCandidate, String whatTheyDo, String describePoliticJob,
+                     String knowSuperSimples, String funcAposentado, String aposentada,
+                     String motivoDesemprego, String desemSelec, String respDesempenho, String otherResp) {
+        this.id = id;
+        this.idPerson = Integer.parseInt(idPerson);
+        this.dateStart = dateStart;
+        this.dateFinish = dateFinish;
+        this.viewerFound = Boolean.parseBoolean(viewerFound);
+        this.viewerAccept = Boolean.parseBoolean(viewerAccept);
+        this.useSus = Boolean.parseBoolean(useSus);
+        this.idProcedure = Short.parseShort(idProcedure);
+        this.procedureHospital = Boolean.parseBoolean(procedureHospital);
+        this.IDHospital = Short.parseShort(IDHospital);
+        this.otherHospital = otherHospital;
+        this.useMedicalPlan = Boolean.parseBoolean(useMedicalPlan);
+        this.IDProblemWithPlan = Short.parseShort(IDProblemWithPlan);
+        this.IDSickness = Short.parseShort(IDSickness);
+        this.needGetBetter = Short.parseShort(needGetBetter);
+        this.qualityOfSus = Short.parseShort(qualityOfSus);
+        this.otherImprovement = otherImprovement;
+        this.IDOcupation = Short.parseShort(IDOcupation);
+        this.otherOcupation = otherOcupation;
+        this.degreeSchool = Short.parseShort(degreeSchool);
+        this.liveWith = Short.parseShort(liveWith);
+        this.otherDweller = otherDweller;
+        this.hasChildren = Boolean.parseBoolean(hasChildren);
+        this.religion = Short.parseShort(religion);
+        this.aboutElection = Short.parseShort(aboutElection);
+        this.willVote = Boolean.parseBoolean(willVote);
+        this.howSelectCandidate = Short.parseShort(howSelectCandidate);
+        this.whatTheyDo = Boolean.parseBoolean(whatTheyDo);
+        this.describePoliticJob = Short.parseShort(describePoliticJob);
+        this.knowSuperSimples = Boolean.parseBoolean(knowSuperSimples);
+        this.funcAposentado = Boolean.parseBoolean(funcAposentado);
+        this.aposentada = Boolean.parseBoolean(aposentada);
+        this.motivoDesemprego = Short.parseShort(motivoDesemprego);
+        this.desemSelec = Short.parseShort(desemSelec);
+        this.respDesempenho = Short.parseShort(respDesempenho);
+        this.otherResp = otherResp;
+    }
+
     public String getDateStart() {
-        return dateStart;
+
+        if (dateStart != null)
+            return dateStart;
+        else return "";
     }
 
     public void setDateStart(String dateStart) {
@@ -21,7 +113,9 @@ public class Interview implements Serializable, IPersistentEntity {
     }
 
     public String getDateFinish() {
-        return dateFinish;
+        if (dateFinish != null)
+            return dateFinish;
+        else return "";
     }
 
     public void setDateFinish(String dateFinish) {
@@ -357,7 +451,9 @@ public class Interview implements Serializable, IPersistentEntity {
     public short respDesempenho;
 
     public String isOtherResp() {
-        return otherResp;
+        if (otherResp != null)
+            return otherResp;
+        else return "";
     }
 
     public short isRespDesempenho() {
@@ -413,7 +509,9 @@ public class Interview implements Serializable, IPersistentEntity {
     }
 
     public String isOtherDweller() {
-        return otherDweller;
+        if(otherDweller != null)
+            return otherDweller;
+        else return "";
     }
 
     public short isLiveWith() {
@@ -425,7 +523,9 @@ public class Interview implements Serializable, IPersistentEntity {
     }
 
     public String isOtherOcupation() {
-        return otherOcupation;
+        if(otherOcupation != null)
+            return otherOcupation;
+        else return "";
     }
 
     public short isIDOcupation() {
@@ -433,7 +533,9 @@ public class Interview implements Serializable, IPersistentEntity {
     }
 
     public String isOtherImprovement() {
-        return otherImprovement;
+        if(otherImprovement != null)
+            return otherImprovement;
+        else return "";
     }
 
     public short isQualityOfSus() {
@@ -457,7 +559,9 @@ public class Interview implements Serializable, IPersistentEntity {
     }
 
     public String isOtherHospital() {
-        return otherHospital;
+        if (otherHospital != null)
+            return otherHospital;
+        else return "";
     }
 
     public short isIDHospital() {
