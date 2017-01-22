@@ -17,7 +17,7 @@ public class ListHospital extends AppCompatActivity {
 
     private int IdPerson;
     private DataBaseInterview data;
-    private Interview interview;
+    private String nome;
     private EditText edtOther;
 
     @Override
@@ -26,38 +26,36 @@ public class ListHospital extends AppCompatActivity {
         setContentView(R.layout.activity_list_hospital);
 
         edtOther = (EditText) findViewById(R.id.edtOtherHospital);
-/*
-        data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
+
         Intent intent = getIntent();
-        IdPerson = intent.getIntExtra("Id",0);
-*/
+        IdPerson = intent.getIntExtra("Id", 0);
+        nome = intent.getStringExtra("Name");
+        data = new DataBaseInterview(this);
     }
-/*
-    public void updateDb(int value, Intent intent)
+
+    public Interview CreateInterview(short value)
     {
-        interview = data.interview.recuperaPorIdPerson(IdPerson);
-        interview.setIDHospital((short) value);
-        data.interview.editar(interview);
-        intent.putExtra("IdPerson",IdPerson);
-
+        Interview interview = new Interview();
+        interview.setIdPerson(IdPerson);
+        interview.IDHospital = value;
+        return interview;
 
     }
 
-    public void updateDb(String value, Intent intent)
+    public Interview CreateInterview(String value)
     {
-        interview = data.interview.recuperaPorIdPerson(IdPerson);
-        interview.setOtherHospital(value);
-        data.interview.editar(interview);
-        intent.putExtra("IdPerson",IdPerson);
-
+        Interview interview = new Interview();
+        interview.setIdPerson(IdPerson);
+        interview.otherHospital = value;
+        return interview;
 
     }
 
-*/
+
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, Sickness.class);
-//        updateDb(opt,activity);
+        data.updateDb(IdPerson,nome,CreateInterview((short) opt),activity);
         startActivity(activity);
 
     }
@@ -65,7 +63,7 @@ public class ListHospital extends AppCompatActivity {
     public void CreateActivity(String value)
     {
         Intent activity = new Intent(this, Sickness.class);
-//        updateDb(value,activity);
+        data.updateDb(IdPerson,nome,CreateInterview(value),activity);
         startActivity(activity);
 
     }

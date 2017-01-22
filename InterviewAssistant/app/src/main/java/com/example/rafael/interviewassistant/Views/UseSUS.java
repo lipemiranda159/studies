@@ -15,44 +15,41 @@ public class UseSUS extends AppCompatActivity {
 
     private int IdPerson;
     private DataBaseInterview data;
-    private Interview interview;
+    private String nome;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_sus);
-/*
-        data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
+
+        data = new DataBaseInterview(this);
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
-*/
+        nome = intent.getStringExtra("Name");
+
     }
-/*
-    public void updateDb(boolean value)
+
+    public Interview CreateInterview(boolean value)
     {
-        interview = data.interview.recuperaPorIdPerson(IdPerson);
-
-        interview.setUseSus(value);
-
-        data.interview.editar(interview);
+        Interview interview = new Interview();
+        interview.setIdPerson(IdPerson);
+        interview.useSus = value;
+        return interview;
 
     }
 
-*/
     public void onRadioYesClicked(View view){
 
-  //      updateDb(true);
         Intent activity = new Intent(this, DescribeUseSUS.class);
-//        activity.putExtra("IdPerson",IdPerson);
+        data.updateDb(IdPerson,nome,CreateInterview(true),activity);
         startActivity(activity);
     }
 
     public void onRadioNoClicked(View view)
     {
-//        updateDb(true);
         Intent activity = new Intent(this, UsePlan.class);
-//        activity.putExtra("IdPerson",IdPerson);
+        data.updateDb(IdPerson,nome,CreateInterview(false),activity);
         startActivity(activity);
     }
 

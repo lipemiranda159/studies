@@ -12,8 +12,6 @@ import android.widget.TextView;
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
-import com.exemple.rafael.interviewassistant.model.InterviewEntity;
-import com.exemple.rafael.interviewassistant.model.InterviewedPersonEntity;
 
 public class ConfirmInformationActivity extends AppCompatActivity  {
 
@@ -55,10 +53,12 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
         return saudacao;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public Interview CreateInterview(boolean value)
     {
         Interview interview = new Interview();
         interview.setIdPerson(IdPerson);
+        interview.dateStart = String.valueOf(Calendar.getInstance().getTime());
         interview.setViewerFound(value);
         return interview;
 

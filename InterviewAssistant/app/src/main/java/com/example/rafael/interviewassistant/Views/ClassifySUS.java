@@ -1,48 +1,45 @@
 package com.example.rafael.interviewassistant.Views;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
-import com.exemple.rafael.interviewassistant.model.InterviewEntity;
-import com.exemple.rafael.interviewassistant.model.InterviewedPersonEntity;
 
 public class ClassifySUS extends ActionBarActivity {
 
     private int IdPerson;
     private DataBaseInterview data;
-    private Interview interview;
+    private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classify_sus);
 
-        //data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
-        //Intent intent = getIntent();
-        //IdPerson = intent.getIntExtra("Id",0);
+        data = new DataBaseInterview(this);
+        Intent intent = getIntent();
+        IdPerson = intent.getIntExtra("Id",0);
+        nome = intent.getStringExtra("Name");
+
 
     }
-/*
-    public void updateDb(int value, Intent intent)
+
+    public Interview CreateInterview(short value)
     {
-        interview = data.interview.recuperaPorIdPerson(IdPerson);
-        interview.setIDSickness((short) value);
-        data.interview.editar(interview);
-        intent.putExtra("IdPerson",IdPerson);
-
+        Interview interview = new Interview();
+        interview.setIdPerson(IdPerson);
+        interview.setQualityOfSus(value);
+        return interview;
 
     }
-*/
-
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, howgetbetter.class);
-//        updateDb(opt,activity);
+        data.updateDb(IdPerson,nome,CreateInterview((short) opt),activity);
         startActivity(activity);
 
     }

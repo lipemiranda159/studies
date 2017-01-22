@@ -16,34 +16,34 @@ public class Sickness extends AppCompatActivity {
 
     private int IdPerson;
     private DataBaseInterview data;
-    private Interview interview;
+    private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sickness);
-/*
-        data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
+
+        data = new DataBaseInterview(this);
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
-*/
+        nome = intent.getStringExtra("Name");
+
+
     }
-/*
-    public void updateDb(int value, Intent intent)
+
+    public Interview CreateInterview(int value)
     {
-        interview = data.interview.recuperaPorIdPerson(IdPerson);
-        interview.setIDSickness((short) value);
-        data.interview.editar(interview);
-        intent.putExtra("IdPerson",IdPerson);
-
+        Interview interview = new Interview();
+        interview.setIdPerson(IdPerson);
+        interview.IDSickness = (short) value;
+        return interview;
 
     }
-*/
 
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, ClassifySUS.class);
-//        updateDb(opt,activity);
+        data.updateDb(IdPerson,nome,CreateInterview(opt),activity);
         startActivity(activity);
 
     }

@@ -16,35 +16,35 @@ public class DescribeUseSUS extends AppCompatActivity {
 
     private int IdPerson;
     private DataBaseInterview data;
-    private Interview interview;
+    private String nome;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_describe_use_sus);
-/*
-        data = new DataBaseInterview(InterviewedPersonEntity.getInstance(this), InterviewEntity.getInstance(this));
+
+        data = new DataBaseInterview(this);
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
-*/
+        nome = intent.getStringExtra("Name");
+
+
     }
 
-    /*
-    public void updateDb(short value, Intent intent)
+    public Interview CreateInterview(short value)
     {
-        interview = data.interview.recuperaPorIdPerson(IdPerson);
-        interview.setIdProcedure(value);
-        data.interview.editar(interview);
-        intent.putExtra("IdPerson",IdPerson);
-
+        Interview interview = new Interview();
+        interview.setIdPerson(IdPerson);
+        interview.idProcedure = value;
+        return interview;
 
     }
-*/
+
     public void CreateActivity(short opt)
     {
         Intent activity = new Intent(this, Bhhospital.class);
-//        updateDb(opt,activity);
+        data.updateDb(IdPerson,nome,CreateInterview(opt),activity);
         startActivity(activity);
 
     }

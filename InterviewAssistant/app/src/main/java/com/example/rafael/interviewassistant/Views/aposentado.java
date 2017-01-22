@@ -13,14 +13,16 @@ public class aposentado extends ActionBarActivity {
 
     private int IdPerson;
     private DataBaseInterview data;
+    private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aposentado);
+
         Intent intent = new Intent();
         IdPerson = intent.getIntExtra("Id", 0);
-
+        nome = intent.getStringExtra("Name");
         data = new DataBaseInterview(this);
 
     }
@@ -37,14 +39,14 @@ public class aposentado extends ActionBarActivity {
     public void onRadioYesClicked(View view){
 
         Intent activity = new Intent(this, livewith.class);
-        data.updateDb(IdPerson,CreateInterview(true),activity);
+        data.updateDb(IdPerson,nome,CreateInterview(true),activity);
         startActivity(activity);
     }
 
     public void onRadioNoClicked(View view)
     {
         Intent activity = new Intent(this, livewith.class);
-        data.updateDb(IdPerson,CreateInterview(false),activity);
+        data.updateDb(IdPerson,nome,CreateInterview(false),activity);
         startActivity(activity);
     }
 

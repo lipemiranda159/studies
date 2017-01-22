@@ -6,39 +6,62 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
+import com.exemple.rafael.interviewassistant.model.Interview;
 
 public class Hasproblemswithplan extends ActionBarActivity {
+
+    private int IdPerson;
+    private DataBaseInterview data;
+    private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hasproblemswithplan);
+
+        Intent intent = getIntent();
+        IdPerson = intent.getIntExtra("Id", 0);
+        nome = intent.getStringExtra("Name");
+        data = new DataBaseInterview(this);
+
     }
 
-    public void CreateActivity()
+    public Interview CreateInterview(short value)
+    {
+        Interview interview = new Interview();
+        interview.setIdPerson(IdPerson);
+        interview.IDProblemWithPlan = value;
+        return interview;
+
+    }
+
+
+    public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, Sickness.class);
+        data.updateDb(IdPerson,nome,CreateInterview((short) opt),activity);
         startActivity(activity);
 
     }
 
     public void onRadioAutorizeClicked(View view){
-        CreateActivity();
+        CreateActivity(1);
     }
     public void onRadioNoMedClicked(View view){
-        CreateActivity();
+        CreateActivity(2);
     }
     public void onRadioDescMedClicked(View view){
-        CreateActivity();
+        CreateActivity(3);
     }
     public void onRadioDescLabClicked(View view){
-        CreateActivity();
+        CreateActivity(4);
     }
     public void onRadioHardPayClicked(View view){
-        CreateActivity();
+        CreateActivity(5);
     }
     public void onRadioHardScheduleClicked(View view){
-        CreateActivity();
+        CreateActivity(6);
     }
 
 

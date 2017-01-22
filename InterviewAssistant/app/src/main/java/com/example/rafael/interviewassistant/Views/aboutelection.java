@@ -13,13 +13,16 @@ public class aboutelection extends ActionBarActivity {
 
     private int IdPerson;
     private DataBaseInterview data;
+    private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutelection);
+
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id", 0);
+        nome = intent.getStringExtra("Name");
         data = new DataBaseInterview(this);
     }
 
@@ -35,7 +38,7 @@ public class aboutelection extends ActionBarActivity {
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, willvote.class);
-        data.updateDb(IdPerson,CreateInterview((short) opt),activity);
+        data.updateDb(IdPerson,nome,CreateInterview((short) opt),activity);
         startActivity(activity);
     }
 

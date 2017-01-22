@@ -6,41 +6,64 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
+import com.exemple.rafael.interviewassistant.model.Interview;
 
 public class ClassifyFootball extends ActionBarActivity {
+
+    private int IdPerson;
+    private DataBaseInterview data;
+    private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classify_football);
+
+        data = new DataBaseInterview(this);
+        Intent intent = getIntent();
+        IdPerson = intent.getIntExtra("Id",0);
+        nome = intent.getStringExtra("Name");
+
     }
 
-    public void CreateActivity()
+    public Interview CreateInterview(short value)
+    {
+        Interview interview = new Interview();
+        interview.setIdPerson(IdPerson);
+        interview.setRespDesempenho(value);
+        return interview;
+
+    }
+
+
+    public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, RespDesen.class);
+        data.updateDb(IdPerson,nome,CreateInterview((short) opt),activity);
         startActivity(activity);
 
     }
 
     public void onRadioOtmClicked(View view)
     {
-        CreateActivity();
+        CreateActivity(1);
     }
 
     public void onRadioBomClicked(View view)
     {
-        CreateActivity();
+        CreateActivity(2);
     }
     public void onRadioRegClicked(View view)
     {
-        CreateActivity();
+        CreateActivity(3);
     }
     public void onRadioRuimClicked(View view)
     {
-        CreateActivity();
+        CreateActivity(4);
     }
     public void onRadioPessimoClicked(View view)
     {
-        CreateActivity();
+        CreateActivity(5);
     }
 }
