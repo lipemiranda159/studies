@@ -111,6 +111,6 @@ public class ListHospital extends AppCompatActivity {
 
     public void onBtnListHosSendOtherClick(View view)
     {
-        CreateActivity(String.valueOf(edtOther.getText()));
+        CreateActivity(edtOther.getText().toString());
     }
 }

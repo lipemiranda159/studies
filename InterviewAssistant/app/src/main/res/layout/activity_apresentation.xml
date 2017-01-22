@@ -20,14 +20,6 @@
         android:layout_alignParentStart="true"
         android:textSize="24sp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:text="@string/string_back"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_apresentation_back"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
     <RadioGroup
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -38,7 +30,7 @@
         android:layout_alignParentStart="true">
         <RadioButton android:id="@+id/radio_apresentation_yes"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="528dp"
             android:text="@string/string_yes"
             android:onClick="onRadioYesClicked"
             android:layout_weight="0.53" />

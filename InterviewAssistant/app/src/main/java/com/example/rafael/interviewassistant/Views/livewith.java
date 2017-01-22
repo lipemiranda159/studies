@@ -82,6 +82,6 @@ public class livewith extends ActionBarActivity {
     }
     public void onBtnSendLiv(View view)
     {
-        CreateActivity(String.valueOf(edtOthersLive.getText()));
+        CreateActivity(edtOthersLive.getText().toString());
     }
 }

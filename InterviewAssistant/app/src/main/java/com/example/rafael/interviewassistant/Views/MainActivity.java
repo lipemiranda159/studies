@@ -171,7 +171,8 @@ public class MainActivity extends AppCompatActivity
 
             InterviewedPersonEntity interviewedPersonEntity = InterviewedPersonEntity.getInstance(this);
 
-            String sql = "SELECT * FROM TbPerson WHERE postCode ='" + postCode + "' and number =" + edtNumber.getText();
+            //String sql = "SELECT * FROM TbPerson WHERE postCode ='" + postCode + "' and number =" + edtNumber.getText();
+            String sql = "SELECT * FROM TbPerson WHERE postCode = '30620-490' AND number = 312";
             try {
                 List<InterviewedPerson> list = interviewedPersonEntity.recuperarPorQuery(sql);
                 if (!list.isEmpty()) {

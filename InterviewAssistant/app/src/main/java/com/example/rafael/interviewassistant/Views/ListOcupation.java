@@ -101,7 +101,7 @@ public class ListOcupation extends ActionBarActivity {
     public void btnSendOtherOcupationClick(View view){
 
         Intent activity = new Intent(this, livewith.class);
-        data.updateDb(IdPerson,nome,CreateInterview(String.valueOf(edtOtherOcupation.getText())),activity);
+        data.updateDb(IdPerson,nome,CreateInterview(edtOtherOcupation.getText().toString()),activity);
         startActivity(activity);
 
     }

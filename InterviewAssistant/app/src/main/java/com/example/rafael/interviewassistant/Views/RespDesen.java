@@ -76,5 +76,5 @@ public class RespDesen extends ActionBarActivity {
     public void onRadioCBFClicked(View view){
         CreateActivity(3);
     }
-    public void btnOtherRespClick(View view){CreateActivity(String.valueOf(edtOtherResp.getText()));}
+    public void btnOtherRespClick(View view){CreateActivity(edtOtherResp.getText().toString());}
 }

@@ -81,5 +81,5 @@ public class howgetbetter extends ActionBarActivity {
 
     public void onRadioTimeExClicked(View view){ CreateActivity(8);}
 
-    public void btnOthersClick(View view){ CreateActivity(String.valueOf(edtOhostpital.getText()));}
+    public void btnOthersClick(View view){ CreateActivity(edtOhostpital.getText().toString());}
 }
