@@ -14,7 +14,7 @@
         android:text="Sr. Fulano, eu sou pesquisador e estamos realizando uma avaliação do atendimento de saúde em minas gerais. Pode coloborar respondendo algumas perguntas?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView5"
+        android:id="@+id/txtApresentation"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"

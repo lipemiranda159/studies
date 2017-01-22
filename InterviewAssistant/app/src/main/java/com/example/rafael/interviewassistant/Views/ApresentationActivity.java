@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
@@ -14,15 +15,20 @@ public class ApresentationActivity extends AppCompatActivity {
     private int IdPerson;
     private DataBaseInterview data;
     private String nome;
+    private TextView txtApresentation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apresentation);
+
+        txtApresentation = (TextView) findViewById(R.id.txtApresentation);
+        //Sr. Fulano, eu sou pesquisador e estamos realizando uma avaliação do atendimento de saúde em minas gerais. Pode coloborar respondendo algumas perguntas?
         data = new DataBaseInterview(this);
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
         nome = intent.getStringExtra("Name");
+        txtApresentation.setText(nome+", eu sou pesquisador e estamos realizando uma avaliação do atendimento de saúde em minas gerais. Pode coloborar respondendo algumas perguntas?");
 
     }
     public Interview CreateInterview(boolean value)

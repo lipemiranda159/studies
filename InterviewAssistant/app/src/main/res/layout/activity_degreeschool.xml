@@ -61,14 +61,5 @@
 
     </RadioGroup>
 
-    <Button
-        android:text="@string/string_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_dsh_back"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-
 
 </RelativeLayout>
