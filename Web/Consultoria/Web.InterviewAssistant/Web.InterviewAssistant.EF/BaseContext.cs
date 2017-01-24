@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace Web.InterviewAssistant.EF
         }
 
         public BaseContext()
-            : base("EFConnectionString")
+            : base("InterviewAssistant")
         {
             //Caso a base de dados não tenha sido criada, ao iniciar a aplicação iremos criar
             Database.SetInitializer<BaseContext<T>>(null);
