@@ -44,6 +44,7 @@
     <Compile Include="Model\DeviceInterviewer.cs" />
     <Compile Include="Model\Interview.cs" />
     <Compile Include="Model\Interviewed.cs" />
+    <Compile Include="Model\IntervieweInterviewed.cs" />
     <Compile Include="Model\Interviewer.cs" />
     <Compile Include="Model\Letter.cs" />
     <Compile Include="Model\User.cs" />
