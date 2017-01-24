@@ -8,7 +8,7 @@ namespace Web.InterviewAssistant.DB.Model
 {
     public class Interview
     {
-        public int Id { get; set; }
+        public int interviewId { get; set; }
         int idPerson { get; set; }
 
         public bool verifyAge { get; set; }
