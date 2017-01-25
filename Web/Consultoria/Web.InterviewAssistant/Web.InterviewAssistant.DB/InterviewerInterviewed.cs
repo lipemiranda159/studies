@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Web.InterviewAssistant.Entities
 {
-    public class IntervieweInterviewed
+    public class InterviewerInterviewed
     {
         public int intervieweInterviewedId { get; set; }
         public Interview interview { get; set; }

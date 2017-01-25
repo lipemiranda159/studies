@@ -9,9 +9,9 @@ using System.Data.Entity;
 
 namespace Web.InterviewAssistant.EF.Repository
 {
-    public class IntervieweInterviewedRepository : EntityRepositoryAsync<IntervieweInterviewed>
+    public class InterviewerInterviewedRepository : EntityRepositoryAsync<InterviewerInterviewed>
     {
-        public IntervieweInterviewedRepository(DbContext context) : base(context)
+        public InterviewerInterviewedRepository(DbContext context) : base(context)
         {
         }
     }

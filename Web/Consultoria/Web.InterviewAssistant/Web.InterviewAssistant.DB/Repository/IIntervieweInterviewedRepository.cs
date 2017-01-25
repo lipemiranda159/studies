@@ -8,7 +8,7 @@ using Web.InterviewAssistant.Entities;
 
 namespace Web.InterviewAssistant.EF.Repository
 {
-    public interface IIntervieweInterviewedRepository : IEntityRepositoryAsync<IntervieweInterviewed>
+    public interface IIntervieweInterviewedRepository : IEntityRepositoryAsync<InterviewerInterviewed>
     {
     }
 }
