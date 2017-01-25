@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Web.InterviewAssistant.EF.Repository
 {
-    interface IDeviceInterviewRepository
+    public class DeviceInterviewRepository : IDeviceInterviewRepository
     {
     }
 }

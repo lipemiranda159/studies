@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.InterviewAssistant.Admin", "Web.InterviewAssistant.Admin\Web.InterviewAssistant.Admin.csproj", "{F7FC2E8D-849E-4038-B99D-92BD4A6422D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.InterviewAssistant.DB", "Web.InterviewAssistant.DB\Web.InterviewAssistant.DB.csproj", "{6B42BC72-555E-4199-A9E9-A90CDC0A6C96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.InterviewAssistant.Entities", "Web.InterviewAssistant.DB\Web.InterviewAssistant.Entities.csproj", "{6B42BC72-555E-4199-A9E9-A90CDC0A6C96}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.InterviewAssistant.EF", "Web.InterviewAssistant.EF\Web.InterviewAssistant.EF.csproj", "{D9C14B6E-9331-40D6-B3C7-2246620E70CB}"
 EndProject

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Web.InterviewAssistant.EF.Repository
 {
-    interface IInterviewedRepository
+    public class InterviewRepository : IInterviewRepository
     {
     }
 }
