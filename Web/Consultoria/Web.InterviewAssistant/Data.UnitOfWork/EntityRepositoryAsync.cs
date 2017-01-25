@@ -16,61 +16,61 @@ namespace Data.UnitOfWork
             _context = context;
         }
 
-        public ICollection<T> GetAll()
+        public virtual ICollection<T> GetAll()
         {
             return _context.Set<T>().ToList();
         }
 
-        public async Task<ICollection<T>> GetAllAsync()
+        public virtual async Task<ICollection<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }
 
-        public T Get(int id)
+        public virtual T Get(int id)
         {
             return _context.Set<T>().Find(id);
         }
 
-        public async Task<T> GetAsync(int id)
+        public virtual async Task<T> GetAsync(int id)
         {
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public T Find(Expression<Func<T, bool>> match)
+        public virtual T Find(Expression<Func<T, bool>> match)
         {
             return _context.Set<T>().SingleOrDefault(match);
         }
 
-        public async Task<T> FindAsync(Expression<Func<T, bool>> match)
+        public virtual async Task<T> FindAsync(Expression<Func<T, bool>> match)
         {
             return await _context.Set<T>().SingleOrDefaultAsync(match);
         }
 
-        public ICollection<T> FindAll(Expression<Func<T, bool>> match)
+        public virtual ICollection<T> FindAll(Expression<Func<T, bool>> match)
         {
             return _context.Set<T>().Where(match).ToList();
         }
 
-        public async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match)
+        public virtual async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match)
         {
             return await _context.Set<T>().Where(match).ToListAsync();
         }
 
-        public T Add(T t)
+        public virtual T Add(T t)
         {
             _context.Set<T>().Add(t);
             _context.SaveChanges();
             return t;
         }
 
-        public async Task<T> AddAsync(T t)
+        public virtual async Task<T> AddAsync(T t)
         {
             _context.Set<T>().Add(t);
             await _context.SaveChangesAsync();
             return t;
         }
 
-        public T Update(T updated, int key)
+        public virtual T Update(T updated, int key)
         {
             if (updated == null)
                 return null;
@@ -84,7 +84,7 @@ namespace Data.UnitOfWork
             return existing;
         }
 
-        public async Task<T> UpdateAsync(T updated, int key)
+        public virtual async Task<T> UpdateAsync(T updated, int key)
         {
             if (updated == null)
                 return null;
@@ -98,24 +98,24 @@ namespace Data.UnitOfWork
             return existing;
         }
 
-        public void Delete(T t)
+        public virtual void Delete(T t)
         {
             _context.Set<T>().Remove(t);
             _context.SaveChanges();
         }
 
-        public async Task<int> DeleteAsync(T t)
+        public virtual async Task<int> DeleteAsync(T t)
         {
             _context.Set<T>().Remove(t);
             return await _context.SaveChangesAsync();
         }
 
-        public int Count()
+        public virtual int Count()
         {
             return _context.Set<T>().Count();
         }
 
-        public async Task<int> CountAsync()
+        public virtual async Task<int> CountAsync()
         {
             return await _context.Set<T>().CountAsync();
         }
