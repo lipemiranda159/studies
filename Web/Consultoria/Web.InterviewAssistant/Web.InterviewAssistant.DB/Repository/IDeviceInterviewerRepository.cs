@@ -3,6 +3,6 @@ using Web.InterviewAssistant.Entities;
 
 namespace Web.InterviewAssistant.EF.Repository
 {
-    public interface IDeviceInterviewRepository : IEntityRepositoryAsync<DeviceInterviewer> {
+    public interface IDeviceInterviewerRepository : IEntityRepositoryAsync<DeviceInterviewer> {
     }
 }

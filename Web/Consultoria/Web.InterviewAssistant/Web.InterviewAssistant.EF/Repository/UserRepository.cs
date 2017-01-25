@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Web.InterviewAssistant.EF.Repository
 {
-    public class UserRepository : EntityRepositoryAsync<User>
+    public class UserRepository : EntityRepositoryAsync<User>, IUserRepository
     {
         public UserRepository(DbContext context) : base(context)
         {

@@ -12,7 +12,7 @@ namespace Web.InterviewAssistant.EF
 {
     public interface IBaseContext : IUnitOfWork
     {
-        IDeviceInterviewRepository DeviceInterviewRepository { get; set; }
+        IDeviceInterviewerRepository DeviceInterviewRepository { get; set; }
         IDeviceRepository DeviceRepository { get; set; }
         IInterviewedRepository InterviewedRepository { get; set; }
         IInterviewerRepository InterviewerRepository { get; set; }

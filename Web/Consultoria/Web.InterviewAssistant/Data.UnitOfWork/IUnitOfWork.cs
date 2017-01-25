@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Data.UnitOfWork
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
-        void Save();
+        Task SaveChanges();
     }
 
 }

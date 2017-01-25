@@ -9,9 +9,9 @@ using System.Data.Entity;
 
 namespace Web.InterviewAssistant.EF.Repository
 {
-    public class DeviceInterviewRepository : EntityRepositoryAsync<DeviceInterviewer>
+    public class DeviceInterviewerRepository : EntityRepositoryAsync<DeviceInterviewer>
     {
-        public DeviceInterviewRepository(DbContext context) : base(context)
+        public DeviceInterviewerRepository(DbContext context) : base(context)
         {
         }
     }
