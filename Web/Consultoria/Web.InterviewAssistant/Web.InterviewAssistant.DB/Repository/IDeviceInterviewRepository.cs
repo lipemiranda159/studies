@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Web.InterviewAssistant.DB.Model;
-using Web.InterviewAssistant.Entities;
-
-namespace Web.InterviewAssistant.EF.Repository
+﻿namespace Web.InterviewAssistant.EF.Repository
 {
-    public interface IDeviceInterviewRepository{
+    public interface IDeviceInterviewRepository {
     }
 }

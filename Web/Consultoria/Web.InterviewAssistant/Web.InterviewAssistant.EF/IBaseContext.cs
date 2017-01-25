@@ -4,11 +4,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Web.InterviewAssistant.EF;
 using Web.InterviewAssistant.EF.Repository;
 
 namespace Web.InterviewAssistant.EF
 {
-    public interface IBaseContext : IDisposable
+    public interface IBaseContext : IUnitOfWork
     {
         IDeviceInterviewRepository DeviceInterviewRepository { get; set; }
         IDeviceRepository DeviceRepository { get; set; }
