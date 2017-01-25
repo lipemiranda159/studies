@@ -56,7 +56,7 @@
     <Compile Include="InterviewerInterviewed.cs" />
     <Compile Include="Interviewer.cs" />
     <Compile Include="Letter.cs" />
-    <Compile Include="Repository\IDeviceInterviewRepository.cs" />
+    <Compile Include="Repository\IDeviceInterviewerRepository.cs" />
     <Compile Include="Repository\IDeviceRepository.cs" />
     <Compile Include="Repository\IInterviewedRepository.cs" />
     <Compile Include="Repository\IIntervieweInterviewedRepository.cs" />

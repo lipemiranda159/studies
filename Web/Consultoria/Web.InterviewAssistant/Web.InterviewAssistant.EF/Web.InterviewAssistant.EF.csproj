@@ -52,7 +52,7 @@
     <Compile Include="InterviewDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IBaseContext.cs" />
-    <Compile Include="Repository\DeviceInterviewRepository.cs" />
+    <Compile Include="Repository\DeviceInterviewerRepository.cs" />
     <Compile Include="Repository\DeviceRepository.cs" />
     <Compile Include="Repository\InterviewedRepository.cs" />
     <Compile Include="Repository\InterviewerInterviewedRepository.cs" />

@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Web.InterviewAssistant.EF.Repository
 {
-    public class LetterRepository : EntityRepositoryAsync<Letter>
+    public class LetterRepository : EntityRepositoryAsync<Letter>, ILetterRepository
     {
         public LetterRepository(DbContext context) : base(context)
         {

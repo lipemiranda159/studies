@@ -4,7 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data.UnitOfWork;
 using Web.InterviewAssistant.EF.Repository;
+using Web.InterviewAssistant.Entities;
 
 namespace Web.InterviewAssistant.EF
 {
@@ -13,9 +15,22 @@ namespace Web.InterviewAssistant.EF
         public InterviewDbContext()
             : base("name=ConnectionString")
         {
-            DeviceInterviewRepository = new DeviceInterviewerRepository(this);
+            DeviceInterviewerRepository = new DeviceInterviewerRepository(this);
+            DeviceRepository = new DeviceRepository(this);
+            InterviewedRepository = new InterviewedRepository(this);
+            InterviewerRepository = new InterviewerRepository(this);
+            LetterRepository = new LetterRepository(this);
+            UserRepository = new UserRepository(this);
         }
-        public IDeviceInterviewerRepository DeviceInterviewRepository { get; set; }
+
+        public DbSet<DeviceInterviewer> DeviceInterviewers { get; set; }
+        public DbSet<Device> Devices { get; set; }
+        public DbSet<Interviewed> Intervieweds { get; set; }
+        public DbSet<Interviewer> Interviwers { get; set; }
+        public DbSet<Letter> Letters { get; set; }
+        public DbSet<User> Users { get; set; }
+
+        public IDeviceInterviewerRepository DeviceInterviewerRepository { get; set; }
 
         public IDeviceRepository DeviceRepository { get; set; }
 
@@ -27,9 +42,10 @@ namespace Web.InterviewAssistant.EF
 
         public IUserRepository UserRepository { get; set; }
 
-        public void Save()
-        {
 
+        public Task SaveChanges()
+        {
+            return SaveChangesAsync();
         }
     }
 }

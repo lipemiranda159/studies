@@ -20,5 +20,10 @@ namespace Data.UnitOfWork
         {
             
         }
+
+        Task IUnitOfWork.SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
