@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityRepositoryAsync.cs" />
-    <Compile Include="IDbContext.cs" />
     <Compile Include="IEntityRepositoryAsync.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,12 +58,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Web.InterviewAssistant.DB\Web.InterviewAssistant.Entities.csproj">
-      <Project>{6B42BC72-555E-4199-A9E9-A90CDC0A6C96}</Project>
-      <Name>Web.InterviewAssistant.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

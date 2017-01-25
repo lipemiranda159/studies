@@ -1,5 +1,7 @@
-﻿namespace Web.InterviewAssistant.EF.Repository
+﻿using Data.UnitOfWork;
+
+namespace Web.InterviewAssistant.EF.Repository
 {
-    public interface IDeviceInterviewRepository {
+    public interface IDeviceInterviewRepository : IEntityRepositoryAsync<> {
     }
 }
