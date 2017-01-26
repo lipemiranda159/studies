@@ -13,7 +13,7 @@ namespace Web.InterviewAssistant.EF
     public class InterviewDbContext : DbContext, IBaseContext
     {
         public InterviewDbContext()
-            : base("name=ConnectionString")
+            : base("name=InterviewConnectionString")
         {
             DeviceInterviewerRepository = new DeviceInterviewerRepository(this);
             DeviceRepository = new DeviceRepository(this);
