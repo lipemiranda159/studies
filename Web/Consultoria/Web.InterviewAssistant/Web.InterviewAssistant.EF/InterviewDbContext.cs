@@ -13,7 +13,7 @@ namespace Web.InterviewAssistant.EF
     public class InterviewDbContext : DbContext, IBaseContext
     {
         public InterviewDbContext()
-            : base("name=InterviewConnectionString")
+            : base("name=InterviewDbContextConnectionString")
         {
             DeviceInterviewerRepository = new DeviceInterviewerRepository(this);
             DeviceRepository = new DeviceRepository(this);
@@ -42,6 +42,10 @@ namespace Web.InterviewAssistant.EF
 
         public IUserRepository UserRepository { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            
+        }
 
         public Task SaveChanges()
         {
