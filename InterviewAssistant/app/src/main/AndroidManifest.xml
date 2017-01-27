@@ -3,8 +3,6 @@
     package="com.example.rafael.interviewassistant">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,42 +10,42 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="interviewassistant.Views.MainActivity">
+        <activity android:name=".Views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="interviewassistant.Views.ConfirmInformationActivity" />
-        <activity android:name="interviewassistant.Views.ApresentationActivity" />
-        <activity android:name="interviewassistant.Views.VerifyAgeActivity" />
-        <activity android:name="interviewassistant.Views.FinishInterviewActivity"></activity>
-        <activity android:name="interviewassistant.Views.UseSUS" />
-        <activity android:name="interviewassistant.Views.DescribeUseSUS" />
-        <activity android:name="interviewassistant.Views.Bhhospital" />
-        <activity android:name="interviewassistant.Views.ListHospital" />
-        <activity android:name="interviewassistant.Views.UsePlan" />
-        <activity android:name="interviewassistant.Views.Hasproblemswithplan" />
-        <activity android:name="interviewassistant.Views.Sickness" />
-        <activity android:name="interviewassistant.Views.ClassifySUS" />
-        <activity android:name="interviewassistant.Views.howgetbetter" />
-        <activity android:name="interviewassistant.Views.ListOcupation" />
-        <activity android:name="interviewassistant.Views.degreeschool" />
-        <activity android:name="interviewassistant.Views.livewith" />
-        <activity android:name="interviewassistant.Views.haschildren" />
-        <activity android:name="interviewassistant.Views.religion" />
-        <activity android:name="interviewassistant.Views.aboutelection" />
-        <activity android:name="interviewassistant.Views.willvote" />
-        <activity android:name="interviewassistant.Views.howselectcandidate" />
-        <activity android:name="interviewassistant.Views.deputadofedaral" />
-        <activity android:name="interviewassistant.Views.whattheydo" />
-        <activity android:name="interviewassistant.Views.conhecesupersimples" />
-        <activity android:name="interviewassistant.Views.aposentado" />
-        <activity android:name="interviewassistant.Views.housewife" />
-        <activity android:name="interviewassistant.Views.motivodesemprego" />
-        <activity android:name="interviewassistant.Views.ClassifyFootball" />
-        <activity android:name="interviewassistant.Views.RespDesen"></activity>
+        <activity android:name=".Views.ConfirmInformationActivity" />
+        <activity android:name=".Views.ApresentationActivity" />
+        <activity android:name=".Views.VerifyAgeActivity" />
+        <activity android:name=".Views.FinishInterviewActivity"></activity>
+        <activity android:name=".Views.UseSUS" />
+        <activity android:name=".Views.DescribeUseSUS" />
+        <activity android:name=".Views.Bhhospital" />
+        <activity android:name=".Views.ListHospital" />
+        <activity android:name=".Views.UsePlan" />
+        <activity android:name=".Views.Hasproblemswithplan" />
+        <activity android:name=".Views.Sickness" />
+        <activity android:name=".Views.ClassifySUS" />
+        <activity android:name=".Views.howgetbetter" />
+        <activity android:name=".Views.ListOcupation" />
+        <activity android:name=".Views.degreeschool" />
+        <activity android:name=".Views.livewith" />
+        <activity android:name=".Views.haschildren" />
+        <activity android:name=".Views.religion" />
+        <activity android:name=".Views.aboutelection" />
+        <activity android:name=".Views.willvote" />
+        <activity android:name=".Views.howselectcandidate" />
+        <activity android:name=".Views.deputadofedaral" />
+        <activity android:name=".Views.whattheydo" />
+        <activity android:name=".Views.conhecesupersimples" />
+        <activity android:name=".Views.aposentado" />
+        <activity android:name=".Views.housewife" />
+        <activity android:name=".Views.motivodesemprego" />
+        <activity android:name=".Views.ClassifyFootball" />
+        <activity android:name=".Views.RespDesen"></activity>
     </application>
 
 </manifest>

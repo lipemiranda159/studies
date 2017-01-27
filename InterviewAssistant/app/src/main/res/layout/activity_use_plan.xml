@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.rafael.interviewassistant.com.Views.UsePlan">
+    tools:context="com.example.rafael.interviewassistant.Views.UsePlan">
 
     <TextView
         android:text="Vocês utilizam plano de saúde particular?"
