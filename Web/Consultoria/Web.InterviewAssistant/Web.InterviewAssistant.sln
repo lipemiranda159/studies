@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.InterviewAssistant.EF",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.UnitOfWork", "Data.UnitOfWork\Data.UnitOfWork.csproj", "{9279BD59-54AE-48E8-B0F2-DA5DF89419DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.InterviewAssistant.Api", "Web.InterviewAssistant.Api\Web.InterviewAssistant.Api.csproj", "{8BA6D3E2-E47E-42A9-BFBE-B04D4A2F98F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9279BD59-54AE-48E8-B0F2-DA5DF89419DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9279BD59-54AE-48E8-B0F2-DA5DF89419DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9279BD59-54AE-48E8-B0F2-DA5DF89419DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BA6D3E2-E47E-42A9-BFBE-B04D4A2F98F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA6D3E2-E47E-42A9-BFBE-B04D4A2F98F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA6D3E2-E47E-42A9-BFBE-B04D4A2F98F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA6D3E2-E47E-42A9-BFBE-B04D4A2F98F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
