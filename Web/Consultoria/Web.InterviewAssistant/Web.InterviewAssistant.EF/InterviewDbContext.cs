@@ -51,5 +51,7 @@ namespace Web.InterviewAssistant.EF
         {
             return SaveChangesAsync();
         }
+
+        public System.Data.Entity.DbSet<Web.InterviewAssistant.Entities.Interview> Interviews { get; set; }
     }
 }

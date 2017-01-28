@@ -22,8 +22,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.RestClient.clientFactory;
+import com.RestClient.interviewClient;
 import com.example.rafael.interviewassistant.R;
-import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
 import com.exemple.rafael.interviewassistant.model.InterviewedPerson;
 import com.exemple.rafael.interviewassistant.model.InterviewedPersonEntity;
@@ -32,6 +33,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements LocationListener {
@@ -112,13 +117,25 @@ public class MainActivity extends AppCompatActivity
                 addressField.setText("Location not available");
             }
         }
-
+/*
         InterviewedPerson interviewedPerson = new InterviewedPerson();
         interviewedPerson.setName("Felipe");
         interviewedPerson.setPostCode("30620-490");
         interviewedPerson.setNumber((short) 312);
         InterviewedPersonEntity interviewedPersonEntity = InterviewedPersonEntity.getInstance(this);
         interviewedPersonEntity.salvar(interviewedPerson);
+*/
+        interviewClient client = clientFactory.Build();
+        Call<Interview> request = client.createInterview(new Interview());
+        request.enqueue(new Callback<Interview>() {
+            @Override
+            public void onResponse(Call<Interview> call, Response<Interview> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Interview> call, Throwable t) {
+            }
+        });
 
     }
 
