@@ -8,6 +8,7 @@ using Data.UnitOfWork;
 using Web.InterviewAssistant.EF.Repository;
 using Web.InterviewAssistant.Entities;
 using Web.InterviewAssistant.EF.Mapping;
+using Web.InterviewAssistant.Entities.Repository;
 
 namespace Web.InterviewAssistant.EF
 {
@@ -22,14 +23,17 @@ namespace Web.InterviewAssistant.EF
             InterviewerRepository = new InterviewerRepository(this);
             LetterRepository = new LetterRepository(this);
             UserRepository = new UserRepository(this);
+            RegisterLogRepository = new RegisterLogRepository(this);
         }
 
         public DbSet<DeviceInterviewer> DeviceInterviewers { get; set; }
         public DbSet<Device> Devices { get; set; }
         public DbSet<Interviewed> Intervieweds { get; set; }
         public DbSet<Interviewer> Interviwers { get; set; }
+        public DbSet<Interview> Interviews { get; set; }
         public DbSet<Letter> Letters { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<RegisterLog> RegisterLogs { get; set; }
 
         public IDeviceInterviewerRepository DeviceInterviewerRepository { get; set; }
 
@@ -42,6 +46,8 @@ namespace Web.InterviewAssistant.EF
         public ILetterRepository LetterRepository { get; set; }
 
         public IUserRepository UserRepository { get; set; }
+        public IRegisterLogRepository RegisterLogRepository { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -53,6 +59,6 @@ namespace Web.InterviewAssistant.EF
             return SaveChangesAsync();
         }
 
-        public System.Data.Entity.DbSet<Web.InterviewAssistant.Entities.Interview> Interviews { get; set; }
+
     }
 }

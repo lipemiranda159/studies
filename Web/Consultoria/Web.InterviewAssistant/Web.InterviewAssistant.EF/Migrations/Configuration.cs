@@ -9,7 +9,7 @@ namespace Web.InterviewAssistant.EF.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Web.InterviewAssistant.EF.InterviewDbContext context)
