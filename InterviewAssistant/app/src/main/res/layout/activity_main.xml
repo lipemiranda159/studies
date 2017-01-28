@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
         android:id="@+id/button"
-        android:onClick="getNumber"
+        android:onClick="getNumberAddress"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"

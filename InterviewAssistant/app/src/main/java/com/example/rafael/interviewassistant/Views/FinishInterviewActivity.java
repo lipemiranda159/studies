@@ -42,9 +42,9 @@ public class FinishInterviewActivity extends AppCompatActivity {
     public void onBtnFinishClick(View view)
     {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        data.updateDb(IdPerson,"",CreateInterview(),intent);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
-        data.updateDb(IdPerson,"",CreateInterview(),intent);
         startActivity(intent);
     }
 

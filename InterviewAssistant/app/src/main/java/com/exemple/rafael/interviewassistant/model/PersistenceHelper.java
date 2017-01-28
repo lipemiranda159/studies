@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class PersistenceHelper extends SQLiteOpenHelper {
 
     public static final String NOME_BANCO =  "InterviewAssistant";
-    public static final int VERSAO =  8;
+    public static final int VERSAO =  10;
 
     private static PersistenceHelper instance;
 

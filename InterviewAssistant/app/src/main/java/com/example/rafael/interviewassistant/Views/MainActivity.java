@@ -50,66 +50,74 @@ public class MainActivity extends AppCompatActivity
     private String provider;
     private String postCode;
 
-    public void getNumber(View view) {
-        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-        boolean enabled = service
-                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+    public void getNumberAddress(View view) {
 
-        if (!enabled) {
-            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            startActivity(intent);
-        }
-        Criteria criteria = new Criteria();
-        provider = locationManager.getBestProvider(criteria, false);
+            LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+            boolean enabled = service
+                    .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-        if (checkPermission()) {
-            Location location = service.getLastKnownLocation(provider);
-            addressField.setText(String.valueOf(location.getLatitude()));
-            List<Address> list = new ArrayList<Address>();
-
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            try {
-                list = (ArrayList<Address>) geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (!enabled) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
             }
+            Criteria criteria = new Criteria();
+            provider = locationManager.getBestProvider(criteria, false);
 
-            InterviewEntity interview = InterviewEntity.getInstance(this);
-            List<Interview> interviews = interview.GetAll();
+            if (checkPermission()) {
+                Location location = service.getLastKnownLocation(provider);
+                addressField.setText(String.valueOf(location.getLatitude()));
+                List<Address> list = new ArrayList<Address>();
 
-            if (interviews != null){
-
-                for (int x = 0; x < interviews.size();x++)
-                {
-                    interviewClient client = clientFactory.Build();
-                    Call<Interview> request = client.createInterview(interviews.get(x));
-                    Log.i("Request",request.request().url().url().getPath());
-                    request.enqueue(new Callback<Interview>() {
-                        @Override
-                        public void onResponse(Call<Interview> call, Response<Interview> response) {
-                            Log.i("Sucesso","funciona muito - id: "+response.body().getId());
-                        }
-
-                        @Override
-                        public void onFailure(Call<Interview> call, Throwable t) {
-
-                            Log.i("erro",t.getMessage());
-                        }
-                    });
-
+                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+                try {
+                    list = (ArrayList<Address>) geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+
+                final InterviewEntity interview = InterviewEntity.getInstance(this);
+                List<Interview> interviews = interview.GetAll();
+
+                if (interviews != null) {
+
+                    for (int x = 0; x < interviews.size(); x++) {
+                        final Interview newInterview = interviews.get(x);
+                        interviewClient client = clientFactory.Build();
+                        Call<Interview> request = client.createInterview(newInterview);
+                        request.enqueue(new Callback<Interview>() {
+                            @Override
+                            public void onResponse(Call<Interview> call, Response<Interview> response) {
+                                Log.i("Sucesso", "funciona muito - id: " + response.body().getId());
+                                newInterview.setInterviewSent(true);
+                                interview.update(newInterview);
+                            }
+
+                            @Override
+                            public void onFailure(Call<Interview> call, Throwable t) {
+
+                                Log.i("erro", t.getMessage());
+                                newInterview.setInterviewSent(false);
+                                interview.update(newInterview);
+                            }
+                        });
+
+                    }
+                }
+
+                if (!list.isEmpty()) {
+
+                    Address a = list.get(0);
+                    try {
+                        edtNumber.setText(a.getFeatureName());
+                        edtNumber.setEnabled(true);
+                        btnStartInterview.setEnabled(true);
+                        postCode = a.getPostalCode();
+                    } catch (Exception ex) {
+                        Log.i("Erro", ex.getMessage());
+                    }
+                }
+
             }
-
-            if (!list.isEmpty()) {
-
-                Address a = list.get(0);
-                edtNumber.setText(a.getFeatureName());
-                edtNumber.setEnabled(true);
-                btnStartInterview.setEnabled(true);
-                postCode = a.getPostalCode();
-            }
-
-        }
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -146,14 +154,14 @@ public class MainActivity extends AppCompatActivity
                 addressField.setText("Location not available");
             }
         }
-/*
+
         InterviewedPerson interviewedPerson = new InterviewedPerson();
         interviewedPerson.setName("Felipe");
         interviewedPerson.setPostCode("30620-490");
         interviewedPerson.setNumber((short) 312);
         InterviewedPersonEntity interviewedPersonEntity = InterviewedPersonEntity.getInstance(this);
         interviewedPersonEntity.salvar(interviewedPerson);
-*/
+
 
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 public class InterviewEntity extends GenericEntity<Interview> {
     public static final String NOME_TABELA              = "TbInterview";
     public static final String COLUNA_ID				= "id";
-    public static final String COLUNA_INTERVIEWSENT     = "interviewSetn";
+    public static final String COLUNA_INTERVIEWSENT     = "interviewSent";
     public static final String COLUNA_VERIFYAGE		    = "verifyAge";
     public static final String COLUNA_DATESTART         = "dateStart";
     public static final String COLUNA_DATEFINISH        = "dateFinish";
@@ -49,7 +49,8 @@ public class InterviewEntity extends GenericEntity<Interview> {
     public static final String COLUNA_OTHERRESP			= "otherResp";
 
     public static final String SCRIPT_CREATE_INTERVIEW = "CREATE TABLE " + NOME_TABELA + "("
-            + COLUNA_ID + " INTEGER PRIMARY KEY,"+COLUNA_INTERVIEWSENT+" INTEGER"
+            + COLUNA_ID + " INTEGER PRIMARY KEY,"
+            + COLUNA_INTERVIEWSENT+" INTEGER,"
             + COLUNA_VERIFYAGE+" INTEGER,"
             + COLUNA_DATESTART+ " TEXT,"+ COLUNA_DATEFINISH + " TEXT,"
             + COLUNA_IDPERSON + " INTEGER," + COLUNA_VIEWERFOUND + " INTEGER,"
@@ -193,7 +194,7 @@ public class InterviewEntity extends GenericEntity<Interview> {
     }
 
     public List<Interview> GetAll() {
-        String queryReturnAll = "SELECT * FROM " + NOME_TABELA;
+        String queryReturnAll = "SELECT * FROM " + NOME_TABELA+" WHERE "+COLUNA_INTERVIEWSENT+" = null or "+COLUNA_INTERVIEWSENT+" = 0";
         Cursor cursor = dataBase.rawQuery(queryReturnAll, null);
         List<Interview> interviewEntities = construirpersonPorCursor(cursor);
 
