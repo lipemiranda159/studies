@@ -12,6 +12,6 @@ import retrofit2.http.POST;
 
 public interface interviewClient {
 
-    @POST("api/Interviews")
+    @POST("Interviews")
     Call<Interview> createInterview(@Body Interview interview);
 }

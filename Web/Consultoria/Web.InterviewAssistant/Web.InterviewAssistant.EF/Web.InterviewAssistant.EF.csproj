@@ -50,9 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InterviewDbContext.cs" />
+    <Compile Include="Mapping\InterviewMapping.cs" />
     <Compile Include="Migrations\201701260042450_create database.cs" />
     <Compile Include="Migrations\201701260042450_create database.Designer.cs">
       <DependentUpon>201701260042450_create database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701280152436_update.cs" />
+    <Compile Include="Migrations\201701280152436_update.Designer.cs">
+      <DependentUpon>201701280152436_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,7 +91,11 @@
     <EmbeddedResource Include="Migrations\201701260042450_create database.resx">
       <DependentUpon>201701260042450_create database.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701280152436_update.resx">
+      <DependentUpon>201701280152436_update.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

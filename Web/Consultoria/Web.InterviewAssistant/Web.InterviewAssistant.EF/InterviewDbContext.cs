@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Data.UnitOfWork;
 using Web.InterviewAssistant.EF.Repository;
 using Web.InterviewAssistant.Entities;
+using Web.InterviewAssistant.EF.Mapping;
 
 namespace Web.InterviewAssistant.EF
 {
@@ -44,7 +45,7 @@ namespace Web.InterviewAssistant.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Configurations.Add(new InterviewMapping());
         }
 
         public Task SaveChanges()

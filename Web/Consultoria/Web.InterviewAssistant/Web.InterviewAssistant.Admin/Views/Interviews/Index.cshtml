@@ -1,0 +1,231 @@
+﻿@model IEnumerable<Web.InterviewAssistant.Entities.Interview>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.verifyAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateFinish)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.viewerFound)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.viewerAccept)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.useSus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idProcedure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.procedureHospital)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDHospital)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherHospital)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.useMedicalPlan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDProblemWithPlan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDSickness)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.needGetBetter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qualityOfSus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherImprovement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDOcupation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherOcupation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.degreeSchool)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.liveWith)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherDweller)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hasChildren)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.religion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aboutElection)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.willVote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.howSelectCandidate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.whatTheyDo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.describePoliticJob)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.knowSuperSimples)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.funcAposentado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aposentada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.motivoDesemprego)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.desemSelec)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.respDesempenho)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.verifyAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateFinish)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.viewerFound)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.viewerAccept)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.useSus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idProcedure)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.procedureHospital)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDHospital)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherHospital)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.useMedicalPlan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDProblemWithPlan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDSickness)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.needGetBetter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qualityOfSus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherImprovement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDOcupation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherOcupation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.degreeSchool)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.liveWith)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherDweller)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hasChildren)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.religion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aboutElection)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.willVote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.howSelectCandidate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.whatTheyDo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.describePoliticJob)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.knowSuperSimples)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.funcAposentado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aposentada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.motivoDesemprego)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.desemSelec)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.respDesempenho)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.interviewId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.interviewId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.interviewId })
+        </td>
+    </tr>
+}
+
+</table>

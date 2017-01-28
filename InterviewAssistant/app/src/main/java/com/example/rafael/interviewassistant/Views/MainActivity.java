@@ -26,9 +26,11 @@ import com.RestClient.clientFactory;
 import com.RestClient.interviewClient;
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewEntity;
 import com.exemple.rafael.interviewassistant.model.InterviewedPerson;
 import com.exemple.rafael.interviewassistant.model.InterviewedPersonEntity;
 
+import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     private LocationManager locationManager;
     private String provider;
     private String postCode;
+
     public void getNumber(View view) {
         LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
         boolean enabled = service
@@ -69,6 +72,32 @@ public class MainActivity extends AppCompatActivity
                 list = (ArrayList<Address>) geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+
+            InterviewEntity interview = InterviewEntity.getInstance(this);
+            List<Interview> interviews = interview.GetAll();
+
+            if (interviews != null){
+
+                for (int x = 0; x < interviews.size();x++)
+                {
+                    interviewClient client = clientFactory.Build();
+                    Call<Interview> request = client.createInterview(interviews.get(x));
+                    Log.i("Request",request.request().url().url().getPath());
+                    request.enqueue(new Callback<Interview>() {
+                        @Override
+                        public void onResponse(Call<Interview> call, Response<Interview> response) {
+                            Log.i("Sucesso","funciona muito - id: "+response.body().getId());
+                        }
+
+                        @Override
+                        public void onFailure(Call<Interview> call, Throwable t) {
+
+                            Log.i("erro",t.getMessage());
+                        }
+                    });
+
+                }
             }
 
             if (!list.isEmpty()) {
@@ -117,25 +146,14 @@ public class MainActivity extends AppCompatActivity
                 addressField.setText("Location not available");
             }
         }
-/*
+
         InterviewedPerson interviewedPerson = new InterviewedPerson();
         interviewedPerson.setName("Felipe");
         interviewedPerson.setPostCode("30620-490");
         interviewedPerson.setNumber((short) 312);
         InterviewedPersonEntity interviewedPersonEntity = InterviewedPersonEntity.getInstance(this);
         interviewedPersonEntity.salvar(interviewedPerson);
-*/
-        interviewClient client = clientFactory.Build();
-        Call<Interview> request = client.createInterview(new Interview());
-        request.enqueue(new Callback<Interview>() {
-            @Override
-            public void onResponse(Call<Interview> call, Response<Interview> response) {
-            }
 
-            @Override
-            public void onFailure(Call<Interview> call, Throwable t) {
-            }
-        });
 
     }
 

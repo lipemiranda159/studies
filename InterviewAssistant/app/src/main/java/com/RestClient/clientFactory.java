@@ -11,7 +11,7 @@ public class clientFactory {
 
     public static interviewClient Build(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:55987/")
+                .baseUrl("http://webinterviewassistantapi20170127095204.azurewebsites.net/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

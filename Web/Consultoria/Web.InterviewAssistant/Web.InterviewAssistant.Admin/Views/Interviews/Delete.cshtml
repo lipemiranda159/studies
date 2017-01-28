@@ -1,0 +1,296 @@
+﻿@model Web.InterviewAssistant.Entities.Interview
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Interview</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.verifyAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.verifyAge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateFinish)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateFinish)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.viewerFound)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.viewerFound)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.viewerAccept)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.viewerAccept)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.useSus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.useSus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idProcedure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idProcedure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.procedureHospital)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.procedureHospital)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDHospital)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDHospital)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherHospital)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherHospital)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.useMedicalPlan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.useMedicalPlan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDProblemWithPlan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDProblemWithPlan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDSickness)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDSickness)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.needGetBetter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.needGetBetter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qualityOfSus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qualityOfSus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherImprovement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherImprovement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDOcupation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDOcupation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherOcupation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherOcupation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.degreeSchool)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.degreeSchool)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.liveWith)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.liveWith)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherDweller)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherDweller)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hasChildren)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hasChildren)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.religion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.religion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aboutElection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aboutElection)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.willVote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.willVote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.howSelectCandidate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.howSelectCandidate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.whatTheyDo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.whatTheyDo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.describePoliticJob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.describePoliticJob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.knowSuperSimples)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.knowSuperSimples)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.funcAposentado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.funcAposentado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aposentada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aposentada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.motivoDesemprego)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.motivoDesemprego)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.desemSelec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desemSelec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.respDesempenho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.respDesempenho)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
