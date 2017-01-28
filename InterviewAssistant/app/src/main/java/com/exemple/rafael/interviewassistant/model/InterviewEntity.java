@@ -10,6 +10,7 @@ import java.util.List;
 public class InterviewEntity extends GenericEntity<Interview> {
     public static final String NOME_TABELA              = "TbInterview";
     public static final String COLUNA_ID				= "id";
+    public static final String COLUNA_INTERVIEWSENT     = "interviewSetn";
     public static final String COLUNA_VERIFYAGE		    = "verifyAge";
     public static final String COLUNA_DATESTART         = "dateStart";
     public static final String COLUNA_DATEFINISH        = "dateFinish";
@@ -48,8 +49,9 @@ public class InterviewEntity extends GenericEntity<Interview> {
     public static final String COLUNA_OTHERRESP			= "otherResp";
 
     public static final String SCRIPT_CREATE_INTERVIEW = "CREATE TABLE " + NOME_TABELA + "("
-            + COLUNA_ID + " INTEGER PRIMARY KEY," +COLUNA_VERIFYAGE+" INTEGER,"
-            +COLUNA_DATESTART+ " TEXT,"+ COLUNA_DATEFINISH + " TEXT,"
+            + COLUNA_ID + " INTEGER PRIMARY KEY,"+COLUNA_INTERVIEWSENT+" INTEGER"
+            + COLUNA_VERIFYAGE+" INTEGER,"
+            + COLUNA_DATESTART+ " TEXT,"+ COLUNA_DATEFINISH + " TEXT,"
             + COLUNA_IDPERSON + " INTEGER," + COLUNA_VIEWERFOUND + " INTEGER,"
             + COLUNA_VIEWERACCEPT + " INTEGER," + COLUNA_USESUS + " INTEGER,"
             + COLUNA_IDPROCEDURE + " INTEGER," + COLUNA_PROCEDUREHOSPITAL + " INTEGER,"
@@ -94,6 +96,7 @@ public class InterviewEntity extends GenericEntity<Interview> {
         ContentValues values = new ContentValues();
         values.put(COLUNA_ID				    , entidade.getId());
         values.put(COLUNA_IDPERSON			    , entidade.isIdPerson());
+        values.put(COLUNA_INTERVIEWSENT			, entidade.isInterviewSent());
         values.put(COLUNA_VERIFYAGE			    , entidade.isVerifyAge());
         values.put(COLUNA_DATESTART			    , entidade.getDateStart());
         values.put(COLUNA_DATEFINISH			, entidade.getDateFinish());
@@ -137,6 +140,7 @@ public class InterviewEntity extends GenericEntity<Interview> {
         Interview interview = new Interview();
         interview.setId(contentValues.getAsInteger(COLUNA_ID));
         interview.setIdPerson(contentValues.getAsInteger(COLUNA_IDPERSON));
+        interview.setInterviewSent(contentValues.getAsBoolean(COLUNA_INTERVIEWSENT));
         interview.setVerifyAge(contentValues.getAsBoolean(COLUNA_VERIFYAGE));
         interview.setDateStart(contentValues.getAsString(COLUNA_DATESTART));
         interview.setDateFinish(contentValues.getAsString(COLUNA_DATEFINISH));
@@ -233,6 +237,7 @@ public class InterviewEntity extends GenericEntity<Interview> {
 
                     int indexID = cursor.getColumnIndex(COLUNA_ID);
                     int indexIdPerson = cursor.getColumnIndex(COLUNA_IDPERSON);
+                    int indexInterviewSent = cursor.getColumnIndex(COLUNA_INTERVIEWSENT);
                     int indexVerifyAge = cursor.getColumnIndex(COLUNA_VERIFYAGE);
                     int indexDateStart = cursor.getColumnIndex(COLUNA_DATESTART);
                     int indexDateFinish = cursor.getColumnIndex(COLUNA_DATEFINISH);
@@ -271,6 +276,7 @@ public class InterviewEntity extends GenericEntity<Interview> {
                     int id = cursor.getInt(indexID);
                     String IdPerson           =	cursor.getString( indexIdPerson              );
                     String VerifyAge          = cursor.getString(indexVerifyAge);
+                    String InterviewSent      = cursor.getString(indexInterviewSent);
                     String DateStart          = cursor.getString(    indexDateStart             );
                     String DateFinish         = cursor.getString(    indexDateFinish            );
                     String ViewerFound        = cursor.getString(    indexViewerFound           );
@@ -306,7 +312,7 @@ public class InterviewEntity extends GenericEntity<Interview> {
                     String RespDesemPenho     = cursor.getString(    indexRespDesemPenho        );
                     String OtherResp          = cursor.getString(    indexOtherResp             );
 
-                    Interview interview = new Interview(id,IdPerson,VerifyAge,DateStart,DateFinish,
+                    Interview interview = new Interview(id,IdPerson,InterviewSent,VerifyAge,DateStart,DateFinish,
                             ViewerFound,ViewerAccept,UseSus,
                             IdProcedure,ProcedureHospital,IdHospital,
                             OtherHospital,UseMedicalPlan,IdProblemWithPlan,

@@ -11,5 +11,6 @@ namespace Web.InterviewAssistant.Entities
         public int registerLogId { get; set; }
         public short type { get; set; }
         public string Message { get; set; }
+        public DateTime LogDate { get; set; }
     }
 }

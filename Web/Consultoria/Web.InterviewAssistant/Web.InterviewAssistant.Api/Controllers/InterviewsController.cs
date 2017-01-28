@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -22,6 +23,7 @@ namespace Web.InterviewAssistant.Api.Controllers
             var result = new RegisterLog();
             result.Message = message;
             result.type = 0;
+            result.LogDate = DateTime.Now;
 
             return result;
         }
@@ -89,8 +91,9 @@ namespace Web.InterviewAssistant.Api.Controllers
             {
                 db.RegisterLogs.Add(createLog("Modelo inválido"));
                 return BadRequest(ModelState);
-            }
-            db.RegisterLogs.Add(createLog("Modelo válido"));
+            }            
+
+            db.RegisterLogs.Add(createLog("Modelo válido - json: "+ JsonConvert.SerializeObject(interview)));
 
             db.Interviews.Add(interview);
             db.RegisterLogs.Add(createLog("entrevista salva"));

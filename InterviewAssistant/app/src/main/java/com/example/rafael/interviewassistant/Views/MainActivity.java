@@ -146,14 +146,14 @@ public class MainActivity extends AppCompatActivity
                 addressField.setText("Location not available");
             }
         }
-
+/*
         InterviewedPerson interviewedPerson = new InterviewedPerson();
         interviewedPerson.setName("Felipe");
         interviewedPerson.setPostCode("30620-490");
         interviewedPerson.setNumber((short) 312);
         InterviewedPersonEntity interviewedPersonEntity = InterviewedPersonEntity.getInstance(this);
         interviewedPersonEntity.salvar(interviewedPerson);
-
+*/
 
     }
 

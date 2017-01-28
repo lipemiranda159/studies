@@ -12,6 +12,16 @@ public class Interview implements Serializable, IPersistentEntity {
     int id;
     int idPerson;
 
+    public boolean isInterviewSent() {
+        return interviewSent;
+    }
+
+    public void setInterviewSent(boolean interviewSent) {
+        this.interviewSent = interviewSent;
+    }
+
+    boolean interviewSent;
+
     public boolean isVerifyAge() {
         return verifyAge;
     }
@@ -63,7 +73,7 @@ public class Interview implements Serializable, IPersistentEntity {
 
     }
 
-    public Interview(int id, String idPerson,String verifyAge, String dateStart, String dateFinish,
+    public Interview(int id, String idPerson,String interviewSent,String verifyAge, String dateStart, String dateFinish,
                      String viewerFound, String viewerAccept, String useSus,
                      String idProcedure, String procedureHospital, String IDHospital,
                      String otherHospital, String useMedicalPlan, String IDProblemWithPlan,
@@ -76,6 +86,7 @@ public class Interview implements Serializable, IPersistentEntity {
                      String motivoDesemprego, String desemSelec, String respDesempenho, String otherResp) {
         this.id = id;
         this.idPerson = Integer.parseInt(idPerson);
+        this.interviewSent = Boolean.parseBoolean(interviewSent);
         this.verifyAge = Boolean.parseBoolean(verifyAge);
         this.dateStart = dateStart;
         this.dateFinish = dateFinish;

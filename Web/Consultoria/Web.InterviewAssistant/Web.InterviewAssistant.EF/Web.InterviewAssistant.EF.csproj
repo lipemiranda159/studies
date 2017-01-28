@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201701280350290_create log table.Designer.cs">
       <DependentUpon>201701280350290_create log table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701281523580_create logdate field.cs" />
+    <Compile Include="Migrations\201701281523580_create logdate field.Designer.cs">
+      <DependentUpon>201701281523580_create logdate field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IBaseContext.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701280350290_create log table.resx">
       <DependentUpon>201701280350290_create log table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701281523580_create logdate field.resx">
+      <DependentUpon>201701281523580_create logdate field.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
