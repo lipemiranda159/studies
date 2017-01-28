@@ -52,6 +52,7 @@ namespace Web.InterviewAssistant.EF
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new InterviewMapping());
+            modelBuilder.Configurations.Add(new RegisterLogMapping());
         }
 
         public Task SaveChanges()

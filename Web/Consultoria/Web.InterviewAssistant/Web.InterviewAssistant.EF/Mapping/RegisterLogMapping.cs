@@ -12,7 +12,7 @@ namespace Web.InterviewAssistant.EF.Mapping
     {
         public RegisterLogMapping()
         {
-            this.ToTable("dbo.TbLogRegister");
+            this.ToTable("dbo.TbRegisterLog");
         }
     }
 }

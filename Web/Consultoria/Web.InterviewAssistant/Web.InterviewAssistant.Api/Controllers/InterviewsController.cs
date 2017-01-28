@@ -17,6 +17,15 @@ namespace Web.InterviewAssistant.Api.Controllers
     {
         private InterviewDbContext db = new InterviewDbContext();
 
+        private RegisterLog createLog(string message)
+        {
+            var result = new RegisterLog();
+            result.Message = message;
+            result.type = 0;
+
+            return result;
+        }
+
         // GET: api/Interviews
         public IQueryable<Interview> GetInterviews()
         {
@@ -75,14 +84,17 @@ namespace Web.InterviewAssistant.Api.Controllers
         [ResponseType(typeof(Interview))]
         public IHttpActionResult PostInterview(Interview interview)
         {
+            db.RegisterLogs.Add(createLog("Recebi requisição - "+DateTime.Now.ToString()));
             if (!ModelState.IsValid)
             {
+                db.RegisterLogs.Add(createLog("Modelo inválido"));
                 return BadRequest(ModelState);
             }
+            db.RegisterLogs.Add(createLog("Modelo válido"));
 
             db.Interviews.Add(interview);
-            db.SaveChanges();
-
+            db.RegisterLogs.Add(createLog("entrevista salva"));
+            db.SaveChanges().Wait();
             return CreatedAtRoute("DefaultApi", new { id = interview.interviewId }, interview);
         }
 
