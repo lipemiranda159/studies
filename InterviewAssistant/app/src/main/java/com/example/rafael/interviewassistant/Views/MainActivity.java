@@ -75,46 +75,13 @@ public class MainActivity extends AppCompatActivity
                     e.printStackTrace();
                 }
 
-                final InterviewEntity interview = InterviewEntity.getInstance(this);
-                List<Interview> interviews = interview.GetAll();
-
-                if (interviews != null) {
-
-                    for (int x = 0; x < interviews.size(); x++) {
-                        final Interview newInterview = interviews.get(x);
-                        interviewClient client = clientFactory.Build();
-                        Call<Interview> request = client.createInterview(newInterview);
-                        request.enqueue(new Callback<Interview>() {
-                            @Override
-                            public void onResponse(Call<Interview> call, Response<Interview> response) {
-                                Log.i("Sucesso", "funciona muito - id: " + response.body().getId());
-                                newInterview.setInterviewSent(true);
-                                interview.update(newInterview);
-                            }
-
-                            @Override
-                            public void onFailure(Call<Interview> call, Throwable t) {
-
-                                Log.i("erro", t.getMessage());
-                                newInterview.setInterviewSent(false);
-                                interview.update(newInterview);
-                            }
-                        });
-
-                    }
-                }
-
                 if (!list.isEmpty()) {
 
                     Address a = list.get(0);
-                    try {
-                        edtNumber.setText(a.getFeatureName());
-                        edtNumber.setEnabled(true);
-                        btnStartInterview.setEnabled(true);
-                        postCode = a.getPostalCode();
-                    } catch (Exception ex) {
-                        Log.i("Erro", ex.getMessage());
-                    }
+                    edtNumber.setText(a.getFeatureName());
+                    edtNumber.setEnabled(true);
+                    btnStartInterview.setEnabled(true);
+                    postCode = a.getPostalCode();
                 }
 
             }
@@ -162,6 +129,8 @@ public class MainActivity extends AppCompatActivity
         InterviewedPersonEntity interviewedPersonEntity = InterviewedPersonEntity.getInstance(this);
         interviewedPersonEntity.salvar(interviewedPerson);
 
+        Intent intent = new Intent(this, SendInterviewsInformation.class);
+        startService(intent);
 
     }
 
