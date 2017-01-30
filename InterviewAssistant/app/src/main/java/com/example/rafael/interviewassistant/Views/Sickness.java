@@ -1,16 +1,14 @@
 package com.example.rafael.interviewassistant.Views;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.App;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
-import com.exemple.rafael.interviewassistant.model.InterviewEntity;
-import com.exemple.rafael.interviewassistant.model.InterviewedPersonEntity;
 
 public class Sickness extends AppCompatActivity {
 
@@ -23,7 +21,8 @@ public class Sickness extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sickness);
 
-        data = new DataBaseInterview(this);
+        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
+
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
         nome = intent.getStringExtra("Name");

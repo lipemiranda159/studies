@@ -15,30 +15,25 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.RestClient.clientFactory;
-import com.RestClient.interviewClient;
 import com.example.rafael.interviewassistant.R;
-import com.exemple.rafael.interviewassistant.model.Interview;
-import com.exemple.rafael.interviewassistant.model.InterviewEntity;
+import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
+import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.InterviewedPerson;
-import com.exemple.rafael.interviewassistant.model.InterviewedPersonEntity;
+import com.exemple.rafael.interviewassistant.model.InterviewedPersonDao;
 
-import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import static android.R.attr.data;
 
 public class MainActivity extends AppCompatActivity
         implements LocationListener {
@@ -49,6 +44,8 @@ public class MainActivity extends AppCompatActivity
     private LocationManager locationManager;
     private String provider;
     private String postCode;
+    private DataBaseInterview data;
+
 
     public void getNumberAddress(View view) {
 
@@ -122,12 +119,16 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        InterviewedPerson interviewedPerson = new InterviewedPerson();
+/*
+        InterviewedPerson interviewedPerson = new InterviewedPerson(null,"30620-490",(short)312,"Felipe","");
         interviewedPerson.setName("Felipe");
         interviewedPerson.setPostCode("30620-490");
         interviewedPerson.setNumber((short) 312);
-        InterviewedPersonEntity interviewedPersonEntity = InterviewedPersonEntity.getInstance(this);
-        interviewedPersonEntity.salvar(interviewedPerson);
+
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        interviewedPersonDao = daoSession.getInterviewedPersonDao();
+        interviewedPersonDao.insert(interviewedPerson);
+*/
 
         Intent intent = new Intent(this, SendInterviewsInformation.class);
         startService(intent);
@@ -181,12 +182,12 @@ public class MainActivity extends AppCompatActivity
 
         if (!edtNumber.getText().equals("")) {
 
-            InterviewedPersonEntity interviewedPersonEntity = InterviewedPersonEntity.getInstance(this);
-
-            //String sql = "SELECT * FROM TbPerson WHERE postCode ='" + postCode + "' and number =" + edtNumber.getText();
             String sql = "SELECT * FROM TbPerson WHERE postCode = '30620-490' AND number = 312";
             try {
-                List<InterviewedPerson> list = interviewedPersonEntity.recuperarPorQuery(sql);
+                data = new DataBaseInterview(((App) getApplication()).getDaoSession());
+
+                List<InterviewedPerson> list = data.getInterviewedPerson("30620-490",(short)312);
+
                 if (!list.isEmpty()) {
                     Intent activity = new Intent(this, ConfirmInformationActivity.class);
                     activity.putExtra("Name",list.get(0).getName());
@@ -196,7 +197,7 @@ public class MainActivity extends AppCompatActivity
 
             }  catch (Exception ex)
             {
-                Log.i("Log",ex.getMessage());
+
             }
         }
     }

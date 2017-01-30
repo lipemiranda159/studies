@@ -6,14 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class aboutelection extends ActionBarActivity {
 
     private int IdPerson;
-    private DataBaseInterview data;
     private String nome;
+    private DataBaseInterview data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,7 @@ public class aboutelection extends ActionBarActivity {
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id", 0);
         nome = intent.getStringExtra("Name");
-        data = new DataBaseInterview(this);
+        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
     }
 
     public Interview CreateInterview(short value)
@@ -31,6 +34,7 @@ public class aboutelection extends ActionBarActivity {
         Interview interview = new Interview();
         interview.setIdPerson(IdPerson);
         interview.aboutElection = value;
+
         return interview;
 
     }

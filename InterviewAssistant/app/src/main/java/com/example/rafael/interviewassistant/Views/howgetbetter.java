@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.App;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
 
@@ -26,7 +27,8 @@ public class howgetbetter extends ActionBarActivity {
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id", 0);
         nome = intent.getStringExtra("Name");
-        data = new DataBaseInterview(this);
+        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
+
 
     }
 

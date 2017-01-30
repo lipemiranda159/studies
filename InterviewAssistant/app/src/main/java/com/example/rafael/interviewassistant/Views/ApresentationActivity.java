@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.App;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
 
@@ -24,7 +25,7 @@ public class ApresentationActivity extends AppCompatActivity {
 
         txtApresentation = (TextView) findViewById(R.id.txtApresentation);
         //Sr. Fulano, eu sou pesquisador e estamos realizando uma avaliação do atendimento de saúde em minas gerais. Pode coloborar respondendo algumas perguntas?
-        data = new DataBaseInterview(this);
+        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
         nome = intent.getStringExtra("Name");

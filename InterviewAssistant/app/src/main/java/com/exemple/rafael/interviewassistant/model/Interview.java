@@ -1,15 +1,24 @@
 package com.exemple.rafael.interviewassistant.model;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Index;
+import org.greenrobot.greendao.annotation.NotNull;
+
 import java.io.Serializable;
 import java.util.Date;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Rafael on 19/01/2017.
  */
-
-public class Interview implements Serializable, IPersistentEntity {
-    private static final long serialVersionUID = 1633833011084400384L;
+@Entity(indexes = {
+        @Index(value = "id, idPerson", unique = true)
+})
+public class Interview  {
+    @Id
     int id;
+    @NotNull
     int idPerson;
 
     public boolean isInterviewSent() {
@@ -121,6 +130,55 @@ public class Interview implements Serializable, IPersistentEntity {
         this.motivoDesemprego = Short.parseShort(motivoDesemprego);
         this.desemSelec = Short.parseShort(desemSelec);
         this.respDesempenho = Short.parseShort(respDesempenho);
+        this.otherResp = otherResp;
+    }
+
+    @Generated(hash = 1879808585)
+    public Interview(int id, int idPerson, boolean interviewSent, boolean verifyAge, String dateStart, String dateFinish,
+            boolean viewerFound, boolean viewerAccept, boolean useSus, short idProcedure, boolean procedureHospital,
+            short IDHospital, String otherHospital, boolean useMedicalPlan, short IDProblemWithPlan, short IDSickness,
+            short needGetBetter, short qualityOfSus, String otherImprovement, short IDOcupation, String otherOcupation,
+            short degreeSchool, short liveWith, String otherDweller, boolean hasChildren, short religion,
+            short aboutElection, boolean willVote, short howSelectCandidate, boolean whatTheyDo, short describePoliticJob,
+            boolean knowSuperSimples, boolean funcAposentado, boolean aposentada, short motivoDesemprego, short desemSelec,
+            short respDesempenho, String otherResp) {
+        this.id = id;
+        this.idPerson = idPerson;
+        this.interviewSent = interviewSent;
+        this.verifyAge = verifyAge;
+        this.dateStart = dateStart;
+        this.dateFinish = dateFinish;
+        this.viewerFound = viewerFound;
+        this.viewerAccept = viewerAccept;
+        this.useSus = useSus;
+        this.idProcedure = idProcedure;
+        this.procedureHospital = procedureHospital;
+        this.IDHospital = IDHospital;
+        this.otherHospital = otherHospital;
+        this.useMedicalPlan = useMedicalPlan;
+        this.IDProblemWithPlan = IDProblemWithPlan;
+        this.IDSickness = IDSickness;
+        this.needGetBetter = needGetBetter;
+        this.qualityOfSus = qualityOfSus;
+        this.otherImprovement = otherImprovement;
+        this.IDOcupation = IDOcupation;
+        this.otherOcupation = otherOcupation;
+        this.degreeSchool = degreeSchool;
+        this.liveWith = liveWith;
+        this.otherDweller = otherDweller;
+        this.hasChildren = hasChildren;
+        this.religion = religion;
+        this.aboutElection = aboutElection;
+        this.willVote = willVote;
+        this.howSelectCandidate = howSelectCandidate;
+        this.whatTheyDo = whatTheyDo;
+        this.describePoliticJob = describePoliticJob;
+        this.knowSuperSimples = knowSuperSimples;
+        this.funcAposentado = funcAposentado;
+        this.aposentada = aposentada;
+        this.motivoDesemprego = motivoDesemprego;
+        this.desemSelec = desemSelec;
+        this.respDesempenho = respDesempenho;
         this.otherResp = otherResp;
     }
 
@@ -614,17 +672,151 @@ public class Interview implements Serializable, IPersistentEntity {
 
     public String otherResp;
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
 
     public int isIdPerson() {
         return idPerson;
+    }
+
+    public int getIdPerson() {
+        return this.idPerson;
+    }
+
+    public boolean getInterviewSent() {
+        return this.interviewSent;
+    }
+
+    public boolean getVerifyAge() {
+        return this.verifyAge;
+    }
+
+    public boolean getViewerFound() {
+        return this.viewerFound;
+    }
+
+    public boolean getViewerAccept() {
+        return this.viewerAccept;
+    }
+
+    public boolean getUseSus() {
+        return this.useSus;
+    }
+
+    public short getIdProcedure() {
+        return this.idProcedure;
+    }
+
+    public boolean getProcedureHospital() {
+        return this.procedureHospital;
+    }
+
+    public short getIDHospital() {
+        return this.IDHospital;
+    }
+
+    public String getOtherHospital() {
+        return this.otherHospital;
+    }
+
+    public boolean getUseMedicalPlan() {
+        return this.useMedicalPlan;
+    }
+
+    public short getIDProblemWithPlan() {
+        return this.IDProblemWithPlan;
+    }
+
+    public short getIDSickness() {
+        return this.IDSickness;
+    }
+
+    public short getQualityOfSus() {
+        return this.qualityOfSus;
+    }
+
+    public String getOtherImprovement() {
+        return this.otherImprovement;
+    }
+
+    public short getIDOcupation() {
+        return this.IDOcupation;
+    }
+
+    public String getOtherOcupation() {
+        return this.otherOcupation;
+    }
+
+    public short getDegreeSchool() {
+        return this.degreeSchool;
+    }
+
+    public short getLiveWith() {
+        return this.liveWith;
+    }
+
+    public String getOtherDweller() {
+        return this.otherDweller;
+    }
+
+    public boolean getHasChildren() {
+        return this.hasChildren;
+    }
+
+    public short getReligion() {
+        return this.religion;
+    }
+
+    public short getAboutElection() {
+        return this.aboutElection;
+    }
+
+    public boolean getWillVote() {
+        return this.willVote;
+    }
+
+    public short getHowSelectCandidate() {
+        return this.howSelectCandidate;
+    }
+
+    public boolean getWhatTheyDo() {
+        return this.whatTheyDo;
+    }
+
+    public short getDescribePoliticJob() {
+        return this.describePoliticJob;
+    }
+
+    public boolean getKnowSuperSimples() {
+        return this.knowSuperSimples;
+    }
+
+    public boolean getFuncAposentado() {
+        return this.funcAposentado;
+    }
+
+    public boolean getAposentada() {
+        return this.aposentada;
+    }
+
+    public short getMotivoDesemprego() {
+        return this.motivoDesemprego;
+    }
+
+    public short getDesemSelec() {
+        return this.desemSelec;
+    }
+
+    public short getRespDesempenho() {
+        return this.respDesempenho;
+    }
+
+    public String getOtherResp() {
+        return this.otherResp;
     }
 }

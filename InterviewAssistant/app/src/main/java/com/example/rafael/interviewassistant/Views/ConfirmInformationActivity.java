@@ -1,6 +1,7 @@
 package com.example.rafael.interviewassistant.Views;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.App;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
 
@@ -34,7 +36,8 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
         IdPerson = intent.getIntExtra("Id", 0);
         txtConfirm.setText(getSaudation() + " Gostaria de falar com " + nome + ". Ele se encontra?");
 
-        data = new DataBaseInterview(this);
+        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -58,20 +61,23 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
     {
         Interview interview = new Interview();
         interview.setIdPerson(IdPerson);
-        interview.dateStart = String.valueOf(Calendar.getInstance().getTime());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        interview.dateStart = format.format(Calendar.getInstance().getTime());
         interview.setViewerFound(value);
         return interview;
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void onRadioYesClicked(View view){
 
 
         Intent activity = new Intent(this, ApresentationActivity.class);
-        data.updateDb(IdPerson,nome,CreateInterview(true),activity);
+        data.insert(IdPerson,nome,CreateInterview(true),activity);
         startActivity(activity);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void onRadioNoClicked(View view)
     {
 

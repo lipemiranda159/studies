@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.App;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
 
@@ -20,7 +21,8 @@ public class ClassifySUS extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classify_sus);
 
-        data = new DataBaseInterview(this);
+        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
+
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
         nome = intent.getStringExtra("Name");

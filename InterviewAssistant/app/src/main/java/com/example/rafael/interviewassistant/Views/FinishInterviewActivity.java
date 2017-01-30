@@ -1,6 +1,7 @@
 package com.example.rafael.interviewassistant.Views;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -9,10 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
+import com.exemple.rafael.interviewassistant.model.App;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
-
-import java.util.Date;
 
 public class FinishInterviewActivity extends AppCompatActivity {
 
@@ -24,7 +24,8 @@ public class FinishInterviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish_interview);
 
-        data = new DataBaseInterview(this);
+        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
+
         Intent intent = getIntent();
         IdPerson = intent.getIntExtra("Id",0);
 
@@ -34,7 +35,8 @@ public class FinishInterviewActivity extends AppCompatActivity {
     public Interview CreateInterview(){
         Interview interview = new Interview();
         Calendar cal = Calendar.getInstance();
-        interview.dateFinish = cal.getTime().toString();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        interview.dateFinish = format.format(Calendar.getInstance().getTime());
         return interview;
     }
 

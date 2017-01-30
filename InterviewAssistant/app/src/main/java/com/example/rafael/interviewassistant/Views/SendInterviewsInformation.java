@@ -1,6 +1,5 @@
 package com.example.rafael.interviewassistant.Views;
 
-import android.app.Application;
 import android.app.Service;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -10,13 +9,14 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.RestClient.clientFactory;
 import com.RestClient.interviewClient;
+import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.Interview;
-import com.exemple.rafael.interviewassistant.model.InterviewEntity;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 import java.util.List;
 
@@ -32,6 +32,7 @@ public class SendInterviewsInformation extends Service {
 
     private Looper mServiceLooper;
     private ServiceHandler mServiceHandler;
+    private InterviewDao interviewDao;
 
     // Handler that receives messages from the thread
     private final class ServiceHandler extends Handler {
@@ -64,6 +65,8 @@ public class SendInterviewsInformation extends Service {
                 Process.THREAD_PRIORITY_BACKGROUND);
         thread.start();
 
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        interviewDao = daoSession.getInterviewDao();
         // Get the HandlerThread's Looper and use it for our Handler
         mServiceLooper = thread.getLooper();
         mServiceHandler = new ServiceHandler(mServiceLooper);
@@ -80,8 +83,7 @@ public class SendInterviewsInformation extends Service {
         if (isOnline())
         {
             Toast.makeText(this, "Enviando dados de entrevista", Toast.LENGTH_SHORT).show();
-            final InterviewEntity interview = InterviewEntity.getInstance(this);
-            List<Interview> interviews = interview.GetAll();
+            List<Interview> interviews = interviewDao.queryRaw("interviewSent = false");
 
             if (interviews != null) {
 
@@ -92,17 +94,14 @@ public class SendInterviewsInformation extends Service {
                     request.enqueue(new Callback<Interview>() {
                         @Override
                         public void onResponse(Call<Interview> call, Response<Interview> response) {
-                            Log.i("Sucesso", "funciona muito - id: " + response.body().getId());
                             newInterview.setInterviewSent(true);
-                            interview.update(newInterview);
+                            interviewDao.update(newInterview);
                         }
 
                         @Override
                         public void onFailure(Call<Interview> call, Throwable t) {
-
-                            Log.i("erro", t.getMessage());
                             newInterview.setInterviewSent(false);
-                            interview.update(newInterview);
+                            interviewDao.update(newInterview);
                         }
                     });
 

@@ -1,17 +1,48 @@
 package com.exemple.rafael.interviewassistant.model;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
+import java.util.List;
 
 /**
- * Created by Rafael on 20/01/2017.
+ * Created by Rafael on 30/01/2017.
  */
-public final class DataBaseInterview {
 
-    private InterviewEntity entity;
+public class DataBaseInterview {
+    private final InterviewDao interviewDao;
+    private final InterviewedPersonDao interviewedPersonDao;
 
-    public DataBaseInterview(AppCompatActivity activity){
-        entity = InterviewEntity.getInstance(activity);
+    public DataBaseInterview(DaoSession daoSession)
+    {
+
+        interviewDao = daoSession.getInterviewDao();
+        interviewedPersonDao = daoSession.getInterviewedPersonDao();
+
+    }
+
+    public void insert(int IdPerson,String name, Interview interview, Intent intent)
+    {
+        interviewDao.insert(interview);
+        intent.putExtra("IdPerson", IdPerson);
+        intent.putExtra("Name", name);
+
+    }
+
+    public void updateDb(int IdPerson,String name, Interview interview, Intent intent)
+    {
+        Interview oldInterview = interviewDao.queryRaw("idPerson ="+IdPerson).get(0);
+        CopyData(oldInterview,interview);
+        interviewDao.update(interview);
+        intent.putExtra("IdPerson", IdPerson);
+        intent.putExtra("Name", name);
+
+    }
+
+    public List<InterviewedPerson> getInterviewedPerson(String postCode, short Number)
+    {
+
+
+        return interviewedPersonDao.queryRaw("post_code ="+postCode+" AND number ="+Number);
     }
 
     private Interview CopyData(Interview interviewSource, Interview interviewDestination)
@@ -166,20 +197,4 @@ public final class DataBaseInterview {
         }
         return interviewDestination;
     }
-
-    public void updateDb(int IdPerson,String name, Interview interview, Intent intent)
-    {
-        Interview interviewDB = entity.recuperaPorIdPerson(IdPerson);
-        if (interviewDB != null) {
-            interviewDB = CopyData(interview, interviewDB);
-            entity.editar(interviewDB);
-        } else {
-            entity.salvar(interview);
-        }
-        intent.putExtra("IdPerson", IdPerson);
-        intent.putExtra("Name", name);
-    }
-
-
-
 }
