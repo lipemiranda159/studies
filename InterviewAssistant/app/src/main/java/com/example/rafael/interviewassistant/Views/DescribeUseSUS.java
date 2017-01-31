@@ -7,13 +7,14 @@ import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class DescribeUseSUS extends AppCompatActivity {
 
     private Long IdPerson;
-    private DataBaseInterview data;
     private String nome;
 
 
@@ -22,7 +23,6 @@ public class DescribeUseSUS extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_describe_use_sus);
 
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
@@ -31,19 +31,20 @@ public class DescribeUseSUS extends AppCompatActivity {
 
     }
 
-    public Interview CreateInterview(short value)
+    private void Update(short value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
         interview.idProcedure = value;
-        return interview;
-
+        interviewDao.save(interview);
     }
+
 
     public void CreateActivity(short opt)
     {
         Intent activity = new Intent(this, Bhhospital.class);
-        data.updateDb(IdPerson,nome,CreateInterview(opt),activity);
+        Update(opt);
         startActivity(activity);
 
     }

@@ -8,14 +8,15 @@ import android.widget.EditText;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class ListOcupation extends ActionBarActivity {
 
     private EditText edtOtherOcupation;
     private long IdPerson;
-    private DataBaseInterview data;
     private String nome;
 
 
@@ -28,82 +29,82 @@ public class ListOcupation extends ActionBarActivity {
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 
 
     }
 
-    public Interview CreateInterview(int value)
-    {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
-        interview.IDOcupation = (short) value;
-        return interview;
 
+    private void Update(short value)
+    {
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        interview.IDOcupation = value;
+        interviewDao.save(interview);
     }
 
-    public Interview CreateInterview(String value)
+    private void Update(String value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
         interview.otherOcupation = value;
-        return interview;
-
+        interviewDao.save(interview);
     }
 
 
     public void onRadioTrabClicked(View view)
     {
         Intent activity = new Intent(this, livewith.class);
-        data.updateDb(IdPerson,nome,CreateInterview(1),activity);
+        Update((short) 1);
         startActivity(activity);
     }
     public void onRadioDesempClicked(View view)
     {
         Intent activity = new Intent(this, motivodesemprego.class);
-        data.updateDb(IdPerson,nome,CreateInterview(2),activity);
+        Update((short) 2);
         startActivity(activity);
     }
 
     public void onRadioDonaCasaClicked(View view)
     {
         Intent activity = new Intent(this, housewife.class);
-        data.updateDb(IdPerson,nome,CreateInterview(3),activity);
+        Update((short) 3);
         startActivity(activity);
     }
 
     public void onRadioEstudaClicked(View view)
     {
         Intent activity = new Intent(this, degreeschool.class);
-        data.updateDb(IdPerson,nome,CreateInterview(4),activity);
+        Update((short) 4);
         startActivity(activity);
     }
 
     public void onRadioLojClicked(View view)
     {
         Intent activity = new Intent(this, conhecesupersimples.class);
-        data.updateDb(IdPerson,nome,CreateInterview(5),activity);
+        Update((short) 5);
         startActivity(activity);
     }
 
     public void onRadioLiberalClicked(View view)
     {
         Intent activity = new Intent(this, conhecesupersimples.class);
-        data.updateDb(IdPerson,nome,CreateInterview(6),activity);
+        Update((short) 6);
         startActivity(activity);
     }
 
     public void onRadioAposenClicked(View view)
     {
         Intent activity = new Intent(this, aposentado.class);
-        data.updateDb(IdPerson,nome,CreateInterview(7),activity);
+        Update((short) 7);
         startActivity(activity);
     }
 
     public void btnSendOtherOcupationClick(View view){
 
         Intent activity = new Intent(this, livewith.class);
-        data.updateDb(IdPerson,nome,CreateInterview(edtOtherOcupation.getText().toString()),activity);
+        Update((edtOtherOcupation.getText().toString()));
         startActivity(activity);
 
     }

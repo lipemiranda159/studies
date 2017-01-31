@@ -7,13 +7,14 @@ import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class housewife extends ActionBarActivity {
 
     private long IdPerson;
-    private DataBaseInterview data;
     private String nome;
 
 
@@ -25,17 +26,16 @@ public class housewife extends ActionBarActivity {
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
-
 
     }
 
-    public Interview CreateInterview(boolean value)
+    private void Update(boolean value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
         interview.aposentada = value;
-        return interview;
+        interviewDao.save(interview);
 
     }
 
@@ -43,14 +43,14 @@ public class housewife extends ActionBarActivity {
     public void onRadioYesClicked(View view){
 
         Intent activity = new Intent(this, livewith.class);
-        data.updateDb(IdPerson,nome,CreateInterview(true),activity);
+        Update(true);
         startActivity(activity);
     }
 
     public void onRadioNoClicked(View view)
     {
         Intent activity = new Intent(this, livewith.class);
-        data.updateDb(IdPerson,nome,CreateInterview(false),activity);
+        Update(false);
         startActivity(activity);
     }
 

@@ -21,9 +21,6 @@ public class Interview  {
     @NotNull
     Long idPerson;
 
-    public boolean isInterviewSent() {
-        return interviewSent;
-    }
 
     public void setInterviewSent(boolean interviewSent) {
         this.interviewSent = interviewSent;
@@ -31,9 +28,6 @@ public class Interview  {
 
     boolean interviewSent;
 
-    public boolean isVerifyAge() {
-        return verifyAge;
-    }
 
     public void setVerifyAge(boolean verifyAge) {
         this.verifyAge = verifyAge;

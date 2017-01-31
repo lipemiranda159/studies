@@ -11,20 +11,19 @@ import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class FinishInterviewActivity extends AppCompatActivity {
 
     private long IdPerson;
-    private DataBaseInterview data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish_interview);
-
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
@@ -32,19 +31,21 @@ public class FinishInterviewActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Interview CreateInterview(){
-        Interview interview = new Interview();
-        Calendar cal = Calendar.getInstance();
+    private void Update()
+    {
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         interview.dateFinish = format.format(Calendar.getInstance().getTime());
-        return interview;
+        interviewDao.save(interview);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void onBtnFinishClick(View view)
     {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        data.updateDb(IdPerson,"",CreateInterview(),intent);
+        Update();
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
         startActivity(intent);

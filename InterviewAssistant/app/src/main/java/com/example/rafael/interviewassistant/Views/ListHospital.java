@@ -8,13 +8,14 @@ import android.widget.EditText;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class ListHospital extends AppCompatActivity {
 
     private long IdPerson;
-    private DataBaseInterview data;
     private String nome;
     private EditText edtOther;
 
@@ -28,33 +29,33 @@ public class ListHospital extends AppCompatActivity {
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 
     }
 
-    public Interview CreateInterview(short value)
+    private void Update(short value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
         interview.IDHospital = value;
-        return interview;
-
+        interviewDao.save(interview);
     }
 
-    public Interview CreateInterview(String value)
+    private void Update(String value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
         interview.otherHospital = value;
-        return interview;
-
+        interviewDao.save(interview);
     }
+
 
 
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, Sickness.class);
-        data.updateDb(IdPerson,nome,CreateInterview((short) opt),activity);
+        Update((short) opt);
         startActivity(activity);
 
     }
@@ -62,7 +63,7 @@ public class ListHospital extends AppCompatActivity {
     public void CreateActivity(String value)
     {
         Intent activity = new Intent(this, Sickness.class);
-        data.updateDb(IdPerson,nome,CreateInterview(value),activity);
+        Update(value);
         startActivity(activity);
 
     }

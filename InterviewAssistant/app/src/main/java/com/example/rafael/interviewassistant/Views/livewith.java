@@ -8,13 +8,14 @@ import android.widget.EditText;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class livewith extends ActionBarActivity {
 
     private long IdPerson;
-    private DataBaseInterview data;
     private String nome;
     private EditText edtOthersLive;
 
@@ -26,28 +27,29 @@ public class livewith extends ActionBarActivity {
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 
         edtOthersLive = (EditText) findViewById(R.id.edtOthersLive);
 
 
     }
 
-    public Interview CreateInterview(int value)
+    private void Update(short value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
-        interview.liveWith = (short) value;
-        return interview;
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        interview.liveWith = value;
+        interviewDao.save(interview);
 
     }
 
-    public Interview CreateInterview(String value)
+    private void Update(String value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
         interview.otherDweller = value;
-        return interview;
+        interviewDao.save(interview);
 
     }
 
@@ -55,14 +57,14 @@ public class livewith extends ActionBarActivity {
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, haschildren.class);
-        data.updateDb(IdPerson,nome,CreateInterview(opt),activity);
+        Update((short) opt);
         startActivity(activity);
     }
 
     public void CreateActivity(String opt)
     {
         Intent activity = new Intent(this, haschildren.class);
-        data.updateDb(IdPerson,nome,CreateInterview(opt),activity);
+        Update(opt);
         startActivity(activity);
     }
 

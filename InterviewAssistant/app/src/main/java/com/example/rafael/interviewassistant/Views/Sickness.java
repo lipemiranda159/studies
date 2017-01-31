@@ -7,21 +7,20 @@ import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class Sickness extends AppCompatActivity {
 
     private long IdPerson;
-    private DataBaseInterview data;
     private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sickness);
-
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
@@ -30,19 +29,21 @@ public class Sickness extends AppCompatActivity {
 
     }
 
-    public Interview CreateInterview(int value)
+    private void Update(short value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
-        interview.IDSickness = (short) value;
-        return interview;
-
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        interview.IDSickness = value;
+        interviewDao.save(interview);
     }
+
+
 
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, ClassifySUS.class);
-        data.updateDb(IdPerson,nome,CreateInterview(opt),activity);
+        Update((short) opt);
         startActivity(activity);
 
     }

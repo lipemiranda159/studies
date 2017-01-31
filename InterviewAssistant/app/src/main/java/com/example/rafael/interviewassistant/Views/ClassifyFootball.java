@@ -7,13 +7,14 @@ import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class ClassifyFootball extends ActionBarActivity {
 
     private Long IdPerson;
-    private DataBaseInterview data;
     private String nome;
 
     @Override
@@ -21,28 +22,26 @@ public class ClassifyFootball extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classify_football);
 
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
-
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
 
     }
 
-    public Interview CreateInterview(short value)
+    private void Update(short value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
-        interview.setRespDesempenho(value);
-        return interview;
-
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        interview.respDesempenho = value;
+        interviewDao.save(interview);
     }
 
 
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, RespDesen.class);
-        data.updateDb(IdPerson,nome,CreateInterview((short) opt),activity);
+        Update((short) opt);
         startActivity(activity);
 
     }

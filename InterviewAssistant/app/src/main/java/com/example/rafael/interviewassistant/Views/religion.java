@@ -7,13 +7,14 @@ import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class religion extends ActionBarActivity {
 
     private long IdPerson;
-    private DataBaseInterview data;
     private String nome;
 
     @Override
@@ -24,24 +25,22 @@ public class religion extends ActionBarActivity {
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
-
-
     }
 
-    public Interview CreateInterview(short value)
-    {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
-        interview.motivoDesemprego = value;
-        return interview;
 
+    private void Update(short value)
+    {
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        interview.religion = value;
+        interviewDao.save(interview);
     }
 
     public void CreateActivity(int opt)
     {
         Intent activity = new Intent(this, aboutelection.class);
-        data.updateDb(IdPerson,nome,CreateInterview((short) opt),activity);
+        Update((short) opt);
         startActivity(activity);
     }
 

@@ -7,13 +7,14 @@ import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class Bhhospital extends AppCompatActivity {
 
     private Long IdPerson;
-    private DataBaseInterview data;
     private String nome;
 
     @Override
@@ -22,7 +23,6 @@ public class Bhhospital extends AppCompatActivity {
         setContentView(R.layout.activity_bhhospital);
 
 
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
@@ -30,26 +30,27 @@ public class Bhhospital extends AppCompatActivity {
 
     }
 
-    public Interview CreateInterview(boolean value)
+    private void Update(boolean value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
-        interview.setProcedureHospital(value);
-        return interview;
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        interview.procedureHospital = value;
+        interviewDao.save(interview);
 
     }
 
     public void onRadioYesClicked(View view){
 
         Intent activity = new Intent(this, ListHospital.class);
-        data.updateDb(IdPerson,nome,CreateInterview(true),activity);
+        Update(true);
         startActivity(activity);
     }
 
     public void onRadioNoClicked(View view)
     {
         Intent activity = new Intent(this, Sickness.class);
-        data.updateDb(IdPerson,nome,CreateInterview(false),activity);
+        Update(false);
         startActivity(activity);
     }
 }

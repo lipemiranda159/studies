@@ -7,13 +7,14 @@ import android.view.View;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
+import com.exemple.rafael.interviewassistant.model.DaoSession;
 import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
+import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class deputadofedaral extends ActionBarActivity {
 
     private Long IdPerson;
-    private DataBaseInterview data;
     private String nome;
 
     @Override
@@ -24,10 +25,19 @@ public class deputadofedaral extends ActionBarActivity {
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
-        data = new DataBaseInterview(((App) getApplication()).getDaoSession());
-
 
     }
+
+    private void Update(boolean value)
+    {
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        InterviewDao interviewDao = daoSession.getInterviewDao();
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        interview.whatTheyDo = value;
+        interviewDao.save(interview);
+
+    }
+
 
     public Interview CreateInterview(boolean value)
     {
@@ -38,18 +48,17 @@ public class deputadofedaral extends ActionBarActivity {
 
     }
 
-
     public void onRadioYesClicked(View view){
 
         Intent activity = new Intent(this, whattheydo.class);
-        data.updateDb(IdPerson,nome,CreateInterview(true),activity);
+        Update(true);
         startActivity(activity);
     }
 
     public void onRadioNoClicked(View view)
     {
         Intent activity = new Intent(this, ClassifyFootball.class);
-        data.updateDb(IdPerson,nome,CreateInterview(true),activity);
+        Update(false);
         startActivity(activity);
     }
 
