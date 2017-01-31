@@ -17,7 +17,7 @@ public class howgetbetter extends ActionBarActivity {
 
     private EditText edtOhostpital;
     private long IdPerson;
-    private String nome;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class howgetbetter extends ActionBarActivity {
         edtOhostpital = (EditText) findViewById(R.id.edtOhostpital);
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
 
 
     }
@@ -36,7 +36,7 @@ public class howgetbetter extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.needGetBetter = value;
         interviewDao.save(interview);
     }
@@ -45,7 +45,7 @@ public class howgetbetter extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.otherImprovement = value;
         interviewDao.save(interview);
     }
@@ -56,6 +56,9 @@ public class howgetbetter extends ActionBarActivity {
     {
         Intent activity = new Intent(this, ListOcupation.class);
         Update((short) opt);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
 
     }
@@ -64,6 +67,9 @@ public class howgetbetter extends ActionBarActivity {
     {
         Intent activity = new Intent(this, ListOcupation.class);
         Update(opt);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
 
     }

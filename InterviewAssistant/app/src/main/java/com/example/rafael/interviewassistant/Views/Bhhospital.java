@@ -14,8 +14,8 @@ import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class Bhhospital extends AppCompatActivity {
 
-    private Long IdPerson;
-    private String nome;
+    private long IdPerson;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class Bhhospital extends AppCompatActivity {
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
 
     }
 
@@ -34,7 +34,7 @@ public class Bhhospital extends AppCompatActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.procedureHospital = value;
         interviewDao.save(interview);
 
@@ -44,6 +44,9 @@ public class Bhhospital extends AppCompatActivity {
 
         Intent activity = new Intent(this, ListHospital.class);
         Update(true);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -51,6 +54,9 @@ public class Bhhospital extends AppCompatActivity {
     {
         Intent activity = new Intent(this, Sickness.class);
         Update(false);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 }

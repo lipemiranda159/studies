@@ -15,7 +15,7 @@ import com.exemple.rafael.interviewassistant.model.InterviewDao;
 public class VerifyAgeActivity extends AppCompatActivity {
 
     private long IdPerson;
-    private String nome;
+    private String name;
 
 
     @Override
@@ -25,7 +25,7 @@ public class VerifyAgeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
 
     }
 
@@ -33,7 +33,7 @@ public class VerifyAgeActivity extends AppCompatActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.verifyAge = value;
         interviewDao.save(interview);
 
@@ -44,6 +44,9 @@ public class VerifyAgeActivity extends AppCompatActivity {
 
         Intent activity = new Intent(this, ApresentationActivity.class);
         Update(true);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -51,6 +54,9 @@ public class VerifyAgeActivity extends AppCompatActivity {
     {
         Intent activity = new Intent(this, FinishInterviewActivity.class);
         Update(false);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 

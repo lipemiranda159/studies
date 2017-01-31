@@ -14,8 +14,8 @@ import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class DescribeUseSUS extends AppCompatActivity {
 
-    private Long IdPerson;
-    private String nome;
+    private long IdPerson;
+    private String name;
 
 
     @Override
@@ -26,7 +26,7 @@ public class DescribeUseSUS extends AppCompatActivity {
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
 
 
     }
@@ -35,7 +35,7 @@ public class DescribeUseSUS extends AppCompatActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.idProcedure = value;
         interviewDao.save(interview);
     }
@@ -45,6 +45,9 @@ public class DescribeUseSUS extends AppCompatActivity {
     {
         Intent activity = new Intent(this, Bhhospital.class);
         Update(opt);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
 
     }

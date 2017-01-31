@@ -15,8 +15,8 @@ import com.exemple.rafael.interviewassistant.model.InterviewDao;
 public class conhecesupersimples extends ActionBarActivity {
 
 
-    private Long IdPerson;
-    private String nome;
+    private long IdPerson;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +25,8 @@ public class conhecesupersimples extends ActionBarActivity {
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
 
-
-    }
-
-    public Interview CreateInterview(boolean value)
-    {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
-        interview.knowSuperSimples = value;
-        return interview;
 
     }
 
@@ -44,7 +35,7 @@ public class conhecesupersimples extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.knowSuperSimples = value;
         interviewDao.save(interview);
     }
@@ -55,6 +46,9 @@ public class conhecesupersimples extends ActionBarActivity {
 
         Intent activity = new Intent(this, livewith.class);
         Update(true);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -62,6 +56,9 @@ public class conhecesupersimples extends ActionBarActivity {
     {
         Intent activity = new Intent(this, livewith.class);
         Update(false);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 

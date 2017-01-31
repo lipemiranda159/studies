@@ -15,7 +15,7 @@ import com.exemple.rafael.interviewassistant.model.InterviewDao;
 public class howselectcandidate extends ActionBarActivity {
 
     private long IdPerson;
-    private String nome;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class howselectcandidate extends ActionBarActivity {
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
 
 
     }
@@ -33,7 +33,7 @@ public class howselectcandidate extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.howSelectCandidate = value;
         interviewDao.save(interview);
     }
@@ -43,6 +43,9 @@ public class howselectcandidate extends ActionBarActivity {
     {
         Intent activity = new Intent(this, deputadofedaral.class);
         Update((short) opt);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 

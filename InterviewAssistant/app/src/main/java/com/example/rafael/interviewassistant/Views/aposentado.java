@@ -14,8 +14,8 @@ import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class aposentado extends ActionBarActivity {
 
-    private Long IdPerson;
-    private String nome;
+    private long IdPerson;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class aposentado extends ActionBarActivity {
 
         Intent intent = new Intent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
 
     }
 
@@ -32,7 +32,7 @@ public class aposentado extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.funcAposentado = value;
         interviewDao.save(interview);
 
@@ -43,6 +43,9 @@ public class aposentado extends ActionBarActivity {
 
         Intent activity = new Intent(this, livewith.class);
         Update(true);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 

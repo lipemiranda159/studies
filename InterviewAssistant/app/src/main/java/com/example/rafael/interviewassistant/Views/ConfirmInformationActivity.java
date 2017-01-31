@@ -20,8 +20,8 @@ import com.exemple.rafael.interviewassistant.model.InterviewDao;
 public class ConfirmInformationActivity extends AppCompatActivity  {
 
     private TextView txtConfirm;
-    private Long IdPerson;
-    private String nome;
+    private long IdPerson;
+    private String name;
     private Intent intent;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -33,11 +33,12 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
         txtConfirm = (TextView) findViewById(R.id.txtConfirm);
 
         intent = getIntent();
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
+        IdPerson = intent.getLongExtra("Id",0);
 
 
         //Bom dia, gostaria de falar com Fulano. Ele se encontra?
-        txtConfirm.setText(getSaudation() + " Gostaria de falar com " + nome + ". Ele se encontra?");
+        txtConfirm.setText(getSaudation() + " Gostaria de falar com " + name + ". Ele se encontra?");
 
     }
 
@@ -62,7 +63,7 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         interview.dateStart = format.format(Calendar.getInstance().getTime());
         interview.viewerFound = value;
@@ -76,6 +77,9 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
 
         Intent activity = new Intent(this, ApresentationActivity.class);
         Update(true);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -85,6 +89,9 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
 
         Intent activity = new Intent(this, VerifyAgeActivity.class);
         Update(false);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 

@@ -15,7 +15,7 @@ import com.exemple.rafael.interviewassistant.model.InterviewDao;
 public class UsePlan extends ActionBarActivity {
 
     private long IdPerson;
-    private String nome;
+    private String name;
 
 
     @Override
@@ -25,7 +25,7 @@ public class UsePlan extends ActionBarActivity {
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name= intent.getStringExtra("Name");
 
 
     }
@@ -34,7 +34,7 @@ public class UsePlan extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.useMedicalPlan = value;
         interviewDao.save(interview);
 
@@ -45,6 +45,9 @@ public class UsePlan extends ActionBarActivity {
 
         Intent activity = new Intent(this, Hasproblemswithplan.class);
         Update(true);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -52,6 +55,9 @@ public class UsePlan extends ActionBarActivity {
     {
         Intent activity = new Intent(this, Sickness.class);
         Update(false);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 

@@ -17,7 +17,7 @@ public class ListOcupation extends ActionBarActivity {
 
     private EditText edtOtherOcupation;
     private long IdPerson;
-    private String nome;
+    private String name;
 
 
     @Override
@@ -28,7 +28,7 @@ public class ListOcupation extends ActionBarActivity {
         edtOtherOcupation = (EditText) findViewById(R.id.edtOtherOcupation);
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
 
 
     }
@@ -38,7 +38,7 @@ public class ListOcupation extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.IDOcupation = value;
         interviewDao.save(interview);
     }
@@ -47,7 +47,7 @@ public class ListOcupation extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.otherOcupation = value;
         interviewDao.save(interview);
     }
@@ -57,12 +57,18 @@ public class ListOcupation extends ActionBarActivity {
     {
         Intent activity = new Intent(this, livewith.class);
         Update((short) 1);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
     public void onRadioDesempClicked(View view)
     {
         Intent activity = new Intent(this, motivodesemprego.class);
         Update((short) 2);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -70,6 +76,9 @@ public class ListOcupation extends ActionBarActivity {
     {
         Intent activity = new Intent(this, housewife.class);
         Update((short) 3);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -77,6 +86,9 @@ public class ListOcupation extends ActionBarActivity {
     {
         Intent activity = new Intent(this, degreeschool.class);
         Update((short) 4);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -84,6 +96,9 @@ public class ListOcupation extends ActionBarActivity {
     {
         Intent activity = new Intent(this, conhecesupersimples.class);
         Update((short) 5);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -91,6 +106,9 @@ public class ListOcupation extends ActionBarActivity {
     {
         Intent activity = new Intent(this, conhecesupersimples.class);
         Update((short) 6);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -98,6 +116,9 @@ public class ListOcupation extends ActionBarActivity {
     {
         Intent activity = new Intent(this, aposentado.class);
         Update((short) 7);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -105,6 +126,9 @@ public class ListOcupation extends ActionBarActivity {
 
         Intent activity = new Intent(this, livewith.class);
         Update((edtOtherOcupation.getText().toString()));
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
 
     }

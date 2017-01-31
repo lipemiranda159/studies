@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.rafael.interviewassistant.R;
 import com.exemple.rafael.interviewassistant.model.App;
@@ -16,7 +17,7 @@ import com.exemple.rafael.interviewassistant.model.InterviewDao;
 public class livewith extends ActionBarActivity {
 
     private long IdPerson;
-    private String nome;
+    private String name;
     private EditText edtOthersLive;
 
     @Override
@@ -26,7 +27,7 @@ public class livewith extends ActionBarActivity {
 
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
 
         edtOthersLive = (EditText) findViewById(R.id.edtOthersLive);
 
@@ -37,7 +38,7 @@ public class livewith extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.liveWith = value;
         interviewDao.save(interview);
 
@@ -47,7 +48,7 @@ public class livewith extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.otherDweller = value;
         interviewDao.save(interview);
 
@@ -58,6 +59,9 @@ public class livewith extends ActionBarActivity {
     {
         Intent activity = new Intent(this, haschildren.class);
         Update((short) opt);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
@@ -65,6 +69,9 @@ public class livewith extends ActionBarActivity {
     {
         Intent activity = new Intent(this, haschildren.class);
         Update(opt);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 

@@ -17,7 +17,7 @@ public class RespDesen extends ActionBarActivity {
 
     private EditText edtOtherResp;
     private long IdPerson;
-    private String nome;
+    private String name;
 
 
     @Override
@@ -28,7 +28,7 @@ public class RespDesen extends ActionBarActivity {
         edtOtherResp = (EditText) findViewById(R.id.edtOtherResp);
         Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
-        nome = intent.getStringExtra("Name");
+        name = intent.getStringExtra("Name");
 
 
     }
@@ -37,7 +37,7 @@ public class RespDesen extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.respDesempenho = value;
         interviewDao.save(interview);
     }
@@ -46,7 +46,7 @@ public class RespDesen extends ActionBarActivity {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '1'").get(0);
+        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         interview.otherResp = value;
         interviewDao.save(interview);
     }
@@ -55,6 +55,9 @@ public class RespDesen extends ActionBarActivity {
     {
         Intent activity = new Intent(this, FinishInterviewActivity.class);
         Update((short) opt);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
 
     }
@@ -63,6 +66,9 @@ public class RespDesen extends ActionBarActivity {
     {
         Intent activity = new Intent(this, FinishInterviewActivity.class);
         Update(opt);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
 
     }
