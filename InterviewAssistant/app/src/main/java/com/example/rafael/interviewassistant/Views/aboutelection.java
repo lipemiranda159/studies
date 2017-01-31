@@ -14,7 +14,7 @@ import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
 public class aboutelection extends ActionBarActivity {
 
-    private int IdPerson;
+    private Long IdPerson;
     private String nome;
     private DataBaseInterview data;
 
@@ -24,7 +24,7 @@ public class aboutelection extends ActionBarActivity {
         setContentView(R.layout.activity_aboutelection);
 
         Intent intent = getIntent();
-        IdPerson = intent.getIntExtra("Id", 0);
+        IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
         data = new DataBaseInterview(((App) getApplication()).getDaoSession());
     }

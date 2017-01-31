@@ -13,7 +13,7 @@ import com.exemple.rafael.interviewassistant.model.Interview;
 
 public class ApresentationActivity extends AppCompatActivity {
 
-    private int IdPerson;
+    private Long IdPerson;
     private DataBaseInterview data;
     private String nome;
     private TextView txtApresentation;
@@ -27,7 +27,7 @@ public class ApresentationActivity extends AppCompatActivity {
         //Sr. Fulano, eu sou pesquisador e estamos realizando uma avaliação do atendimento de saúde em minas gerais. Pode coloborar respondendo algumas perguntas?
         data = new DataBaseInterview(((App) getApplication()).getDaoSession());
         Intent intent = getIntent();
-        IdPerson = intent.getIntExtra("Id",0);
+        IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
         txtApresentation.setText(nome+", eu sou pesquisador e estamos realizando uma avaliação do atendimento de saúde em minas gerais. Pode coloborar respondendo algumas perguntas?");
 

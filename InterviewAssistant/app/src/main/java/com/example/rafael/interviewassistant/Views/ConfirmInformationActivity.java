@@ -18,9 +18,10 @@ import com.exemple.rafael.interviewassistant.model.Interview;
 public class ConfirmInformationActivity extends AppCompatActivity  {
 
     private TextView txtConfirm;
-    private int IdPerson;
+    private Long IdPerson;
     private DataBaseInterview data;
     private String nome;
+    private Intent intent;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -30,10 +31,11 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
 
         txtConfirm = (TextView) findViewById(R.id.txtConfirm);
 
-        //Bom dia, gostaria de falar com Fulano. Ele se encontra?
-        Intent intent = getIntent();
+        intent = getIntent();
         nome = intent.getStringExtra("Name");
-        IdPerson = intent.getIntExtra("Id", 0);
+
+
+        //Bom dia, gostaria de falar com Fulano. Ele se encontra?
         txtConfirm.setText(getSaudation() + " Gostaria de falar com " + nome + ". Ele se encontra?");
 
         data = new DataBaseInterview(((App) getApplication()).getDaoSession());
@@ -59,14 +61,17 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public Interview CreateInterview(boolean value)
     {
-        Interview interview = new Interview();
-        interview.setIdPerson(IdPerson);
+        IdPerson = intent.getLongExtra("Id", Long.valueOf("0"));
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        interview.dateStart = format.format(Calendar.getInstance().getTime());
-        interview.setViewerFound(value);
-        return interview;
+        /*Interview interview = new Interview(null,1,false,false,format.format(Calendar.getInstance().getTime()),"",
+            value,false,false,(short)0,false,(short)0,
+            "",false,(short)0,(short)0,(short)0,(short)0,"",(short)0,"",(short)0,(short)0,"",false,(short)0,
+            (short)0,false,(short)0,false,(short)0,false,false,false,(short)0,(short)0,(short)0,"");
 
+        return interview;*/
+        return null;
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void onRadioYesClicked(View view){

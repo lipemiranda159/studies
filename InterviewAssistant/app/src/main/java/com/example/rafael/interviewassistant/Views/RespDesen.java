@@ -14,7 +14,7 @@ import com.exemple.rafael.interviewassistant.model.Interview;
 public class RespDesen extends ActionBarActivity {
 
     private EditText edtOtherResp;
-    private int IdPerson;
+    private long IdPerson;
     private DataBaseInterview data;
     private String nome;
 
@@ -26,7 +26,7 @@ public class RespDesen extends ActionBarActivity {
 
         edtOtherResp = (EditText) findViewById(R.id.edtOtherResp);
         Intent intent = getIntent();
-        IdPerson = intent.getIntExtra("Id", 0);
+        IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
         data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 

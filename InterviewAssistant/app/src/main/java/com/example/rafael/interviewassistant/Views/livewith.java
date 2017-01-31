@@ -13,7 +13,7 @@ import com.exemple.rafael.interviewassistant.model.Interview;
 
 public class livewith extends ActionBarActivity {
 
-    private int IdPerson;
+    private long IdPerson;
     private DataBaseInterview data;
     private String nome;
     private EditText edtOthersLive;
@@ -24,7 +24,7 @@ public class livewith extends ActionBarActivity {
         setContentView(R.layout.activity_livewith);
 
         Intent intent = getIntent();
-        IdPerson = intent.getIntExtra("Id", 0);
+        IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
         data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 

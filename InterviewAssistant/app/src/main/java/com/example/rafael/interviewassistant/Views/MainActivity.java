@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
         interviewedPerson.setNumber((short) 312);
 
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
-        interviewedPersonDao = daoSession.getInterviewedPersonDao();
+        InterviewedPersonDao interviewedPersonDao = daoSession.getInterviewedPersonDao();
         interviewedPersonDao.insert(interviewedPerson);
 */
 
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity
 
         if (!edtNumber.getText().equals("")) {
 
-            String sql = "SELECT * FROM TbPerson WHERE postCode = '30620-490' AND number = 312";
+            //String sql = "SELECT * FROM TbPerson WHERE postCode = '30620-490' AND number = 312";
             try {
                 data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 

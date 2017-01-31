@@ -17,9 +17,9 @@ import org.greenrobot.greendao.annotation.Generated;
 })
 public class Interview  {
     @Id
-    int id;
+    Long id;
     @NotNull
-    int idPerson;
+    Long idPerson;
 
     public boolean isInterviewSent() {
         return interviewSent;
@@ -42,8 +42,8 @@ public class Interview  {
     public boolean verifyAge;
 
     public Interview(){
-        this.id = 0;
-        this.idPerson = 0;
+        this.id = Long.valueOf(0);
+        this.idPerson = Long.valueOf(0);
         this.dateStart = "";
         this.dateFinish = "";
         this.verifyAge = false;
@@ -82,7 +82,7 @@ public class Interview  {
 
     }
 
-    public Interview(int id, String idPerson,String interviewSent,String verifyAge, String dateStart, String dateFinish,
+    public Interview(Long id, Long idPerson,String interviewSent,String verifyAge, String dateStart, String dateFinish,
                      String viewerFound, String viewerAccept, String useSus,
                      String idProcedure, String procedureHospital, String IDHospital,
                      String otherHospital, String useMedicalPlan, String IDProblemWithPlan,
@@ -94,7 +94,7 @@ public class Interview  {
                      String knowSuperSimples, String funcAposentado, String aposentada,
                      String motivoDesemprego, String desemSelec, String respDesempenho, String otherResp) {
         this.id = id;
-        this.idPerson = Integer.parseInt(idPerson);
+        this.idPerson = idPerson;
         this.interviewSent = Boolean.parseBoolean(interviewSent);
         this.verifyAge = Boolean.parseBoolean(verifyAge);
         this.dateStart = dateStart;
@@ -133,15 +133,15 @@ public class Interview  {
         this.otherResp = otherResp;
     }
 
-    @Generated(hash = 1879808585)
-    public Interview(int id, int idPerson, boolean interviewSent, boolean verifyAge, String dateStart, String dateFinish,
-            boolean viewerFound, boolean viewerAccept, boolean useSus, short idProcedure, boolean procedureHospital,
-            short IDHospital, String otherHospital, boolean useMedicalPlan, short IDProblemWithPlan, short IDSickness,
-            short needGetBetter, short qualityOfSus, String otherImprovement, short IDOcupation, String otherOcupation,
-            short degreeSchool, short liveWith, String otherDweller, boolean hasChildren, short religion,
-            short aboutElection, boolean willVote, short howSelectCandidate, boolean whatTheyDo, short describePoliticJob,
-            boolean knowSuperSimples, boolean funcAposentado, boolean aposentada, short motivoDesemprego, short desemSelec,
-            short respDesempenho, String otherResp) {
+    @Generated(hash = 691904881)
+    public Interview(Long id, @NotNull Long idPerson, boolean interviewSent, boolean verifyAge, String dateStart,
+            String dateFinish, boolean viewerFound, boolean viewerAccept, boolean useSus, short idProcedure,
+            boolean procedureHospital, short IDHospital, String otherHospital, boolean useMedicalPlan,
+            short IDProblemWithPlan, short IDSickness, short needGetBetter, short qualityOfSus, String otherImprovement,
+            short IDOcupation, String otherOcupation, short degreeSchool, short liveWith, String otherDweller,
+            boolean hasChildren, short religion, short aboutElection, boolean willVote, short howSelectCandidate,
+            boolean whatTheyDo, short describePoliticJob, boolean knowSuperSimples, boolean funcAposentado,
+            boolean aposentada, short motivoDesemprego, short desemSelec, short respDesempenho, String otherResp) {
         this.id = id;
         this.idPerson = idPerson;
         this.interviewSent = interviewSent;
@@ -181,6 +181,7 @@ public class Interview  {
         this.respDesempenho = respDesempenho;
         this.otherResp = otherResp;
     }
+
 
     public String getDateStart() {
 
@@ -371,7 +372,7 @@ public class Interview  {
 
     public boolean funcAposentado;
 
-    public void setIdPerson(int idPerson) {
+    public void setIdPerson(Long idPerson) {
         this.idPerson = idPerson;
     }
 
@@ -672,19 +673,19 @@ public class Interview  {
 
     public String otherResp;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int isIdPerson() {
+    public Long isIdPerson() {
         return idPerson;
     }
 
-    public int getIdPerson() {
+    public Long getIdPerson() {
         return this.idPerson;
     }
 

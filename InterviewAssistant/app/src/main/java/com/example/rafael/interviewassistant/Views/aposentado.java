@@ -12,7 +12,7 @@ import com.exemple.rafael.interviewassistant.model.Interview;
 
 public class aposentado extends ActionBarActivity {
 
-    private int IdPerson;
+    private Long IdPerson;
     private DataBaseInterview data;
     private String nome;
 
@@ -22,7 +22,7 @@ public class aposentado extends ActionBarActivity {
         setContentView(R.layout.activity_aposentado);
 
         Intent intent = new Intent();
-        IdPerson = intent.getIntExtra("Id", 0);
+        IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
         data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 

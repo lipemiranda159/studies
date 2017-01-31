@@ -13,7 +13,7 @@ import com.exemple.rafael.interviewassistant.model.Interview;
 
 public class ListHospital extends AppCompatActivity {
 
-    private int IdPerson;
+    private long IdPerson;
     private DataBaseInterview data;
     private String nome;
     private EditText edtOther;
@@ -26,7 +26,7 @@ public class ListHospital extends AppCompatActivity {
         edtOther = (EditText) findViewById(R.id.edtOtherHospital);
 
         Intent intent = getIntent();
-        IdPerson = intent.getIntExtra("Id", 0);
+        IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
         data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 

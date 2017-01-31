@@ -16,7 +16,7 @@ import com.exemple.rafael.interviewassistant.model.Interview;
 
 public class FinishInterviewActivity extends AppCompatActivity {
 
-    private int IdPerson;
+    private long IdPerson;
     private DataBaseInterview data;
 
     @Override
@@ -27,7 +27,7 @@ public class FinishInterviewActivity extends AppCompatActivity {
         data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 
         Intent intent = getIntent();
-        IdPerson = intent.getIntExtra("Id",0);
+        IdPerson = intent.getLongExtra("Id", 0);
 
     }
 

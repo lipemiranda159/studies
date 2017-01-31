@@ -12,7 +12,7 @@ import com.exemple.rafael.interviewassistant.model.Interview;
 
 public class Sickness extends AppCompatActivity {
 
-    private int IdPerson;
+    private long IdPerson;
     private DataBaseInterview data;
     private String nome;
 
@@ -24,7 +24,7 @@ public class Sickness extends AppCompatActivity {
         data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 
         Intent intent = getIntent();
-        IdPerson = intent.getIntExtra("Id",0);
+        IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
 
 

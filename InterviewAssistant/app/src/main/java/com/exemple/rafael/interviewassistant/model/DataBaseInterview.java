@@ -20,20 +20,21 @@ public class DataBaseInterview {
 
     }
 
-    public void insert(int IdPerson,String name, Interview interview, Intent intent)
+    public void insert(Long IdPerson,String name, Interview interview, Intent intent)
     {
+        //interviewDao.deleteAll();
         interviewDao.insert(interview);
-        intent.putExtra("IdPerson", IdPerson);
+        intent.putExtra("Id", IdPerson);
         intent.putExtra("Name", name);
 
     }
 
-    public void updateDb(int IdPerson,String name, Interview interview, Intent intent)
+    public void updateDb(Long IdPerson,String name, Interview interview, Intent intent)
     {
-        Interview oldInterview = interviewDao.queryRaw("idPerson ="+IdPerson).get(0);
-        CopyData(oldInterview,interview);
-        interviewDao.update(interview);
-        intent.putExtra("IdPerson", IdPerson);
+        Interview oldInterview = interviewDao.queryRaw("WHERE id_Person ="+1).get(0);
+        oldInterview = CopyData(oldInterview,interview);
+        interviewDao.update(oldInterview);
+        intent.putExtra("Id", IdPerson);
         intent.putExtra("Name", name);
 
     }
@@ -42,7 +43,7 @@ public class DataBaseInterview {
     {
 
 
-        return interviewedPersonDao.queryRaw("post_code ="+postCode+" AND number ="+Number);
+        return interviewedPersonDao.queryRaw("WHERE post_code ='"+postCode+"' AND number ="+Number);
     }
 
     private Interview CopyData(Interview interviewSource, Interview interviewDestination)

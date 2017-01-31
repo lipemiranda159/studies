@@ -14,7 +14,7 @@ import com.exemple.rafael.interviewassistant.model.Interview;
 public class howgetbetter extends ActionBarActivity {
 
     private EditText edtOhostpital;
-    private int IdPerson;
+    private long IdPerson;
     private DataBaseInterview data;
     private String nome;
 
@@ -25,7 +25,7 @@ public class howgetbetter extends ActionBarActivity {
 
         edtOhostpital = (EditText) findViewById(R.id.edtOhostpital);
         Intent intent = getIntent();
-        IdPerson = intent.getIntExtra("Id", 0);
+        IdPerson = intent.getLongExtra("Id", 0);
         nome = intent.getStringExtra("Name");
         data = new DataBaseInterview(((App) getApplication()).getDaoSession());
 
