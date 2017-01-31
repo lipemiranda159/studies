@@ -38,7 +38,7 @@ public class FinishInterviewActivity extends AppCompatActivity {
         Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         interview.dateFinish = format.format(Calendar.getInstance().getTime());
-        interview.setInterviewSent(false);
+        interview.interviewSent = false;
         interviewDao.save(interview);
     }
 

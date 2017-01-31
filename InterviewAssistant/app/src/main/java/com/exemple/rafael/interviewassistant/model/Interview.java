@@ -26,7 +26,7 @@ public class Interview  {
         this.interviewSent = interviewSent;
     }
 
-    boolean interviewSent;
+    public boolean interviewSent;
 
 
     public void setVerifyAge(boolean verifyAge) {

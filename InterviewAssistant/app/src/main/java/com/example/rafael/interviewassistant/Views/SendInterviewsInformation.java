@@ -83,7 +83,7 @@ public class SendInterviewsInformation extends Service {
         if (isOnline())
         {
             Toast.makeText(this, "Enviando dados de entrevista", Toast.LENGTH_SHORT).show();
-            List<Interview> interviews = interviewDao.queryRaw("WHERE interview_sent ='false'");
+            List<Interview> interviews = interviewDao.queryRaw("WHERE interview_sent = 'false'");
 
             if ((interviews != null) && (interviews.size() > 0))
             {

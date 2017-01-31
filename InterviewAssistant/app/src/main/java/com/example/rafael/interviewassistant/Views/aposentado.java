@@ -22,7 +22,7 @@ public class aposentado extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aposentado);
 
-        Intent intent = new Intent();
+        Intent intent = getIntent();
         IdPerson = intent.getLongExtra("Id", 0);
         name = intent.getStringExtra("Name");
 
@@ -53,6 +53,9 @@ public class aposentado extends ActionBarActivity {
     {
         Intent activity = new Intent(this, livewith.class);
         Update(false);
+        activity.putExtra("Name",name);
+        activity.putExtra("Id",IdPerson);
+
         startActivity(activity);
     }
 
