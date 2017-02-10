@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity
 
             if (checkPermission()) {
                 Location location = service.getLastKnownLocation(provider);
-                addressField.setText(String.valueOf(location.getLatitude()));
                 List<Address> list = new ArrayList<Address>();
 
                 Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -74,7 +73,16 @@ public class MainActivity extends AppCompatActivity
 
                 if (!list.isEmpty()) {
 
+                    /*
+
+                    R. Cap. Enéas - Milionários
+                    Belo Horizonte - MG
+                    30620-490
+                     */
+
                     Address a = list.get(0);
+                    addressField.setText(a.getThoroughfare()+" - "+a.getSubLocality()+"\n"+a.getLocality()+" - "+a.getAdminArea()+"\n"+a.getPostalCode());
+                    addressField.setVisibility(View.VISIBLE);
                     edtNumber.setText(a.getFeatureName());
                     edtNumber.setEnabled(true);
                     btnStartInterview.setEnabled(true);
@@ -101,7 +109,6 @@ public class MainActivity extends AppCompatActivity
         addressField = (TextView) findViewById(R.id.addresField);
         btnStartInterview = (Button) findViewById(R.id.btnStartInterview);
         edtNumber = (EditText) findViewById(R.id.edtNumber);
-
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         Criteria criteria = new Criteria();
@@ -114,8 +121,6 @@ public class MainActivity extends AppCompatActivity
                 System.out.println("Provider " + provider + " has been selected.");
                 onLocationChanged(location);
             } else {
-                addressField.setText("Location not available");
-                addressField.setText("Location not available");
             }
         }
 
@@ -156,7 +161,6 @@ public class MainActivity extends AppCompatActivity
     public void onLocationChanged(Location location) {
         int lat = (int) (location.getLatitude());
         int lng = (int) (location.getLongitude());
-        addressField.setText(String.valueOf(lat)+ " "+String.valueOf(lng));
     }
 
     @Override
