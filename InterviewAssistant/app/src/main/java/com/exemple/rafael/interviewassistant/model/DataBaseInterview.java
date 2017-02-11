@@ -42,7 +42,6 @@ public class DataBaseInterview {
     public List<InterviewedPerson> getInterviewedPerson(String postCode, short Number)
     {
 
-
         return interviewedPersonDao.queryRaw("WHERE post_code ='"+postCode+"' AND number ="+Number);
     }
 
@@ -197,5 +196,11 @@ public class DataBaseInterview {
             interviewDestination.respDesempenho = respDesempenho;
         }
         return interviewDestination;
+    }
+
+    public  void deleteInterview()
+    {
+        interviewDao.deleteAll();
+
     }
 }

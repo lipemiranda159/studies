@@ -189,9 +189,8 @@ public class MainActivity extends AppCompatActivity
             //String sql = "SELECT * FROM TbPerson WHERE postCode = '30620-490' AND number = 312";
             try {
                 data = new DataBaseInterview(((App) getApplication()).getDaoSession());
-
-                List<InterviewedPerson> list = data.getInterviewedPerson("30620-490",(short)312);
-
+                List<InterviewedPerson> list = data.getInterviewedPerson(postCode,Short.valueOf(edtNumber.getText().toString()));
+                data.deleteInterview();
                 if (!list.isEmpty()) {
                     Intent activity = new Intent(this, ConfirmInformationActivity.class);
                     activity.putExtra("Name",list.get(0).getName());

@@ -17,6 +17,10 @@ import com.exemple.rafael.interviewassistant.model.DataBaseInterview;
 import com.exemple.rafael.interviewassistant.model.Interview;
 import com.exemple.rafael.interviewassistant.model.InterviewDao;
 
+import java.util.List;
+
+import static android.R.id.list;
+
 public class ConfirmInformationActivity extends AppCompatActivity  {
 
     private TextView txtConfirm;
@@ -63,11 +67,22 @@ public class ConfirmInformationActivity extends AppCompatActivity  {
     {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
         InterviewDao interviewDao = daoSession.getInterviewDao();
-        Interview interview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'").get(0);
+        List<Interview> listInterview = interviewDao.queryRaw("WHERE id_person = '"+IdPerson+"'");
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        interview.dateStart = format.format(Calendar.getInstance().getTime());
-        interview.viewerFound = value;
-        interviewDao.save(interview);
+
+        if (listInterview != null && listInterview.size() > 0) {
+            Interview interview = listInterview.get(0);
+            interview.dateStart = format.format(Calendar.getInstance().getTime());
+            interview.viewerFound = value;
+            interviewDao.save(interview);
+        } else {
+            Interview interview = new Interview();
+            interview.setIdPerson(IdPerson);
+            interview.dateStart = format.format(Calendar.getInstance().getTime());
+            interview.viewerFound = value;
+            interviewDao.insert(interview);
+        }
     }
 
 
